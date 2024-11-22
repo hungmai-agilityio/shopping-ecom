@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:storybook/recommended",
+    "plugin:storybook/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
+  }
+}

@@ -8,9 +8,7 @@
     "plugin:storybook/recommended",
     "plugin:storybook/recommended"
   ],
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier", "react-refresh"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",

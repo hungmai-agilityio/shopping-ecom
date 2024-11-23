@@ -1,1 +1,1 @@
-cd ./shopping && pnpm build
+cd ./shopping-ecom && pnpm build

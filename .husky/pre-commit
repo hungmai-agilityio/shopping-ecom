@@ -1,1 +1,1 @@
-cd ./shopping && pnpm format
+cd ./shopping-ecom && pnpm format

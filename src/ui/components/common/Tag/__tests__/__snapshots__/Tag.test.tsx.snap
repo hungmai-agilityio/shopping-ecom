@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex items-center gap-2 className"
+  >
+    <span
+      class="w-5 h-10 rounded bg-primary"
+    />
+    <span
+      class="text-base font-semibold text-primary"
+    >
+      Categories
+    </span>
+  </div>
+</div>
+`;

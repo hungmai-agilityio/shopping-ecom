@@ -1,1 +1,1 @@
-export { default as Button } from '@/ui/components/common/Button';
+export * from '@/ui/components/common';

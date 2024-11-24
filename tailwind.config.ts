@@ -11,7 +11,8 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#DB4444',
-        second: '#00FF66'
+        second: '#00FF66',
+        dark: '#0D0D0D'
       },
       maxWidth: {
         'btn-sm': '143px',

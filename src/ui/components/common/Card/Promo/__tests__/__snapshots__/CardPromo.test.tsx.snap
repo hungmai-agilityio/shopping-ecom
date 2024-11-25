@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardPromo component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="rounded-lg overflow-hidden"
+  >
+    <div
+      class="relative bg-dark "
+      style="width: 590px; height: 350px;"
+    >
+      <div
+        class="absolute inset-0"
+      >
+        <img
+          alt="Jean Image"
+          height="350"
+          src="/arrival.png"
+          style="object-fit: contain; width: 100%; height: 100%;"
+          width="590"
+        />
+      </div>
+      <div
+        class="absolute inset-0 flex items-end p-6 text-white"
+      >
+        <p>
+          Title jean
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

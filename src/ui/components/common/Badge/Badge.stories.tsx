@@ -11,10 +11,12 @@ const meta: Meta<typeof Badge> = {
   },
   argTypes: {
     quantity: {
-      description: 'Display quantity'
+      description: 'Display quantity',
+      control: 'number'
     },
     children: {
-      description: 'Content or icon show badge'
+      description: 'Content or icon show badge',
+      control: 'text'
     }
   }
 };

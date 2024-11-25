@@ -4,5 +4,4 @@ export { default as Card } from '@/ui/components/common/Card';
 export { default as CardPromo } from '@/ui/components/common/Card/Promo';
 export { default as Tag } from '@/ui/components/common/Tag';
 export { default as Badge } from '@/ui/components/common/Badge';
-
 export * from '@/ui/components/common/Typo';

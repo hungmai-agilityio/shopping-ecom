@@ -24,7 +24,9 @@ const meta: Meta<typeof Icon> = {
       description: 'Height for images'
     },
     variant: {
-      description: 'Set type optional for icon'
+      description: 'Set type optional for icon',
+      control: 'radio',
+      options: Object.values(TYPE)
     },
     onClick: {
       description: 'Handle the event when clicking on the button'
@@ -42,7 +44,7 @@ export default meta;
 
 type Story = StoryObj<typeof Icon>;
 
-export const Primary: Story = {
+export const basic: Story = {
   args: {
     src: '/cart.svg',
     alt: 'Cart Icon',
@@ -54,7 +56,7 @@ export const Primary: Story = {
   }
 };
 
-export const Second: Story = {
+export const hasBorder: Story = {
   args: {
     src: '/cart.svg',
     alt: 'Cart Icon',
@@ -67,7 +69,7 @@ export const Second: Story = {
   }
 };
 
-export const NotAction: Story = {
+export const notAction: Story = {
   args: {
     src: '/heart.svg',
     alt: 'Cart Icon',
@@ -76,7 +78,7 @@ export const NotAction: Story = {
   }
 };
 
-export const Disable: Story = {
+export const disable: Story = {
   args: {
     src: '/heart.svg',
     alt: 'Cart Icon',

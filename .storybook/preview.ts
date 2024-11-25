@@ -27,13 +27,13 @@ const preview: Preview = {
       window.dispatchEvent(event);
     };
 
+    // Mock next/router push and replace methods
     getRouter().push.mockImplementation(
       async (...args: Parameters<typeof mockRouter.push>) => {
         await mockRouter.push(...args);
         triggerReRender();
       }
     );
-
     getRouter().replace.mockImplementation(
       async (...args: Parameters<typeof mockRouter.replace>) => {
         await mockRouter.replace(...args);
@@ -41,6 +41,7 @@ const preview: Preview = {
       }
     );
 
+    // Mock usePathname
     usePathname.mockImplementation(() => {
       const [pathname, setPathname] = useState(mockRouter.pathname);
 
@@ -56,6 +57,7 @@ const preview: Preview = {
       return pathname;
     });
 
+    // Mock useSearchParams
     useSearchParams.mockImplementation(() => {
       const searchParams = useMemo(
         () =>

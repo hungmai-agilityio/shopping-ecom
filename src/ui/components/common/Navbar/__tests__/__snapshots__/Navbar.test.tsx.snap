@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Component should be render match to snapshot 1`] = `
+<div>
+  <nav
+    class="className text-base gap-4"
+  >
+    <div
+      class="relative"
+    >
+      <a
+        class="relative"
+        href="/"
+      >
+        Home
+        <span
+          class="absolute left-0 right-0 -bottom-0 mx-auto h-[1px] w-full bg-gray-400"
+        />
+      </a>
+    </div>
+    <div
+      class="relative"
+    >
+      <a
+        class="relative"
+        href="/shop"
+      >
+        Shop
+      </a>
+    </div>
+    <div
+      class="relative"
+    >
+      <a
+        class="relative"
+        href="/product"
+      >
+        Product
+      </a>
+    </div>
+  </nav>
+</div>
+`;

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Countdown component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex space-x-4 text-center text-dark"
+  >
+    <div
+      class="flex flex-col items-center"
+    >
+      <span
+        class="text-lg font-medium"
+      >
+        Days
+      </span>
+      <span
+        class="text-3xl font-bold"
+      >
+        01
+      </span>
+    </div>
+    <span
+      class="text-primary text-3xl mt-6"
+    >
+      :
+    </span>
+    <div
+      class="flex flex-col items-center"
+    >
+      <span
+        class="text-lg font-medium"
+      >
+        Hours
+      </span>
+      <span
+        class="text-3xl font-bold"
+      >
+        02
+      </span>
+    </div>
+    <span
+      class="text-primary text-3xl mt-6"
+    >
+      :
+    </span>
+    <div
+      class="flex flex-col items-center"
+    >
+      <span
+        class="text-lg font-medium"
+      >
+        Minutes
+      </span>
+      <span
+        class="text-3xl font-bold"
+      >
+        12
+      </span>
+    </div>
+    <span
+      class="text-primary text-3xl mt-6"
+    >
+      :
+    </span>
+    <div
+      class="flex flex-col items-center"
+    >
+      <span
+        class="text-lg font-medium"
+      >
+        Seconds
+      </span>
+      <span
+        class="text-3xl font-bold"
+      >
+        11
+      </span>
+    </div>
+  </div>
+</div>
+`;

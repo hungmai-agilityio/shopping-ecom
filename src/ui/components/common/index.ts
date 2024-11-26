@@ -11,4 +11,5 @@ export { default as Input } from '@/ui/components/common/Input';
 export { default as SendEmail } from '@/ui/components/common/Input/SendEmail';
 export { default as Logo } from '@/ui/components/common/Logo';
 export { default as List } from '@/ui/components/common/List';
+export { default as Countdown } from '@/ui/components/common/Countdown';
 export * from '@/ui/components/common/Typo';

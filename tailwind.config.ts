@@ -17,7 +17,16 @@ const config: Config = {
       maxWidth: {
         'btn-sm': '143px',
         'btn-md': '240px'
-      }
+      },
+      container: {
+        screens: {
+          mobile: '600px',
+          tablet: '900px',
+          desktop: '1536px'
+        },
+        center: true,
+        padding: '16px'
+      },
     }
   },
   plugins: []

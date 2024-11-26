@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="className"
+  >
+    <a
+      class="font-bold text-2xl text-dark"
+      href="/"
+    >
+      Exclusive
+    </a>
+  </div>
+</div>
+`;

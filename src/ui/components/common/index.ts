@@ -7,4 +7,5 @@ export { default as Badge } from '@/ui/components/common/Badge';
 export { default as Breadcrumb } from '@/ui/components/common/Breadcrumb';
 export { default as Navbar } from '@/ui/components/common/Navbar';
 export { default as Input } from '@/ui/components/common/Input';
+export { default as Logo } from '@/ui/components/common/Logo';
 export * from '@/ui/components/common/Typo';

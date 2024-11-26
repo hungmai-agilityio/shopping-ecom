@@ -6,4 +6,5 @@ export { default as Tag } from '@/ui/components/common/Tag';
 export { default as Badge } from '@/ui/components/common/Badge';
 export { default as Breadcrumb } from '@/ui/components/common/Breadcrumb';
 export { default as Navbar } from '@/ui/components/common/Navbar';
+export { default as Input } from '@/ui/components/common/Input';
 export * from '@/ui/components/common/Typo';

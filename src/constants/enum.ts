@@ -8,7 +8,7 @@ export enum INPUT_TYPE {
   FILE = 'file',
   TEXT = 'text',
   PASSWORD = 'password',
-  EMAIL = 'email'
+  EMAIL = 'email',
 }
 
 export enum SIZE {

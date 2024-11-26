@@ -18,3 +18,10 @@ export const iconTypeClasses = {
   [TYPE.SECOND]: 'bg-gray-200 p-2 rounded-full',
   [TYPE.THIRD]: 'bg-white p-2 rounded-full'
 };
+
+export const inputTypeClasses = {
+  [TYPE.PRIMARY]:
+    'border border-dark rounded-md focus:ring-1 focus:ring-dark h-14',
+  [TYPE.SECOND]: 'border-b border-gray-300 focus:border-dark h-12',
+  [TYPE.THIRD]: 'bg-gray-100 rounded-md focus:ring-1 focus:ring-dark h-12'
+};

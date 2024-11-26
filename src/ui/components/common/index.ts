@@ -1,5 +1,6 @@
 export { default as Button } from '@/ui/components/common/Button';
 export { default as Icon } from '@/ui/components/common/Icon';
+export { default as Social } from '@/ui/components/common/Icon/Social';
 export { default as Card } from '@/ui/components/common/Card';
 export { default as CardPromo } from '@/ui/components/common/Card/Promo';
 export { default as Tag } from '@/ui/components/common/Tag';
@@ -7,5 +8,7 @@ export { default as Badge } from '@/ui/components/common/Badge';
 export { default as Breadcrumb } from '@/ui/components/common/Breadcrumb';
 export { default as Navbar } from '@/ui/components/common/Navbar';
 export { default as Input } from '@/ui/components/common/Input';
+export { default as SendEmail } from '@/ui/components/common/Input/SendEmail';
 export { default as Logo } from '@/ui/components/common/Logo';
+export { default as List } from '@/ui/components/common/List';
 export * from '@/ui/components/common/Typo';

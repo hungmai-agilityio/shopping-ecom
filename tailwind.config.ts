@@ -12,7 +12,11 @@ const config: Config = {
       colors: {
         primary: '#DB4444',
         second: '#00FF66',
-        dark: '#0D0D0D'
+        dark: '#0D0D0D',
+        'dark-gray': '#FAFAFA'
+      },
+      height: {
+        md: '440px'
       },
       maxWidth: {
         'btn-sm': '143px',

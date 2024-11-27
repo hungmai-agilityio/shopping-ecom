@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex gap-1"
+  >
+    <img
+      alt="rating 1"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="20"
+      src="/star.svg"
+      style="color: transparent;"
+      width="20"
+    />
+    <img
+      alt="rating 2"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="20"
+      src="/star.svg"
+      style="color: transparent;"
+      width="20"
+    />
+    <img
+      alt="rating 3"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="20"
+      src="/star.svg"
+      style="color: transparent;"
+      width="20"
+    />
+    <img
+      alt="rating 4"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="20"
+      src="/star.svg"
+      style="color: transparent;"
+      width="20"
+    />
+    <img
+      alt="rating 5"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="20"
+      src="/star.svg"
+      style="color: transparent;"
+      width="20"
+    />
+  </div>
+</div>
+`;

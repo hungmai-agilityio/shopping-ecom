@@ -14,6 +14,7 @@ const Social = ({ src, alt }: socialProps) => {
       height={24}
       className="w-7 h-6"
       onClick={() => alert('Update later')}
+      priority
     />
   );
 };

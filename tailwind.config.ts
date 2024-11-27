@@ -13,7 +13,9 @@ const config: Config = {
         primary: '#DB4444',
         second: '#00FF66',
         dark: '#0D0D0D',
-        'dark-gray': '#FAFAFA'
+        success: '#00FF66',
+        'dark-gray': '#FAFAFA',
+        'gray-light': '#F5F5F5'
       },
       width: {
         'card-sm': '270px',
@@ -21,6 +23,8 @@ const config: Config = {
       height: {
         md: '440px',
         'card-sm': '230px',
+        'card-md': '250px',
+        'card-product': '350px'
 
       },
       maxWidth: {

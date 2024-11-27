@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardProduct Should render match to snapshot 1`] = `
+<div>
+  <div
+    class="rounded-lg overflow-hidden w-card-sm h-card-product font-medium"
+  >
+    <div
+      class="bg-gray-light p-4 rounded-b-sm h-card-md relative flex group"
+    >
+      <div
+        class="w-9 h-9 absolute top-3 right-5"
+      >
+        <div
+          class="flex bg-white p-2 rounded-full cursor-pointer"
+        >
+          <img
+            alt="icon-click"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="34"
+            src="/heart.svg"
+            style="color: transparent;"
+            width="34"
+          />
+        </div>
+      </div>
+      <div
+        class="w-9 h-9 absolute top-14 right-5"
+      >
+        <div
+          class="flex bg-white p-2 rounded-full cursor-pointer"
+        >
+          <img
+            alt="icon-view"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="34"
+            src="/eye.svg"
+            style="color: transparent;"
+            width="34"
+          />
+        </div>
+      </div>
+      <img
+        alt="Example Product Image"
+        class="mx-auto"
+        data-nimg="1"
+        decoding="async"
+        height="100"
+        loading="lazy"
+        src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FJx5zGXk%2Fhead-1.webp&w=384&q=75"
+        srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FJx5zGXk%2Fhead-1.webp&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FJx5zGXk%2Fhead-1.webp&w=384&q=75 2x"
+        style="color: transparent; object-fit: contain;"
+        width="152"
+      />
+      <div
+        class="absolute bg-dark w-full h-10 group-hover:flex justify-center items-center gap-4 hover:bg-slate-600 hidden bottom-0 left-0 cursor-pointer"
+      >
+        <div
+          class="flex"
+        >
+          <img
+            alt="icon-cart"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="24"
+            src="/cart-white.svg"
+            style="color: transparent;"
+            width="24"
+          />
+        </div>
+        <p
+          class="text-white"
+        >
+          Add To Cart
+        </p>
+      </div>
+    </div>
+    <div
+      class="mt-4 px-2"
+    >
+      <p
+        class="text-base overflow-hidden line-clamp-1 capitalize"
+      >
+        Example Product
+      </p>
+      <div
+        class="mt-2 flex items-center gap-3"
+      >
+        <span
+          class="text-primary max-w-16 overflow-hidden text-ellipsis inline-block"
+        >
+          $
+          120
+        </span>
+        <span
+          class="text-gray-500 line-through max-w-16 overflow-hidden text-ellipsis inline-block"
+        >
+          $
+          150
+        </span>
+        <div
+          class="flex gap-1"
+        >
+          <img
+            alt="rating 1"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="20"
+            src="/star.svg"
+            style="color: transparent;"
+            width="20"
+          />
+          <img
+            alt="rating 2"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="20"
+            src="/star.svg"
+            style="color: transparent;"
+            width="20"
+          />
+          <img
+            alt="rating 3"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="20"
+            src="/star.svg"
+            style="color: transparent;"
+            width="20"
+          />
+          <img
+            alt="rating 4"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="20"
+            src="/star.svg"
+            style="color: transparent;"
+            width="20"
+          />
+        </div>
+        <span
+          class="text-gray-500"
+        >
+          (
+          4
+          )
+        </span>
+      </div>
+    </div>
+    <div
+      class="mt-2 px-2"
+    >
+      <div
+        class="flex items-center gap-3"
+      >
+        <button
+          aria-label="Red-picker"
+          class="h-4 w-4 rounded-full focus:border focus:border-green-800 ring-2 ring-dark"
+          id="Red"
+          style="background-color: Red;"
+        />
+        <button
+          aria-label="Blue-picker"
+          class="h-4 w-4 rounded-full focus:border focus:border-green-800"
+          id="Blue"
+          style="background-color: Blue;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

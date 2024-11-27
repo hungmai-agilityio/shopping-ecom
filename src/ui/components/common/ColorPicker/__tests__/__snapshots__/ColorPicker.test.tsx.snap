@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Color picker component should render match to snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="mt-4 flex items-center gap-3"
+    >
+      <button
+        aria-label="White-picker"
+        class="h-4 w-4 rounded-full focus:border focus:border-green-800 border border-dark"
+        id="White"
+        style="background-color: White;"
+      />
+      <button
+        aria-label="Black-picker"
+        class="h-4 w-4 rounded-full focus:border focus:border-green-800"
+        id="Black"
+        style="background-color: Black;"
+      />
+      <button
+        aria-label="Green-picker"
+        class="h-4 w-4 rounded-full focus:border focus:border-green-800"
+        id="Green"
+        style="background-color: Green;"
+      />
+    </div>
+  </div>
+</div>
+`;

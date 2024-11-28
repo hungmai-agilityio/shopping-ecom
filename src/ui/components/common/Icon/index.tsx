@@ -5,7 +5,7 @@ import Image, { ImageProps } from 'next/image';
 interface IconProps extends ImageProps {
   onClick?: () => void;
   isDisabled?: boolean;
-  variant?: TYPE.PRIMARY | TYPE.SECOND;
+  variant?: TYPE.PRIMARY | TYPE.SECOND | TYPE.THIRD;
   styles?: string;
 }
 

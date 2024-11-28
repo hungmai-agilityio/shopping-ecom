@@ -3,7 +3,7 @@
 exports[`CardPromo component should be render match to snapshot 1`] = `
 <div>
   <div
-    class="rounded-lg overflow-hidden"
+    class="rounded-sm overflow-hidden className"
   >
     <div
       class="relative bg-dark "

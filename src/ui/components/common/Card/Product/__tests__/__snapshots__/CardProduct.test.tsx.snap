@@ -3,7 +3,7 @@
 exports[`CardProduct Should render match to snapshot 1`] = `
 <div>
   <div
-    class="rounded-lg overflow-hidden w-card-sm h-card-product font-medium"
+    class="rounded-sm overflow-hidden className w-card-sm h-card-product font-medium"
   >
     <div
       class="bg-gray-light p-4 rounded-b-sm h-card-md relative flex group"

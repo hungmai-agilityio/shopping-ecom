@@ -1,4 +1,5 @@
 import { popping } from '@/constants';
+import Card from '@/ui/components/common/Card';
 import { clsx } from 'clsx';
 import Image, { ImageProps } from 'next/image';
 
@@ -23,38 +24,40 @@ const CardSolution = ({
     : '';
 
   return (
-    <div className={clsx(`${popping.className} ${baseClasses}`, borderClasses)}>
-      <div
-        className={clsx(
-          'relative mb-4 rounded-full transition-all duration-300 shadow-card',
-          { 'group-hover:shadow-card-hover': isBorder }
-        )}
-      >
-        <span
+    <Card>
+      <div className={clsx(`${baseClasses}`, borderClasses)}>
+        <div
           className={clsx(
-            'absolute inset-0 bg-black rounded-full transition-all duration-300',
-            { 'group-hover:bg-white': isBorder }
+            'relative mb-4 rounded-full transition-all duration-300 shadow-card',
+            { 'group-hover:shadow-card-hover': isBorder }
           )}
-        ></span>
+        >
+          <span
+            className={clsx(
+              'absolute inset-0 bg-black rounded-full transition-all duration-300',
+              { 'group-hover:bg-white': isBorder }
+            )}
+          ></span>
 
-        <Image
-          src={src}
-          alt={alt}
-          width={40}
-          height={40}
-          priority
-          className={clsx(
-            'relative z-10 rounded-full transition-all duration-300 p-2',
-            {
-              'group-hover:brightness-0': isBorder
-            }
-          )}
-          {...props}
-        />
+          <Image
+            src={src}
+            alt={alt}
+            width={40}
+            height={40}
+            priority
+            className={clsx(
+              'relative z-10 rounded-full transition-all duration-300 p-2',
+              {
+                'group-hover:brightness-0': isBorder
+              }
+            )}
+            {...props}
+          />
+        </div>
+        <h3 className="text-3xl mt-2 font-semibold">{title}</h3>
+        <p className="text-base mt-2">{desc}</p>
       </div>
-      <h3 className="text-3xl mt-2 font-semibold">{title}</h3>
-      <p className="text-base mt-2">{desc}</p>
-    </div>
+    </Card>
   );
 };
 

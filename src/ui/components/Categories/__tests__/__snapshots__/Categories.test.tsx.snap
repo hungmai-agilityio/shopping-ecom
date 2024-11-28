@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Categories component Should render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex gap-5 className"
+  >
+    <div
+      class="cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300 hover:bg-primary hover:border-transparent"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="phones"
+          class="transition duration-300 group-hover:brightness-0 group-hover:invert"
+          data-nimg="1"
+          decoding="async"
+          height="56"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FZ6f7PYW%2Fcell-Phone.png&w=128&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FZ6f7PYW%2Fcell-Phone.png&w=64&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FZ6f7PYW%2Fcell-Phone.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="56"
+        />
+      </div>
+      <span
+        class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
+      >
+        phones
+      </span>
+    </div>
+    <div
+      class="cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300 hover:bg-primary hover:border-transparent"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="computers"
+          class="transition duration-300 group-hover:brightness-0 group-hover:invert"
+          data-nimg="1"
+          decoding="async"
+          height="56"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FWsVyW5N%2Fcomputer.png&w=128&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FWsVyW5N%2Fcomputer.png&w=64&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FWsVyW5N%2Fcomputer.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="56"
+        />
+      </div>
+      <span
+        class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
+      >
+        computers
+      </span>
+    </div>
+    <div
+      class="cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300 hover:bg-primary hover:border-transparent"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="smartWatch"
+          class="transition duration-300 group-hover:brightness-0 group-hover:invert"
+          data-nimg="1"
+          decoding="async"
+          height="56"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2F7vFrHFr%2Fwatch.png&w=128&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2F7vFrHFr%2Fwatch.png&w=64&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2F7vFrHFr%2Fwatch.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="56"
+        />
+      </div>
+      <span
+        class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
+      >
+        smartWatch
+      </span>
+    </div>
+    <div
+      class="cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300 hover:bg-primary hover:border-transparent"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="camera"
+          class="transition duration-300 group-hover:brightness-0 group-hover:invert"
+          data-nimg="1"
+          decoding="async"
+          height="56"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FZM77Kw5%2Fcamera.png&w=128&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FZM77Kw5%2Fcamera.png&w=64&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FZM77Kw5%2Fcamera.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="56"
+        />
+      </div>
+      <span
+        class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
+      >
+        camera
+      </span>
+    </div>
+  </div>
+</div>
+`;

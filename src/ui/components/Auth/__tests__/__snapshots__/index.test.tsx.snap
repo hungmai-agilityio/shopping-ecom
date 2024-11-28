@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthForm component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex my-10"
+  >
+    <img
+      alt="img-form"
+      class="md:block hidden"
+      data-nimg="1"
+      decoding="async"
+      height="781"
+      loading="lazy"
+      src="/_next/image?url=%2Fimage-form.webp&w=1920&q=75"
+      srcset="/_next/image?url=%2Fimage-form.webp&w=828&q=75 1x, /_next/image?url=%2Fimage-form.webp&w=1920&q=75 2x"
+      style="color: transparent;"
+      width="805"
+    />
+    <div
+      class="xl:w-form w-full my-auto xl:mx-36 mx-14"
+    >
+      <div
+        class="className"
+      >
+        <h1
+          class="text-4xl font-medium className"
+        >
+          Enter some text
+        </h1>
+        <p
+          class="text-base mt-5"
+        >
+          Enter some subtitle
+        </p>
+        <div
+          class="flex flex-col gap-5"
+        >
+          <div
+            class="flex flex-col gap-2"
+          >
+            <label
+              class="text-sm font-medium text-gray-600 capitalize"
+            >
+              Text Input
+            </label>
+            <div
+              class="relative"
+            >
+              <input
+                class="w-full p-2 text-gray-700 outline-none border-b border-gray-300 focus:border-dark h-12"
+                placeholder="Enter some text"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

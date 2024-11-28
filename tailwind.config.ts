@@ -19,6 +19,7 @@ const config: Config = {
       },
       width: {
         'card-sm': '270px',
+        form: '700px'
       },
       height: {
         md: '440px',

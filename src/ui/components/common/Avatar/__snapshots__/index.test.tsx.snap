@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="relative w-avatar-sm h-avatar-sm cursor-pointer"
+  >
+    <img
+      alt="test user"
+      class="object-cover font-bold"
+      data-nimg="fill"
+      data-testid="avatar"
+      decoding="async"
+      loading="lazy"
+      src="/user.svg"
+      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+    />
+  </div>
+</div>
+`;

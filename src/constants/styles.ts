@@ -25,3 +25,9 @@ export const inputTypeClasses = {
   [TYPE.SECOND]: 'border-b border-gray-300 focus:border-dark h-12',
   [TYPE.THIRD]: 'bg-gray-100 rounded-md focus:ring-1 focus:ring-dark h-12'
 };
+
+export const avatarSizeClasses = {
+  [SIZE.SMALL]: 'w-avatar-sm h-avatar-sm',
+  [SIZE.MEDIUM]: 'w-avatar-md h-avatar-md',
+  [SIZE.LARGE]: 'w-avatar-lg h-avatar-lg'
+};

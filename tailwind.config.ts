@@ -19,6 +19,9 @@ const config: Config = {
       },
       width: {
         'card-sm': '270px',
+        'avatar-sm': '40px',
+        'avatar-md': '60px',
+        'avatar-lg': '130px',
         form: '700px'
       },
       height: {
@@ -26,7 +29,10 @@ const config: Config = {
         'card-sm': '230px',
         'card-md': '250px',
         'slide': '480px',
-        'card-product': '350px'
+        'card-product': '350px',
+        'avatar-sm': '40px',
+        'avatar-md': '60px',
+        'avatar-lg': '130px',
       },
       maxWidth: {
         'btn-sm': '143px',

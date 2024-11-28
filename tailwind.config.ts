@@ -24,6 +24,7 @@ const config: Config = {
         md: '440px',
         'card-sm': '230px',
         'card-md': '250px',
+        'slide': '480px',
         'card-product': '350px'
 
       },

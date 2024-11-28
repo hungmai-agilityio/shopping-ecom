@@ -27,11 +27,13 @@ const config: Config = {
         'card-md': '250px',
         'slide': '480px',
         'card-product': '350px'
-
       },
       maxWidth: {
         'btn-sm': '143px',
         'btn-md': '240px'
+      },
+      fontSize: {
+        'heading-page': '110px'
       },
       container: {
         screens: {

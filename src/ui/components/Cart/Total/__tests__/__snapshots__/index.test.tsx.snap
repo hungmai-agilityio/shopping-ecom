@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartTotal component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="border-2 border-black rounded-md w-cart-md h-cart-md py-8 px-6 className"
+  >
+    <h4
+      class="text-xl capitalize font-medium"
+    >
+      cart total
+    </h4>
+    <div
+      class="my-6"
+    >
+      <div
+        class="flex justify-between text-dark text-base mb-2 py-4 border-b border-dark"
+      >
+        <p>
+          Subtotal
+          :
+        </p>
+        <p>
+          $ 125
+        </p>
+      </div>
+      <div
+        class="flex justify-between text-dark text-base mb-2 py-4 border-b border-dark"
+      >
+        <p>
+          Shipping
+          :
+        </p>
+        <p>
+          Free
+        </p>
+      </div>
+      <div
+        class="flex justify-between text-dark text-base mb-2 py-4"
+      >
+        <p>
+          Total
+          :
+        </p>
+        <p>
+          $ 125
+        </p>
+      </div>
+      <div
+        class="w-64 mx-auto"
+      >
+        <button
+          class="h-14 rounded font-medium md:text-base text-xs className w-full bg-primary text-white"
+        >
+          Process to checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

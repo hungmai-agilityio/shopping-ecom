@@ -22,7 +22,8 @@ const config: Config = {
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
-        form: '700px'
+        form: '700px',
+        'cart-md': '470px'
       },
       height: {
         md: '440px',
@@ -33,6 +34,8 @@ const config: Config = {
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
+        'cart-md': '370px'
+
       },
       maxWidth: {
         'btn-sm': '143px',

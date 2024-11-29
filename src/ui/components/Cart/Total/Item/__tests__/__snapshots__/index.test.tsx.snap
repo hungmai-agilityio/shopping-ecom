@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartTotalItem component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex justify-between text-dark text-base mb-2 py-4 border-b border-dark"
+  >
+    <p>
+      Subtotal
+      :
+    </p>
+    <p>
+      $1253
+    </p>
+  </div>
+</div>
+`;

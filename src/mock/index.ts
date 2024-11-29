@@ -23,3 +23,5 @@ export const categories = [
   },
 ];
 
+export const sizes = ['S', 'M', 'L', 'XL'];
+export const sizeInch = ['24 inch', '27 inch', '32 inch'];

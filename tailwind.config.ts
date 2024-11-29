@@ -39,7 +39,8 @@ const config: Config = {
       },
       maxWidth: {
         'btn-sm': '143px',
-        'btn-md': '240px'
+        'btn-md': '240px',
+        'btn-size': '70px'
       },
       fontSize: {
         'heading-page': '110px'

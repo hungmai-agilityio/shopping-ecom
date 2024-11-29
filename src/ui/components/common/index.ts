@@ -18,4 +18,10 @@ export { default as Countdown } from '@/ui/components/common/Countdown';
 export { default as Rating } from '@/ui/components/common/Rating';
 export { default as ColorPicker } from '@/ui/components/common/ColorPicker';
 export { default as Carousel } from '@/ui/components/common/Carousel';
+export { default as Table } from '@/ui/components/common/Table';
+
+export * from '@/ui/components/common/Table/Body';
+export * from '@/ui/components/common/Table/Cell';
+export * from '@/ui/components/common/Table/Head';
+export * from '@/ui/components/common/Table/Row';
 export * from '@/ui/components/common/Typo';

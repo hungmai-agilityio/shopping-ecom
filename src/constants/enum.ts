@@ -16,3 +16,8 @@ export enum SIZE {
   MEDIUM = 'medium',
   LARGE = 'large'
 }
+
+export enum CELL {
+  TD = 'td',
+  TH = 'th'
+}

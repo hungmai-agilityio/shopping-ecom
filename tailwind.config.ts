@@ -52,7 +52,9 @@ const config: Config = {
       },
       boxShadow: {
         card: '0px 0px 0px 11px #ADADAD',
-        'card-hover': '0px 0px 0px 11px #E0E0E0'
+        'card-hover': '0px 0px 0px 11px #E0E0E0',
+        table: '0 4px 5px 9px #0000000D'
+
 
       },
     }

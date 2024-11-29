@@ -18,6 +18,7 @@ export { default as Countdown } from '@/ui/components/common/Countdown';
 export { default as Rating } from '@/ui/components/common/Rating';
 export { default as ColorPicker } from '@/ui/components/common/ColorPicker';
 export { default as Carousel } from '@/ui/components/common/Carousel';
+export { default as Quantity } from '@/ui/components/common/Quantity';
 export { default as Table } from '@/ui/components/common/Table';
 
 export * from '@/ui/components/common/Table/Body';

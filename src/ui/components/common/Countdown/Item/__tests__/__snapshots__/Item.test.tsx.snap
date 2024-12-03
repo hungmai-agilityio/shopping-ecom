@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountdownItem component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col items-center"
+  >
+    <span
+      class="lg:text-lg text-xs font-medium"
+    >
+      Hours
+    </span>
+    <span
+      class="lg:text-3xl text-xl font-bold"
+    >
+      7
+    </span>
+  </div>
+</div>
+`;

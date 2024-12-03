@@ -54,3 +54,24 @@ export const slideHero = [
     icon: '/logo-sony.svg'
   }
 ];
+
+export const slideStaff = [
+  {
+    id: 'staff-1',
+    image: '/lead.png',
+    name: 'Tom Cruise',
+    desc: 'Founder & Chairman',
+  },
+  {
+    id: 'staff-1',
+    image: '/manager.png',
+    name: 'Emma Watson',
+    desc: 'Managing Director',
+  },
+  {
+    id: 'staff-1',
+    image: '/designer.png',
+    name: 'Will Smith',
+    desc: 'Product Designer',
+  }
+]

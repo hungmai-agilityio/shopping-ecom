@@ -4,3 +4,6 @@ export { default as BestSelling } from '@/ui/sections/BestSelling';
 export { default as FlashSale } from '@/ui/sections/FlashSale';
 export { default as ContactSection } from '@/ui/sections/Contact';
 export { default as CardContact } from '@/ui/sections/Contact/Card';
+export { default as AdvertisementSale } from '@/ui/sections/Advertisement/Sale';
+export { default as ServiceSection } from '@/ui/sections/Advertisement/Services';
+export { default as StorySection } from '@/ui/sections/StorySection';

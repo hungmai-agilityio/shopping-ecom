@@ -1,7 +1,8 @@
-import { popping } from '@/constants';
-import Card from '@/ui/components/common/Card';
-import { clsx } from 'clsx';
 import Image, { ImageProps } from 'next/image';
+import { clsx } from 'clsx';
+
+// Components
+import { Card } from '@/ui/components';
 
 interface SolutionProps extends ImageProps {
   title: string;
@@ -54,8 +55,16 @@ const CardSolution = ({
             {...props}
           />
         </div>
-        <h3 className="text-3xl mt-2 font-semibold">{title}</h3>
-        <p className="text-base mt-2">{desc}</p>
+        <h3
+          className={clsx('text-lg mt-2 font-semibold', {
+            'text-3xl': isBorder
+          })}
+        >
+          {title}
+        </h3>
+        <p className={clsx('text-sm mt-2', { 'text-base': isBorder })}>
+          {desc}
+        </p>
       </div>
     </Card>
   );

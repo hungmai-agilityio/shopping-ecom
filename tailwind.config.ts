@@ -19,11 +19,13 @@ const config: Config = {
       },
       width: {
         'card-sm': '270px',
+        'cart-md': '470px',
+        'card-about': '500px',
+        'card-info': '370px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
         form: '700px',
-        'cart-md': '470px',
         'btn-sm': '143px',
         'btn-md': '240px',
       },
@@ -31,17 +33,20 @@ const config: Config = {
         md: '440px',
         'card-sm': '230px',
         'card-md': '250px',
+        'card-info-md': '430px',
+        'card-info': '564px',
         'slide': '480px',
         'card-product': '350px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
         'cart-md': '370px',
-        'card-lg': '470px'
+        'card-lg': '470px',
 
       },
       maxWidth: {
-        'btn-size': '70px'
+        'btn-size': '70px',
+
       },
       fontSize: {
         'heading-page': '110px'

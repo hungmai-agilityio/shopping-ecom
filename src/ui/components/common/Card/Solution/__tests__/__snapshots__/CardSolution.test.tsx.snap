@@ -23,12 +23,12 @@ exports[`CardSolution component should be render match to snapshot 1`] = `
         />
       </div>
       <h3
-        class="text-3xl mt-2 font-semibold"
+        class="text-lg mt-2 font-semibold"
       >
         Card Title
       </h3>
       <p
-        class="text-base mt-2"
+        class="text-sm mt-2"
       >
         Description card
       </p>

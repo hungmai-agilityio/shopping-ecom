@@ -3,7 +3,7 @@
 exports[`Carousel component Should be render match to snapshot 1`] = `
 <div>
   <div
-    class="relative container h-slide bg-black className"
+    class="relative h-slide bg-black className"
   >
     <div
       class="overflow-hidden"

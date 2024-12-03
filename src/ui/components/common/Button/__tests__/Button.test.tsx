@@ -15,7 +15,7 @@ describe('Button', () => {
     const buttonElement = screen.getByText('Test Button');
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass(
-      'h-14 rounded font-medium md:text-base text-xs max-w-btn-md bg-primary text-white'
+      'h-14 rounded font-medium md:text-base text-xs lg:w-btn-md w-btn-sm bg-primary text-white'
     );
     expect(buttonElement).not.toBeDisabled();
   });
@@ -25,7 +25,7 @@ describe('Button', () => {
 
     const buttonElement = screen.getByText('Test Button');
     expect(buttonElement).toHaveClass(
-      'h-14 rounded font-medium md:text-base text-xs max-w-btn-md bg-white'
+      'h-14 rounded font-medium md:text-base text-xs lg:w-btn-md w-btn-sm bg-white'
     );
   });
 

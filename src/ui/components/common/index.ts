@@ -19,7 +19,8 @@ export { default as Rating } from '@/ui/components/common/Rating';
 export { default as SizePicker } from '@/ui/components/common/SizePicker';
 export { default as ColorPicker } from '@/ui/components/common/ColorPicker';
 export { default as Carousel } from '@/ui/components/common/Carousel';
-export { default as Quantity } from '@/ui/components/common/Quantity';
+export { default as QuantityVertical } from '@/ui/components/common/Quantity/Vertical';
+export { default as QuantityHorizontal } from '@/ui/components/common/Quantity/Horizontal';
 export { default as Dropdown } from '@/ui/components/common/Dropdown';
 export { default as Table } from '@/ui/components/common/Table';
 

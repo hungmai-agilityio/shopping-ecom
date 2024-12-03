@@ -4,6 +4,9 @@ import './globals.css';
 // Sections
 import { Footer, Header } from '@/ui/sections';
 
+// Provider
+import { QueryProvider } from '@/Provider';
+
 export const metadata: Metadata = {
   title: 'Exclusive shop'
 };
@@ -16,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Header />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

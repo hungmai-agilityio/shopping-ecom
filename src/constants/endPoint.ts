@@ -12,3 +12,10 @@ export const END_POINT = {
   CART: '/cart',
   CHECKOUT: '/checkout'
 };
+
+export const QUERY = {
+  CART: 'cart',
+  USER: 'users',
+  WISHLIST: 'wishlist',
+  PRODUCTS: 'products',
+}

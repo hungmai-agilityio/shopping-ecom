@@ -17,20 +17,17 @@ const CardPromo = ({
 }: CardPromoProps) => {
   return (
     <Card>
-      <div className="relative bg-dark " style={{ width, height }}>
-        <div className="absolute inset-0">
-          <Image
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-            style={{ objectFit: 'contain', width: '100%', height: '100%' }}
-            {...props}
-          />
-        </div>
-
+      <div className="relative bg-dark" style={{ width, height }}>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+          {...props}
+        />
         {children && (
-          <div className="absolute inset-0 flex items-end p-6 text-white">
+          <div className="absolute bottom-0 left-0 p-6 text-white">
             {children}
           </div>
         )}

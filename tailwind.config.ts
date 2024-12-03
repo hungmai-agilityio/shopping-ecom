@@ -23,7 +23,9 @@ const config: Config = {
         'avatar-md': '60px',
         'avatar-lg': '130px',
         form: '700px',
-        'cart-md': '470px'
+        'cart-md': '470px',
+        'btn-sm': '143px',
+        'btn-md': '240px',
       },
       height: {
         md: '440px',
@@ -34,12 +36,11 @@ const config: Config = {
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
-        'cart-md': '370px'
+        'cart-md': '370px',
+        'card-lg': '470px'
 
       },
       maxWidth: {
-        'btn-sm': '143px',
-        'btn-md': '240px',
         'btn-size': '70px'
       },
       fontSize: {
@@ -57,7 +58,9 @@ const config: Config = {
       boxShadow: {
         card: '0px 0px 0px 11px #ADADAD',
         'card-hover': '0px 0px 0px 11px #E0E0E0',
-        table: '0 4px 5px 9px #0000000D'
+        table: '0 4px 5px 9px #0000000D',
+        contact: ' 0px 1px 13px 0px #0000000D'
+
 
 
       },

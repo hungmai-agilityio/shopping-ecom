@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuantityVertical component should render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex items-center gap-4 bg-white w-20 h-11 rounded-md justify-center border border-dark className"
+  >
+    <input
+      class="w-8 text-center outline-none border-none bg-transparent"
+      value="3"
+    />
+    <div
+      class="flex flex-col gap-3"
+    >
+      <div
+        class="flex cursor-pointer"
+      >
+        <img
+          alt="arrow-top icon"
+          class="select-none"
+          data-nimg="1"
+          decoding="async"
+          fetchpriority="high"
+          height="12"
+          src="/arrow-top.svg"
+          style="color: transparent;"
+          width="12"
+        />
+      </div>
+      <div
+        class="flex cursor-pointer"
+      >
+        <img
+          alt="arrow-bot icon"
+          class="select-none"
+          data-nimg="1"
+          decoding="async"
+          fetchpriority="high"
+          height="12"
+          src="/arrow-bot.svg"
+          style="color: transparent;"
+          width="12"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -21,6 +21,9 @@ const meta: Meta<typeof Countdown> = {
     },
     seconds: {
       description: 'Seconds are counting down'
+    },
+    isCircle: {
+      description: 'Countdown display has a circle shape'
     }
   }
 };
@@ -35,5 +38,15 @@ export const primary: Story = {
     hours: 12,
     minutes: 10,
     seconds: 5
+  }
+};
+
+export const circleCountdown: Story = {
+  args: {
+    days: 3,
+    hours: 12,
+    minutes: 10,
+    seconds: 5,
+    isCircle: true
   }
 };

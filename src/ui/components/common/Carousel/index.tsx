@@ -51,9 +51,7 @@ const Carousel = ({
   }, [autoPlay, duration]);
 
   return (
-    <div
-      className={clsx('relative container h-slide bg-black', popping.className)}
-    >
+    <div className={clsx('relative h-slide bg-black', popping.className)}>
       <div className="overflow-hidden">
         <div
           className="flex transition-transform duration-500"

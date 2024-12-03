@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuantityHorizontal component should render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex items-center gap-4 bg-white rounded-md justify-center border border-dark className"
+  >
+    <div
+      class="hover:bg-primary hover:border-primary w-10 h-11 flex justify-center items-center border-r border-dark cursor-pointer hover:text-white transition-all"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="minus icon"
+          class="select-none"
+          data-nimg="1"
+          decoding="async"
+          height="12"
+          loading="lazy"
+          src="/minus.svg"
+          style="color: transparent;"
+          width="12"
+        />
+      </div>
+    </div>
+    <input
+      class="w-12 text-center outline-none border-none bg-transparent"
+      value="3"
+    />
+    <div
+      class="hover:bg-primary hover:border-primary w-10 h-11 flex justify-center items-center border-l border-dark cursor-pointer hover:text-white transition-all"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="plus icon"
+          class="select-none"
+          data-nimg="1"
+          decoding="async"
+          height="12"
+          loading="lazy"
+          src="/plus.svg"
+          style="color: transparent;"
+          width="12"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

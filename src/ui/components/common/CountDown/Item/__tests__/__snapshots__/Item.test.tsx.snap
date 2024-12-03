@@ -6,12 +6,12 @@ exports[`CountdownItem component should be render match to snapshot 1`] = `
     class="flex flex-col items-center"
   >
     <span
-      class="text-lg font-medium"
+      class="lg:text-lg text-xs font-medium"
     >
       Hours
     </span>
     <span
-      class="text-3xl font-bold"
+      class="lg:text-3xl text-xl font-bold"
     >
       7
     </span>

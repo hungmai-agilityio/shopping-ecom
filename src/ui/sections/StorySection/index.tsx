@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const StorySection = () => {
   return (
-    <div className="flex items-center gap-10">
-      <div className="container w-card-about">
+    <div className="flex items-center justify-between gap-10">
+      <div className="w-card-about">
         <Heading>Our Story</Heading>
         <p className="text-base mt-16">
           Launced in 2015, Exclusive is South Asia's premier online shopping

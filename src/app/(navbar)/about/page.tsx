@@ -5,7 +5,8 @@ import { slideStaff } from '@/constants';
 import { AdvertisementSale, ServiceSection, StorySection } from '@/ui/sections';
 
 // Components
-import { Breadcrumb, CardInfo } from '@/ui/components';
+import { Breadcrumb } from '@/ui/components';
+import { CarouselStaff } from '@/ui/sections';
 
 const About = () => {
   return (
@@ -13,20 +14,11 @@ const About = () => {
       <div className="container">
         <Breadcrumb />
       </div>
-      <section className="my-20">
+      <section className="container my-20">
         <StorySection />
       </section>
       <AdvertisementSale />
-      <section className="my-20 flex justify-center gap-16">
-        {slideStaff.map((item) => (
-          <CardInfo
-            image={item.image}
-            name={item.name}
-            desc={item.desc}
-            key={item.id}
-          />
-        ))}
-      </section>
+      <CarouselStaff slides={slideStaff} />
       <ServiceSection />
     </div>
   );

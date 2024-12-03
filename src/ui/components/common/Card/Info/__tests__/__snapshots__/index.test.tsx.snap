@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardInfo component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="rounded-sm overflow-hidden className w-card-info h-card-info"
+  >
+    <div
+      class="w-card-info h-card-info-md bg-gray-light"
+    >
+      <img
+        alt="Tom Cruise"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="390"
+        src="/_next/image?url=%2Flead.png&w=750&q=75"
+        srcset="/_next/image?url=%2Flead.png&w=384&q=75 1x, /_next/image?url=%2Flead.png&w=750&q=75 2x"
+        style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+        width="326"
+      />
+      <div
+        class="mt-8"
+      >
+        <p
+          class="text-3xl font-medium className"
+        >
+          Tom Cruise
+        </p>
+        <p
+          class="my-2"
+        >
+          Founder & Chairman
+        </p>
+        <div
+          class="flex gap-4"
+        >
+          <div
+            class="flex"
+          >
+            <img
+              alt="icon twitter"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="18"
+              src="/twiter-dark.svg"
+              style="color: transparent;"
+              width="18"
+            />
+          </div>
+          <div
+            class="flex"
+          >
+            <img
+              alt="icon instagram"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="18"
+              src="/instagram-dark.svg"
+              style="color: transparent;"
+              width="18"
+            />
+          </div>
+          <div
+            class="flex"
+          >
+            <img
+              alt="icon linkedin"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="18"
+              src="/linkedin-dark.svg"
+              style="color: transparent;"
+              width="18"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

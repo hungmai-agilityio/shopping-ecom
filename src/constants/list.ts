@@ -1,4 +1,4 @@
-import { END_POINT } from "@/constants/endPoint";
+import { END_POINT } from '@/constants/endPoint';
 
 export const navItems = [
   { name: 'Home', url: END_POINT.HOME },
@@ -11,14 +11,14 @@ export const listAbout = [
   { name: 'Login / Register', url: END_POINT.SIGN_IN },
   { name: 'Cart', url: END_POINT.CART },
   { name: 'Wishlist', url: END_POINT.WISHLIST }
-]
+];
 
 export const listQuick = [
   { name: 'Privacy Policy', url: '' },
   { name: 'Terms Of Use', url: '' },
   { name: 'FAQ', url: '' },
   { name: 'Contact', url: END_POINT.CONTACT }
-]
+];
 
 export const slideHero = [
   {
@@ -60,18 +60,36 @@ export const slideStaff = [
     id: 'staff-1',
     image: '/lead.png',
     name: 'Tom Cruise',
-    desc: 'Founder & Chairman',
+    desc: 'Founder & Chairman'
   },
   {
-    id: 'staff-1',
+    id: 'staff-2',
     image: '/manager.png',
     name: 'Emma Watson',
-    desc: 'Managing Director',
+    desc: 'Managing Director'
   },
   {
-    id: 'staff-1',
+    id: 'staff-3',
     image: '/designer.png',
     name: 'Will Smith',
-    desc: 'Product Designer',
+    desc: 'Product Designer'
+  },
+  {
+    id: 'staff-4',
+    image: '/dev.png',
+    name: 'Chris Evans',
+    desc: 'Software Engineer'
+  },
+  {
+    id: 'staff-5',
+    image: '/staff.png',
+    name: 'Robert Downey Jr',
+    desc: 'Manager'
+  },
+  {
+    id: 'staff-6',
+    image: '/co-founder.png',
+    name: 'Elon Musk',
+    desc: 'Co. Founder'
   }
-]
+];

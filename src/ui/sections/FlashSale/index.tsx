@@ -13,7 +13,7 @@ import {
 const FlashSale = async () => {
   const { data, error } = await getProductLimit('isFlashSale=true', 0, 4);
 
-  const start = 4;
+  const start = 0;
 
   return (
     <div className="container my-20">

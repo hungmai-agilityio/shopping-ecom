@@ -24,4 +24,5 @@ export enum CELL {
 
 export enum TIME_STATUS {
   STALE_TIME = 1000 * 60 * 60, // milliseconds * seconds * minutes = 1 hour
+  COOKIE_TIME = 60 * 60 * 24 * 2 // seconds * minutes * hour * day
 }

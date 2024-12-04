@@ -9,3 +9,4 @@ export { default as ServiceSection } from '@/ui/sections/Advertisement/Services'
 export { default as StorySection } from '@/ui/sections/StorySection';
 export { default as CarouselStaff } from '@/ui/sections/CarouselStaff';
 export { default as SignUpSection } from '@/ui/sections/SignUp';
+export { default as SignInSection } from '@/ui/sections/SignIn';

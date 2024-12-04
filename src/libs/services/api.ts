@@ -1,3 +1,5 @@
+import { checkPassword } from "@/libs/actions/user";
+import { getUserEmail } from "@/libs/services/user";
 
 interface APIOptions {
   endpoint: string;
@@ -49,6 +51,34 @@ export const postData = async ({ endpoint, data }: APIOptions) => {
     return {
       data: null,
       error
+    };
+  }
+};
+
+export const handleSignIn = async (email: string, password: string) => {
+  try {
+    const { data, error } = await getUserEmail(email);
+
+    if (error || !data || !data.length) {
+      throw new Error('User not found');
+    }
+
+    const [user] = data;
+
+    const isPasswordMatch = await checkPassword(password, user.password);
+
+    if (!isPasswordMatch) {
+      throw new Error('Invalid password');
+    }
+
+    return {
+      data: user,
+      error: null
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error: error
     };
   }
 };

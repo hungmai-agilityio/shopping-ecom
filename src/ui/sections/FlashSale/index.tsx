@@ -26,7 +26,6 @@ const FlashSale = async () => {
           <Heading>Flash sales</Heading>
           <Countdown days={3} hours={1} minutes={25} seconds={5} />
         </div>
-
         <Suspense fallback={<>Loading</>}>
           <PaginationProduct queryPage="flash-sale-page" start={start} />
         </Suspense>

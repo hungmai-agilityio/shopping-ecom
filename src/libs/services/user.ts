@@ -1,14 +1,18 @@
 // Constants
-import { END_POINT } from "@/constants";
+import { END_POINT } from '@/constants';
 
 // Interfaces
-import { IUser } from "@/interface";
+import { IUser } from '@/interface';
 
 // Libs
-import { fetchData, fetchDataId, postData } from "@/libs";
+import { fetchData, fetchDataId, postData } from '@/libs';
 
 export const getUserId = async (id: string) => {
   return await fetchDataId({ endpoint: `${END_POINT.USERS}/`, id: id });
+};
+
+export const getUserCart = async (id: string) => {
+  return await fetchDataId({ endpoint: `${END_POINT.CART}?userId=`, id: id });
 };
 
 export const getUserEmail = async (email: string) => {

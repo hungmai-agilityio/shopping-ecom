@@ -1,14 +1,16 @@
 'use client';
 
-import { clsx } from 'clsx';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { v4 as uuidv4 } from 'uuid';
+import { clsx } from 'clsx';
 
 // Constants
-import { inter, popping, SIZE } from '@/constants';
+import { inter, popping, QUERY, SIZE } from '@/constants';
 
 // Interfaces
-import { IProduct } from '@/interface';
+import { ICart, IProduct } from '@/interface';
 
 // Components
 import {
@@ -20,15 +22,73 @@ import {
   SizePicker
 } from '@/ui/components';
 
+// Libs
+import { getUserCart, updateCart } from '@/libs';
+
+// Hooks
+import { useAddDataToCart } from '@/hooks';
+
 interface DetailProps {
   product: IProduct;
 }
 
 const ProductDetail = ({ product }: DetailProps) => {
+  const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors![0]);
   const [size, setSize] = useState<string>(
     product.sizes ? product.sizes[0] : ''
   );
+  const addDataToCart = useAddDataToCart();
+
+  // Fetch cart items
+  const { data: cartItems = [] } = useQuery<ICart[]>({
+    queryKey: [QUERY.CART],
+    queryFn: () => getUserCart('4520hft-69210-742376djq')
+  });
+
+  // Handle set quantity
+  const handleQuantityChange = useCallback((newQuantity: number) => {
+    setQuantity(newQuantity);
+  }, []);
+
+  // Handle set color
+  const handleColorChange = useCallback((newColor: string) => {
+    setColor(newColor);
+  }, []);
+
+  // Handle set color
+  const handleSizeChange = useCallback((newSize: string) => {
+    setSize(newSize);
+  }, []);
+
+  // Handle add product to cart
+  const handleAddToCart = useCallback(async () => {
+    const existingItem = cartItems.find(
+      (cartItem: ICart) =>
+        cartItem.productId === product.id &&
+        cartItem.color === color &&
+        cartItem.size === size
+    );
+
+    if (existingItem) {
+      await updateCart(existingItem.id, {
+        quantity: existingItem.quantity + quantity
+      });
+    }
+
+    if (!existingItem) {
+      const cartData: ICart = {
+        id: uuidv4(),
+        userId: '4520hft-69210-742376djq', // Update user later
+        productId: product.id,
+        color: color || product.colors![0],
+        size: size || product.sizes![0],
+        quantity: quantity
+      };
+
+      addDataToCart.mutate(cartData);
+    }
+  }, [product, color, quantity, addDataToCart, cartItems]);
 
   return (
     <section
@@ -110,7 +170,7 @@ const ProductDetail = ({ product }: DetailProps) => {
 
             <ColorPicker
               colors={product.colors!}
-              onClick={() => {}}
+              onClick={handleColorChange}
               selectedColor={color}
             />
           </div>
@@ -128,7 +188,7 @@ const ProductDetail = ({ product }: DetailProps) => {
                 <SizePicker
                   key={index}
                   size={item}
-                  onClick={() => {}}
+                  onClick={handleSizeChange.bind(null, item)}
                   selected={size}
                 />
               ))}
@@ -138,10 +198,12 @@ const ProductDetail = ({ product }: DetailProps) => {
           <div className="flex flex-wrap my-5 gap-5 items-center">
             <QuantityHorizontal
               value={1}
-              onChange={() => {}}
+              onChange={handleQuantityChange}
               max={product.stock}
             />
-            <Button size={SIZE.MEDIUM}>Buy Now</Button>
+            <Button size={SIZE.MEDIUM} onClick={handleAddToCart}>
+              Buy Now
+            </Button>
             <div className="w-10 h-10 border border-dark rounded-lg flex justify-center items-center">
               <Icon
                 src="/heart.svg"

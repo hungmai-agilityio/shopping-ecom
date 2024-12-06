@@ -1,5 +1,5 @@
-import { checkPassword } from "@/libs/actions/user";
-import { getUserEmail } from "@/libs/services/user";
+import { checkPassword } from '@/libs/actions/user';
+import { getUserEmail } from '@/libs/services/user';
 
 interface APIOptions {
   endpoint: string;
@@ -73,6 +73,37 @@ export const handleSignIn = async (email: string, password: string) => {
 
     return {
       data: user,
+      error: null
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error: error
+    };
+  }
+};
+
+export const updateData = async ({
+  endpoint,
+  id,
+  data,
+  updateMethod = 'PUT'
+}: APIOptions) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}${endpoint}/${id}`, {
+      method: updateMethod,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to update data: ${res.statusText}`);
+    }
+
+    return {
+      data: await res.json(),
       error: null
     };
   } catch (error) {

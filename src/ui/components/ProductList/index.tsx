@@ -1,20 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
 
 // Constants
 import { END_POINT, QUERY, SIZE } from '@/constants';
 
 // Interfaces
-import { IProduct } from '@/interface';
+import { IProduct, IWishlist } from '@/interface';
 
 // Libs
-import { getProductLimit } from '@/libs';
+import { getProductLimit, getUserWishList } from '@/libs';
 
 // Components
 import { Button, CardProduct } from '@/ui/components';
+import { useAddToWishlist } from '@/hooks';
 
 interface ProductListProps {
   products: IProduct[];
@@ -33,6 +35,7 @@ const ProductList = ({
 }: ProductListProps) => {
   const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products);
   const [start, setStart] = useState<number>(products.length);
+  const addToWishlist = useAddToWishlist();
 
   const router = useRouter();
 
@@ -44,6 +47,11 @@ const ProductList = ({
     queryKey: [QUERY.PRODUCTS, query, start],
     queryFn: () => getProductLimit(query, start, 4),
     enabled: start > products.length
+  });
+
+  const { data: wishlist = [] } = useQuery<IWishlist[]>({
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList('4520hft-69210-742376djq')
   });
 
   const handleShowMore = () => {
@@ -64,6 +72,38 @@ const ProductList = ({
     );
   }
 
+  /**
+   * Check if this product is in your favorites list?
+   * @param {string} productId
+   */
+  const isProductInWishlist = (productId: string) =>
+    wishlist.some((item: IWishlist) => item.productId === productId);
+
+  /**
+   * Handle toggle add/remove product with Wishlist
+   * @param {IProduct} product
+   */
+  const handleToggleFavorite = useCallback(
+    (product: IProduct) => {
+      if (isProductInWishlist(product.id)) {
+        const wishlistItem = wishlist.find(
+          (item: IWishlist) => item.productId === product.id
+        );
+
+        return;
+      }
+
+      const newItem: IWishlist = {
+        id: uuidv4(),
+        userId: '4520hft-69210-742376djq',
+        productId: product.id
+      };
+
+      addToWishlist.mutate(newItem);
+    },
+    [addToWishlist]
+  );
+
   const handleRedirectPreview = (id: string) => {
     router.push(`${END_POINT.PRODUCT}/${id}`);
   };
@@ -78,13 +118,15 @@ const ProductList = ({
             key={item.id}
             src={item.image}
             alt={item.name}
-            icon="/heart.svg"
+            icon={
+              isProductInWishlist(item.id) ? '/heart-red.svg' : '/heart.svg'
+            }
             id={item.id}
             name={item.name}
             price={item.price}
             rating={item.ratings}
             onAdd={() => alert(123)}
-            onIconClick={() => alert('icon')}
+            onIconClick={handleToggleFavorite.bind(null, item)}
             onView={handleRedirectPreview}
             colors={item.colors}
             isNewProduct={isNewProduct ? item.isNew : undefined}

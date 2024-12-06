@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 // Components
 import { ProductList } from '@/ui/components';
 
+jest.mock('next/navigation');
 jest.mock('@tanstack/react-query');
 jest.mock('@/libs/services/products');
 

@@ -15,7 +15,7 @@ describe('SizePicker component', () => {
 
     expect(size).toBeInTheDocument();
     expect(size).toHaveClass(
-      'min-w-8 min-h-8 px-1 max-w-btn-size truncate border border-dark rounded text-base'
+      'min-w-8 h-8 px-1 max-w-btn-size truncate border border-dark rounded text-base hover:bg-primary hover:text-white hover:border-primary'
     );
   });
 

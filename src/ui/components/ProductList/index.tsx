@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 // Constants
-import { QUERY, SIZE } from '@/constants';
+import { END_POINT, QUERY, SIZE } from '@/constants';
 
 // Interfaces
 import { IProduct } from '@/interface';
@@ -32,6 +33,8 @@ const ProductList = ({
 }: ProductListProps) => {
   const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products);
   const [start, setStart] = useState<number>(products.length);
+
+  const router = useRouter();
 
   const {
     data: items,
@@ -61,6 +64,10 @@ const ProductList = ({
     );
   }
 
+  const handleRedirectPreview = (id: string) => {
+    router.push(`${END_POINT.PRODUCT}/${id}`);
+  };
+
   const isButtonDisabled = isLoading || items?.data.length === 0;
 
   return (
@@ -78,7 +85,7 @@ const ProductList = ({
             rating={item.ratings}
             onAdd={() => alert(123)}
             onIconClick={() => alert('icon')}
-            onView={() => {}}
+            onView={handleRedirectPreview}
             colors={item.colors}
             isNewProduct={isNewProduct ? item.isNew : undefined}
             discount={isDiscount ? item.discount : undefined}

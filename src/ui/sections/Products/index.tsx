@@ -8,14 +8,18 @@ import { ProductList } from '@/ui/components';
 interface ProductSectionProps {
   query?: string;
   isShowMore?: boolean;
+  visibleCount?: number;
 }
 
-const ProductSection = async ({ query, isShowMore }: ProductSectionProps) => {
+const ProductSection = async ({
+  query,
+  isShowMore,
+  visibleCount = 4
+}: ProductSectionProps) => {
   const param = query ? query : '';
 
   const { data: products, error } = await getProducts(param);
 
-  const visibleCount = 8;
   const filtered = products as IProduct[];
   const data = filtered.slice(0, visibleCount);
 
@@ -26,7 +30,13 @@ const ProductSection = async ({ query, isShowMore }: ProductSectionProps) => {
           Unable to load products! Try later
         </p>
       ) : (
-        <ProductList products={data} isShowMore={isShowMore} query={param} />
+        <ProductList
+          products={data}
+          isShowMore={isShowMore}
+          query={param}
+          isDiscount
+          isNewProduct
+        />
       )}
     </div>
   );

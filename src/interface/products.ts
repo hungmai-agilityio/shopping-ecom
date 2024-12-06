@@ -7,6 +7,7 @@ export interface IProduct {
   colors?: string[];
   sizes?: string[];
   image: string;
+  imageDetail?: string[];
   ratings: number;
   reviewCount: number;
   stock: number,

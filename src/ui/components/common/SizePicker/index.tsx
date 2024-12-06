@@ -14,7 +14,7 @@ const SizePicker = ({ size, selected, onClick }: SizeProps) => {
     <button
       onClick={onClick}
       className={clsx(
-        'min-w-8 min-h-8 px-1 max-w-btn-size truncate border border-dark rounded text-base hover:bg-primary hover:text-white hover:border-primary',
+        'min-w-8 h-8 px-1 max-w-btn-size truncate border border-dark rounded text-base hover:bg-primary hover:text-white hover:border-primary',
         popping.className,
         {
           'bg-primary text-white border-primary': selected === size

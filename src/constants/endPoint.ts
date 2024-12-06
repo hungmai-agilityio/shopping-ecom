@@ -6,6 +6,7 @@ export const END_POINT = {
   SIGN_UP: '/signUp',
   WISHLIST: '/wishlist',
   PRODUCTS: '/products',
+  PRODUCT: '/product',
   CATEGORY: '/category',
   USERS: '/users',
   PROFILE: '/profiles',

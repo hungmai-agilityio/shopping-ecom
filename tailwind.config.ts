@@ -22,6 +22,7 @@ const config: Config = {
         'cart-md': '470px',
         'card-about': '500px',
         'card-info': '370px',
+        'card-detail': '500px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
@@ -35,6 +36,7 @@ const config: Config = {
         'card-md': '250px',
         'card-info-md': '430px',
         'card-info': '564px',
+        'card-detail': '600px',
         'slide': '480px',
         'card-product': '350px',
         'avatar-sm': '40px',
@@ -46,6 +48,7 @@ const config: Config = {
       },
       maxWidth: {
         'btn-size': '70px',
+        'card-md': '470px'
 
       },
       fontSize: {

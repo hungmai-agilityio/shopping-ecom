@@ -15,6 +15,13 @@ export const getUserCart = async (id: string) => {
   return await fetchDataId({ endpoint: `${END_POINT.CART}?userId=`, id: id });
 };
 
+export const getUserWishList = async (id: string) => {
+  return await fetchDataId({
+    endpoint: `${END_POINT.WISHLIST}?userId=`,
+    id: id
+  });
+};
+
 export const getUserEmail = async (email: string) => {
   return await fetchData({ endpoint: `${END_POINT.USERS}?email=${email}` });
 };

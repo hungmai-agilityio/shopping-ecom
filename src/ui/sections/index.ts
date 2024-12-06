@@ -6,6 +6,7 @@ export { default as ContactSection } from '@/ui/sections/Contact';
 export { default as CardContact } from '@/ui/sections/Contact/Card';
 export { default as ProductSection } from '@/ui/sections/Products';
 export { default as ProductDetail } from '@/ui/sections/Products/Detail';
+export { default as WishListSection } from '@/ui/sections/WishList';
 export { default as AdvertisementSale } from '@/ui/sections/Advertisement/Sale';
 export { default as ServiceSection } from '@/ui/sections/Advertisement/Services';
 export { default as StorySection } from '@/ui/sections/StorySection';

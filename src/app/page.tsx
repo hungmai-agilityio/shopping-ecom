@@ -1,10 +1,6 @@
 import { FlashSale } from '@/ui/sections';
 
-const Home = ({
-  searchParams
-}: {
-  searchParams: { [key: string]: string };
-}) => {
+const Home = () => {
   return <FlashSale></FlashSale>;
 };
 

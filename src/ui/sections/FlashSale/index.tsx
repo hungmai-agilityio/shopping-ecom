@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 // Libs
 import { getProductLimit } from '@/libs';
 
@@ -25,7 +27,9 @@ const FlashSale = async () => {
           <Countdown days={3} hours={1} minutes={25} seconds={5} />
         </div>
 
-        <PaginationProduct queryPage="flash-sale-page" start={start} />
+        <Suspense fallback={<>Loading</>}>
+          <PaginationProduct queryPage="flash-sale-page" start={start} />
+        </Suspense>
       </div>
 
       {error ? (

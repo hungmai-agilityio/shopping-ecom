@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-overlay':
+          'linear-gradient(317deg, rgba(107, 120, 255, 0.6), rgba(134, 9, 233, 0.3), rgba(0, 0, 0, 0.2))'
+      },
       colors: {
         primary: '#DB4444',
         second: '#00FF66',

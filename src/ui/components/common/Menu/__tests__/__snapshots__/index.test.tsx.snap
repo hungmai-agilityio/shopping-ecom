@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="w-full h-full bg-gradient-overlay rounded-md"
+  >
+    <a
+      class="flex justify-between items-center gap-2 text-white cursor-pointer w-full p-2 hover:bg-purple-400 rounded-md className"
+      href="#"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="user profile"
+          data-nimg="1"
+          decoding="async"
+          fetchpriority="high"
+          height="24"
+          src="/user-white.svg"
+          style="color: transparent;"
+          width="24"
+        />
+      </div>
+      <p
+        class="capitalize"
+      >
+        user profile
+      </p>
+    </a>
+    <a
+      class="flex justify-between items-center gap-2 text-white cursor-pointer w-full p-2 hover:bg-purple-400 rounded-md className"
+      href="#"
+    >
+      <div
+        class="flex"
+      >
+        <img
+          alt="logout"
+          data-nimg="1"
+          decoding="async"
+          fetchpriority="high"
+          height="24"
+          src="/logout.svg"
+          style="color: transparent;"
+          width="24"
+        />
+      </div>
+      <p
+        class="capitalize"
+      >
+        logout
+      </p>
+    </a>
+  </div>
+</div>
+`;

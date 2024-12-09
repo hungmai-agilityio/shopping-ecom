@@ -24,7 +24,10 @@ export { default as Carousel } from '@/ui/components/common/Carousel';
 export { default as QuantityVertical } from '@/ui/components/common/Quantity/Vertical';
 export { default as QuantityHorizontal } from '@/ui/components/common/Quantity/Horizontal';
 export { default as Dropdown } from '@/ui/components/common/Dropdown';
+export { default as UserDropdown } from '@/ui/components/common/Dropdown/User';
 export { default as Table } from '@/ui/components/common/Table';
+export { default as Menu } from '@/ui/components/common/Menu';
+export { default as MenuItem } from '@/ui/components/common/Menu/Item';
 
 export * from '@/ui/components/common/Table/Body';
 export * from '@/ui/components/common/Table/Cell';

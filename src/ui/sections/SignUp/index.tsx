@@ -84,8 +84,11 @@ const SignUpSection = () => {
       setFormData(formData);
 
       setCookieUser(newData);
-      router.push(END_POINT.HOME);
-      router.refresh();
+
+      setTimeout(() => {
+        router.push(END_POINT.HOME);
+        router.refresh();
+      }, 2000);
     }
   };
 

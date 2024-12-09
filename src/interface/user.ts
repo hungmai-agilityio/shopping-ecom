@@ -1,3 +1,11 @@
+export interface Address {
+  id: string;
+  street: string;
+  city: string;
+  apartment?: string;
+  isDefault: boolean;
+}
+
 export interface IUser {
   id: string;
   firstName: string;
@@ -5,11 +13,9 @@ export interface IUser {
   email: string;
   password: string;
   avatar: string;
-  address: string;
+  address: Address[];
   phone: string;
-  city: string;
   company?: string;
-  apartment?: string;
   created_at: string;
   updated_at: string;
 }

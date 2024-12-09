@@ -62,3 +62,17 @@ export const useRemoveFromCart = () => {
     }
   });
 };
+
+export const useClearUserCart = ({ cartData }: UseCartActionsProps) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async () => {
+      await Promise.all(cartData.map((item) => deleteCart(item.id)));
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY.CART] }),
+    onError: (error) => {
+      alert(`${error}. Please try again`);
+    }
+  });
+}

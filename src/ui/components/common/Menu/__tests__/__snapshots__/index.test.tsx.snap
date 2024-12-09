@@ -3,7 +3,7 @@
 exports[`Menu component Should be render match to snapshot 1`] = `
 <div>
   <div
-    class="w-full h-full bg-gradient-overlay rounded-md"
+    class="w-56 h-full bg-gradient-overlay rounded-md"
   >
     <a
       class="flex justify-between items-center gap-2 text-white cursor-pointer w-full p-2 hover:bg-purple-400 rounded-md className"

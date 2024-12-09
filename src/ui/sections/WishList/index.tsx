@@ -147,7 +147,7 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
     });
 
     Promise.all(dataWishlist).then(() => {
-      // clearWishlist.mutate();
+      clearWishlist.mutate();
     });
   }, [wishlist, products, addToCart, user.id]);
 

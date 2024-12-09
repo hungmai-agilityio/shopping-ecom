@@ -13,11 +13,12 @@ interface InputControllerProps<T extends FieldValues> {
   control: Control<T>;
   type?: string;
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   showIcon?: string;
   toggleShow?: () => void;
   message?: string;
   variant?: TYPE.PRIMARY | TYPE.SECOND | TYPE.THIRD;
+  isRequired?: boolean;
 }
 
 const InputController = <T extends FieldValues>({
@@ -29,7 +30,8 @@ const InputController = <T extends FieldValues>({
   showIcon,
   toggleShow,
   message,
-  variant
+  variant,
+  isRequired
 }: InputControllerProps<T>) => {
   const {
     field: { onChange, value },
@@ -48,6 +50,7 @@ const InputController = <T extends FieldValues>({
       onClick={toggleShow}
       message={message || error?.message}
       variant={variant}
+      isRequired={isRequired}
     />
   );
 };

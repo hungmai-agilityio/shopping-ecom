@@ -35,11 +35,9 @@ export const mockUser: IUser = {
   id: '4dd7ca05-6bf8-4003-b324-e5ec7a705da8',
   lastName: '',
   avatar: '',
-  address: '',
+  address: [],
   phone: '',
-  city: '',
   company: '',
-  apartment: '',
   created_at: '2024-12-07T15:09:14.436Z',
   updated_at: '2024-12-07T15:09:14.436Z'
 };

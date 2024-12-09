@@ -26,7 +26,7 @@ interface CartSectionProps {
 }
 
 const CartSection = ({ products, user }: CartSectionProps) => {
-  const [subtotal, setSubtotal] = useState(0);
+  const [subtotal, setSubtotal] = useState<number>(0);
   const router = useRouter();
 
   const { data: cart = [], error: cartError } = useQuery<ICart[]>({

@@ -31,11 +31,9 @@ const SignUpSection = () => {
     email: '',
     password: '',
     avatar: '',
-    address: '',
+    address: [],
     phone: '',
-    city: '',
     company: '',
-    apartment: '',
     created_at: '',
     updated_at: ''
   });
@@ -67,11 +65,9 @@ const SignUpSection = () => {
       password: hashedPassword,
       lastName: '',
       avatar: '',
-      address: '',
+      address: [],
       phone: '',
-      city: '',
       company: '',
-      apartment: '',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };

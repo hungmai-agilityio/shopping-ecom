@@ -1,10 +1,17 @@
+// Interfaces
+import { IUser } from '@/interface';
+
 // Libs
 import { getProductLimit } from '@/libs';
 
 // Components
 import { Heading, ProductList, Tag } from '@/ui/components';
 
-const BestSelling = async () => {
+interface SellingProp {
+  user: IUser;
+}
+
+const BestSelling = async ({ user }: SellingProp) => {
   const { data, error } = await getProductLimit('bestSelling=true', 0, 4);
 
   return (
@@ -20,7 +27,12 @@ const BestSelling = async () => {
           Unable to load products! Try later
         </p>
       ) : (
-        <ProductList products={data} query={'bestSelling=true'} isShowMore />
+        <ProductList
+          products={data}
+          query={'bestSelling=true'}
+          isShowMore
+          user={user}
+        />
       )}
     </div>
   );

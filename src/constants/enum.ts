@@ -8,7 +8,7 @@ export enum INPUT_TYPE {
   FILE = 'file',
   TEXT = 'text',
   PASSWORD = 'password',
-  EMAIL = 'email',
+  EMAIL = 'email'
 }
 
 export enum SIZE {
@@ -20,6 +20,10 @@ export enum SIZE {
 export enum CELL {
   TD = 'td',
   TH = 'th'
+}
+
+export enum KEY {
+  USER = 'user'
 }
 
 export enum TIME_STATUS {

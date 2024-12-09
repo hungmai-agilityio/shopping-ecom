@@ -10,7 +10,7 @@ import { clsx } from 'clsx';
 import { inter, popping, QUERY, SIZE } from '@/constants';
 
 // Interfaces
-import { ICart, IProduct } from '@/interface';
+import { ICart, IProduct, IUser, IWishlist } from '@/interface';
 
 // Components
 import {
@@ -23,27 +23,38 @@ import {
 } from '@/ui/components';
 
 // Libs
-import { getUserCart, updateCart } from '@/libs';
+import { getUserCart, getUserWishList, updateCart } from '@/libs';
 
 // Hooks
-import { useAddDataToCart } from '@/hooks';
+import {
+  useAddDataToCart,
+  useAddToWishlist,
+  useRemoveFromWishlist
+} from '@/hooks';
 
 interface DetailProps {
   product: IProduct;
+  user: IUser;
 }
 
-const ProductDetail = ({ product }: DetailProps) => {
+const ProductDetail = ({ product, user }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [color, setColor] = useState<string>(product.colors![0]);
-  const [size, setSize] = useState<string>(
-    product.sizes ? product.sizes[0] : ''
-  );
+  const [color, setColor] = useState<string>(product.colors?.[0] || '');
+  const [size, setSize] = useState<string>(product.sizes?.[0] || '');
   const addDataToCart = useAddDataToCart();
+  const addToWishlist = useAddToWishlist();
+  const removeFromWishlist = useRemoveFromWishlist();
 
   // Fetch cart items
   const { data: cartItems = [] } = useQuery<ICart[]>({
     queryKey: [QUERY.CART],
-    queryFn: () => getUserCart('4520hft-69210-742376djq')
+    queryFn: () => getUserCart(user.id)
+  });
+
+  const { data: wishlist = [] } = useQuery<IWishlist[]>({
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList(user.id),
+    enabled: !!user
   });
 
   // Handle set quantity
@@ -60,6 +71,36 @@ const ProductDetail = ({ product }: DetailProps) => {
   const handleSizeChange = useCallback((newSize: string) => {
     setSize(newSize);
   }, []);
+
+  const isProductInWishlist = (productId: string) =>
+    wishlist.some((item: IWishlist) => item.productId === productId);
+
+  /**
+   * Handle toggle add/remove product with Wishlist
+   * @param {IProduct} product
+   */
+  const handleToggleFavorite = useCallback(
+    (product: IProduct) => {
+      if (isProductInWishlist(product.id)) {
+        const wishlistItem = wishlist.find(
+          (item: IWishlist) => item.productId === product.id
+        );
+        if (wishlistItem) {
+          removeFromWishlist.mutate(wishlistItem.id);
+        }
+        return;
+      }
+
+      const newItem: IWishlist = {
+        id: uuidv4(),
+        userId: user.id,
+        productId: product.id
+      };
+
+      addToWishlist.mutate(newItem);
+    },
+    [removeFromWishlist, addToWishlist]
+  );
 
   // Handle add product to cart
   const handleAddToCart = useCallback(async () => {
@@ -79,10 +120,10 @@ const ProductDetail = ({ product }: DetailProps) => {
     if (!existingItem) {
       const cartData: ICart = {
         id: uuidv4(),
-        userId: '4520hft-69210-742376djq', // Update user later
+        userId: user.id,
         productId: product.id,
-        color: color || product.colors![0],
-        size: size || product.sizes![0],
+        color: color || product.colors?.[0] || '',
+        size: size || product.sizes?.[0] || '',
         quantity: quantity
       };
 
@@ -206,11 +247,15 @@ const ProductDetail = ({ product }: DetailProps) => {
             </Button>
             <div className="w-10 h-10 border border-dark rounded-lg flex justify-center items-center">
               <Icon
-                src="/heart.svg"
+                src={
+                  isProductInWishlist(product.id)
+                    ? '/heart-red.svg'
+                    : '/heart.svg'
+                }
                 alt="heart-icon"
                 width={32}
                 height={32}
-                onClick={() => {}}
+                onClick={handleToggleFavorite.bind(null, product)}
               />
             </div>
           </div>

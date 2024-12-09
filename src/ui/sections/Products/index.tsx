@@ -1,17 +1,19 @@
 // Libs
-import { IProduct } from '@/interface';
+import { IProduct, IUser } from '@/interface';
 import { getProducts } from '@/libs';
 
 // Components
 import { ProductList } from '@/ui/components';
 
 interface ProductSectionProps {
+  user: IUser;
   query?: string;
   isShowMore?: boolean;
   visibleCount?: number;
 }
 
 const ProductSection = async ({
+  user,
   query,
   isShowMore,
   visibleCount = 4
@@ -36,6 +38,7 @@ const ProductSection = async ({
           query={param}
           isDiscount
           isNewProduct
+          user={user}
         />
       )}
     </div>

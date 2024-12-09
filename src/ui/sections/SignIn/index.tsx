@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
 // Libs
-import { handleSignIn, signInSchema } from '@/libs';
+import { handleSignIn, setCookieUser, signInSchema } from '@/libs';
 
 // Constants
 import { END_POINT, INPUT_TYPE, SIZE, TYPE } from '@/constants';
@@ -35,6 +35,7 @@ const SignInSection = () => {
     if (error) {
       return;
     }
+    setCookieUser(user);
 
     router.push(END_POINT.HOME);
     router.refresh();
@@ -56,6 +57,7 @@ const SignInSection = () => {
           <InputController
             name="password"
             control={control}
+            type={INPUT_TYPE.PASSWORD}
             variant={TYPE.SECOND}
             placeholder="Password"
           />

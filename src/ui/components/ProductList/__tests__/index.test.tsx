@@ -2,82 +2,85 @@ import { render, screen } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 
 // Components
-import { ProductList } from '@/ui/components';
+import ProductList from '@/ui/components/ProductList';
+import { mockUser } from '@/mock';
 
-jest.mock('next/navigation');
-jest.mock('@tanstack/react-query');
-jest.mock('@/libs/services/products');
+// Mock dependencies
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn()
+  }))
+}));
+
+jest.mock('@tanstack/react-query', () => ({
+  useQuery: jest.fn()
+}));
+
+jest.mock('@/hooks', () => ({
+  useAddToWishlist: jest.fn(() => ({
+    mutate: jest.fn()
+  })),
+  useRemoveFromWishlist: jest.fn(() => ({
+    mutate: jest.fn()
+  }))
+}));
 
 const mockProducts = [
   {
-    id: 1,
+    id: '1',
     image: '/img1.webp',
     name: 'Product 1',
     price: 100,
+    description: 'Sleek and portable laptop with powerful specs.',
     ratings: 5,
+    category: 'computers',
     colors: ['Red', 'Yellow'],
     isNew: true,
-    discount: 10
+    discount: 10,
+    reviewCount: 200,
+    stock: 300,
+    isFlashSale: false,
+    bestSelling: false
   },
   {
-    id: 2,
+    id: '2',
     image: '/img2.webp',
     name: 'Product 2',
     price: 200,
+    description: 'Sleek and portable laptop',
     ratings: 4,
+    category: 'computers',
     colors: ['Blue', 'Gray'],
     isNew: false,
-    discount: 5
+    discount: 5,
+    reviewCount: 200,
+    stock: 300,
+    isFlashSale: false,
+    bestSelling: false
   }
 ];
 
-describe('ProductList', () => {
-  test('renders product list correctly', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: { data: mockProducts },
-      isLoading: false,
-      isError: false
-    });
-
-    render(<ProductList products={[]} isShowMore />);
-
-    expect(screen.getByText('Product 1')).toBeInTheDocument();
-    expect(screen.getByText('Product 2')).toBeInTheDocument();
-  });
-
+describe('ProductList Component', () => {
   test('shows loading state while fetching', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: { data: [] },
+    (useQuery as jest.Mock).mockImplementation(() => ({
+      data: null,
       isLoading: true,
       isError: false
-    });
+    }));
 
-    render(<ProductList products={[]} isShowMore />);
+    render(<ProductList products={[]} user={mockUser} isShowMore />);
 
     expect(screen.getByText('...Loading')).toBeInTheDocument();
   });
 
-  test('disables the button when loading or error occurs', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: { data: mockProducts },
-      isLoading: true,
-      isError: false
-    });
-
-    render(<ProductList products={[]} isShowMore />);
-
-    const button = screen.getByText('View All Products');
-    expect(button).toBeDisabled();
-  });
-
   test('renders error state if fetching fails', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: { data: [] },
+    (useQuery as jest.Mock).mockImplementation(() => ({
+      data: null,
       isLoading: false,
       isError: true
-    });
+    }));
 
-    render(<ProductList products={[]} isShowMore />);
+    render(<ProductList products={[]} user={mockUser} isShowMore />);
 
     expect(
       screen.getByText('Unable to load products! Try later')

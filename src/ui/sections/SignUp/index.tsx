@@ -19,7 +19,7 @@ import { AuthForm, Button, InputController } from '@/ui/components';
 import { IUser } from '@/interface';
 
 // Libs
-import { addUser, checkUserByEmail, signUpSchema } from '@/libs';
+import { addUser, checkUserByEmail, setCookieUser, signUpSchema } from '@/libs';
 
 const SignUpSection = () => {
   const router = useRouter();
@@ -72,8 +72,8 @@ const SignUpSection = () => {
       city: '',
       company: '',
       apartment: '',
-      create_at: new Date(),
-      update_at: new Date()
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     };
 
     setFormData(newData);
@@ -83,10 +83,9 @@ const SignUpSection = () => {
     if (newUser.data) {
       setFormData(formData);
 
-      setTimeout(() => {
-        router.push(END_POINT.HOME);
-        router.refresh();
-      }, 2000);
+      setCookieUser(newData);
+      router.push(END_POINT.HOME);
+      router.refresh();
     }
   };
 

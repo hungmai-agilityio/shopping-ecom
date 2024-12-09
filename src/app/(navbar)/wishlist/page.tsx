@@ -1,10 +1,12 @@
 // Libs
-import { getProductLimit, getProducts } from '@/libs';
+import { getProductLimit, getProducts, getUserCookie } from '@/libs';
 
 // Sections
 import WishListSection from '@/ui/sections/WishList';
 
 const Wishlist = async () => {
+  const user = await getUserCookie();
+
   const { data: products, error: errorProduct } = await getProducts();
   const { data: selling, error: errorSelling } = await getProductLimit(
     'bestSelling=true',
@@ -32,7 +34,9 @@ const Wishlist = async () => {
     );
   }
 
-  return <WishListSection products={products} productSelling={selling} />;
+  return (
+    <WishListSection products={products} user={user} productSelling={selling} />
+  );
 };
 
 export default Wishlist;

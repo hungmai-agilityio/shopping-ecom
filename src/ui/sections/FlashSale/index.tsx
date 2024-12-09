@@ -12,7 +12,13 @@ import {
   Tag
 } from '@/ui/components';
 
-const FlashSale = async () => {
+// Interfaces
+import { IUser } from '@/interface';
+
+interface FlashSaleProps {
+  user: IUser;
+}
+const FlashSale = async ({ user }: FlashSaleProps) => {
   const { data, error } = await getProductLimit('isFlashSale=true', 0, 4);
 
   const start = 0;
@@ -38,6 +44,7 @@ const FlashSale = async () => {
       ) : (
         <ProductList
           products={data}
+          user={user}
           isDiscount
           isShowMore
           query={'isFlashSale=true'}

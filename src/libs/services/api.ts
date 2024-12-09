@@ -113,3 +113,11 @@ export const updateData = async ({
     };
   }
 };
+
+export const deleteData = async ({ endpoint, id }: APIOptions) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}${endpoint}/${id}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Failed to delete data');
+  return res.json();
+};

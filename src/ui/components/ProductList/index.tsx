@@ -9,17 +9,20 @@ import { v4 as uuidv4 } from 'uuid';
 import { END_POINT, QUERY, SIZE } from '@/constants';
 
 // Interfaces
-import { IProduct, IWishlist } from '@/interface';
+import { IProduct, IUser, IWishlist } from '@/interface';
 
 // Libs
 import { getProductLimit, getUserWishList } from '@/libs';
 
 // Components
 import { Button, CardProduct } from '@/ui/components';
-import { useAddToWishlist } from '@/hooks';
+
+// Hooks
+import { useAddToWishlist, useRemoveFromWishlist } from '@/hooks';
 
 interface ProductListProps {
   products: IProduct[];
+  user: IUser;
   isShowMore?: boolean;
   isNewProduct?: boolean;
   isDiscount?: boolean;
@@ -28,6 +31,7 @@ interface ProductListProps {
 
 const ProductList = ({
   products,
+  user,
   isNewProduct,
   isShowMore,
   isDiscount,
@@ -36,6 +40,7 @@ const ProductList = ({
   const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products);
   const [start, setStart] = useState<number>(products.length);
   const addToWishlist = useAddToWishlist();
+  const removeFromWishlist = useRemoveFromWishlist();
 
   const router = useRouter();
 
@@ -51,7 +56,8 @@ const ProductList = ({
 
   const { data: wishlist = [] } = useQuery<IWishlist[]>({
     queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList('4520hft-69210-742376djq')
+    queryFn: () => getUserWishList(user.id),
+    enabled: !!user
   });
 
   const handleShowMore = () => {
@@ -89,19 +95,21 @@ const ProductList = ({
         const wishlistItem = wishlist.find(
           (item: IWishlist) => item.productId === product.id
         );
-
+        if (wishlistItem) {
+          removeFromWishlist.mutate(wishlistItem.id);
+        }
         return;
       }
 
       const newItem: IWishlist = {
         id: uuidv4(),
-        userId: '4520hft-69210-742376djq',
+        userId: user.id,
         productId: product.id
       };
 
       addToWishlist.mutate(newItem);
     },
-    [addToWishlist]
+    [removeFromWishlist, addToWishlist]
   );
 
   const handleRedirectPreview = (id: string) => {

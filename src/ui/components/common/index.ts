@@ -30,4 +30,5 @@ export * from '@/ui/components/common/Table/Body';
 export * from '@/ui/components/common/Table/Cell';
 export * from '@/ui/components/common/Table/Head';
 export * from '@/ui/components/common/Table/Row';
+export * from '@/ui/components/common/Table/Row/Empty';
 export * from '@/ui/components/common/Typo';

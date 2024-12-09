@@ -5,7 +5,7 @@ import { END_POINT } from '@/constants';
 import { ICart } from '@/interface';
 
 // Libs
-import { postData, updateData } from '@/libs';
+import { deleteData, postData, updateData } from '@/libs';
 
 export const addCartData = async (data: ICart) => {
   return await postData({ endpoint: END_POINT.CART, data: data });
@@ -17,5 +17,12 @@ export const updateCart = async (id: string, data: Partial<ICart>) => {
     id,
     data: data,
     updateMethod: 'PATCH'
+  });
+};
+
+export const deleteCart = async (id: string) => {
+  return deleteData({
+    endpoint: END_POINT.CART,
+    id: id
   });
 };

@@ -28,7 +28,7 @@ const config: Config = {
         'avatar-lg': '130px',
         form: '700px',
         'btn-sm': '143px',
-        'btn-md': '240px',
+        'btn-md': '240px'
       },
       height: {
         md: '440px',
@@ -37,19 +37,18 @@ const config: Config = {
         'card-info-md': '430px',
         'card-info': '564px',
         'card-detail': '600px',
-        'slide': '480px',
+        slide: '480px',
         'card-product': '350px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
         'cart-md': '370px',
         'card-lg': '470px',
-
+        table: '700px'
       },
       maxWidth: {
         'btn-size': '70px',
         'card-md': '470px'
-
       },
       fontSize: {
         'heading-page': '110px'
@@ -68,12 +67,27 @@ const config: Config = {
         'card-hover': '0px 0px 0px 11px #E0E0E0',
         table: '0 4px 5px 9px #0000000D',
         contact: ' 0px 1px 13px 0px #0000000D'
-
-
-
-      },
+      }
     }
   },
-  plugins: []
+  plugins: [
+    function ({ addUtilities }: any) {
+      const newUtilities = {
+        '.scrollbar::-webkit-scrollbar': {
+          width: '4px',
+          height: '4px'
+        },
+        '.scrollbar::-webkit-scrollbar-track': {
+          borderRadius: '3px'
+        },
+        '.scrollbar::-webkit-scrollbar-thumb': {
+          backgroundColor: '#4d4d4d',
+          borderRadius: '3px'
+        }
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }
+  ]
 };
 export default config;

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import { addCartData, updateCart } from '@/libs';
+import { addCartData, deleteCart, updateCart } from '@/libs';
 
 // Constants
 import { QUERY } from '@/constants';
@@ -44,6 +44,18 @@ export const useUpdateQuantity = () => {
   return useMutation({
     mutationFn: ({ id, newQuantity }: { id: string; newQuantity: number }) =>
       updateCart(id, { quantity: newQuantity }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY.CART] }),
+    onError: (error) => {
+      alert(`${error}. Please try again`);
+    }
+  });
+};
+
+export const useRemoveFromCart = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteCart(id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY.CART] }),
     onError: (error) => {
       alert(`${error}. Please try again`);

@@ -10,7 +10,7 @@ import { Breadcrumb, Tag } from '@/ui/components';
 import { ProductDetail, ProductSection } from '@/ui/sections';
 
 // Libs
-import { getProductId } from '@/libs';
+import { getProductId, getUserCookie } from '@/libs';
 import { Suspense } from 'react';
 
 interface Params {
@@ -34,21 +34,22 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
   const { id } = params;
 
   const { data: product } = await getProductId(id);
+  const user = getUserCookie();
 
   const queryCategory = product.category ? `?category=${product.category}` : '';
 
   return (
     <div className={`${popping.className} mt-10`}>
       <section className="container">
-        <Breadcrumb customLastName={product.name}/>
-        <ProductDetail product={product} />
+        <Breadcrumb customLastName={product.name} />
+        <ProductDetail user={user} product={product} />
       </section>
 
       <section className="my-20 container">
         <Tag label="Related Item" />
         <div className="mt-10">
           <Suspense key={product.category} fallback={<>Loading</>}>
-            <ProductSection query={queryCategory} />
+            <ProductSection user={user} query={queryCategory} />
           </Suspense>
         </div>
       </section>

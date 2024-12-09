@@ -85,10 +85,8 @@ const SignUpSection = () => {
 
       setCookieUser(newData);
 
-      setTimeout(() => {
-        router.push(END_POINT.HOME);
-        router.refresh();
-      }, 2000);
+      router.push(END_POINT.HOME);
+      router.refresh();
     }
   };
 
@@ -145,7 +143,7 @@ const SignUpSection = () => {
           <p className="text-gray-600">
             Already have account?
             <Link
-              href="/signIn"
+              href={END_POINT.SIGN_IN}
               className="border-b border-dark p-1 ml-2 text-dark"
             >
               Login

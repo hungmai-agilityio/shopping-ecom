@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 // Libs
 import { handleSignIn, setCookieUser, signInSchema } from '@/libs';
@@ -12,7 +13,6 @@ import { END_POINT, INPUT_TYPE, SIZE, TYPE } from '@/constants';
 
 // Components
 import { AuthForm, Button, InputController } from '@/ui/components';
-import Link from 'next/link';
 
 const SignInSection = () => {
   const router = useRouter();
@@ -64,8 +64,13 @@ const SignInSection = () => {
         </div>
 
         <div className="flex justify-between items-center">
-          <Button size={SIZE.SMALL}>Login</Button>
-          <Link href="/signUp" className="font-medium text-base text-primary">
+          <Button size={SIZE.SMALL} disabled={isSubmitting}>
+            Login
+          </Button>
+          <Link
+            href={END_POINT.SIGN_UP}
+            className="font-medium text-base text-primary"
+          >
             Don't have an account?
           </Link>
         </div>

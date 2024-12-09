@@ -14,10 +14,11 @@ import { CartTable } from '@/ui/sections';
 import { getUserCart } from '@/libs';
 
 // Constants
-import { QUERY } from '@/constants';
+import { END_POINT, QUERY } from '@/constants';
 
 // Hooks
 import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
+import { useRouter } from 'next/navigation';
 
 interface CartSectionProps {
   products: IProduct[];
@@ -26,6 +27,7 @@ interface CartSectionProps {
 
 const CartSection = ({ products, user }: CartSectionProps) => {
   const [subtotal, setSubtotal] = useState(0);
+  const router = useRouter();
 
   const { data: cart = [], error: cartError } = useQuery<ICart[]>({
     queryKey: [QUERY.CART],
@@ -58,6 +60,10 @@ const CartSection = ({ products, user }: CartSectionProps) => {
     [removeProduct]
   );
 
+  const handleRedirectCheckout = () => {
+    router.push(END_POINT.CHECKOUT);
+  };
+
   if (cartError) {
     return (
       <div className="container my-10">
@@ -80,7 +86,7 @@ const CartSection = ({ products, user }: CartSectionProps) => {
       </section>
       <section className="my-20 flex lg:justify-end justify-center">
         <CartTotal
-          onCheckout={() => {}}
+          onCheckout={handleRedirectCheckout}
           subTotal={subtotal}
           isDisable={subtotal === 0}
         />

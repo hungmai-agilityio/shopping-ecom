@@ -5,7 +5,7 @@ import { END_POINT, KEY } from '@/constants';
 import { IUser } from '@/interface';
 
 // Libs
-import { fetchData, fetchDataId, postData } from '@/libs';
+import { fetchData, fetchDataId, postData, updateData } from '@/libs';
 
 export const getUserId = async (id: string) => {
   return await fetchDataId({ endpoint: `${END_POINT.USERS}/`, id: id });
@@ -29,6 +29,14 @@ export const getUserEmail = async (email: string) => {
 export const addUser = async (data: IUser) => {
   return await postData({
     endpoint: END_POINT.USERS,
+    data: data
+  });
+};
+
+export const updateUser = async (id: string, data: IUser) => {
+  return await updateData({
+    endpoint: END_POINT.USERS,
+    id: id,
     data: data
   });
 };

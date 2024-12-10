@@ -19,6 +19,7 @@ interface InputControllerProps<T extends FieldValues> {
   message?: string;
   variant?: TYPE.PRIMARY | TYPE.SECOND | TYPE.THIRD;
   isRequired?: boolean;
+  isDisabled?: boolean;
 }
 
 const InputController = <T extends FieldValues>({
@@ -31,7 +32,8 @@ const InputController = <T extends FieldValues>({
   toggleShow,
   message,
   variant,
-  isRequired
+  isRequired,
+  isDisabled
 }: InputControllerProps<T>) => {
   const {
     field: { onChange, value },
@@ -51,6 +53,7 @@ const InputController = <T extends FieldValues>({
       message={message || error?.message}
       variant={variant}
       isRequired={isRequired}
+      disabled={isDisabled}
     />
   );
 };

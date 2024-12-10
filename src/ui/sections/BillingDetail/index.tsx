@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { IUser } from '@/interface';
 
 // Components
-import { InputController, Logo } from '@/ui/components';
+import { InputController } from '@/ui/components';
 
 // Constants
 import { TYPE } from '@/constants';

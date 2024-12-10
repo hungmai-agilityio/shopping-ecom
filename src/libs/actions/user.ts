@@ -3,12 +3,6 @@ import bcrypt from 'bcryptjs';
 // Libs
 import { getUserEmail } from '@/libs';
 
-// Interfaces
-import { IUser } from '@/interface';
-
-// Constants
-import { TIME_STATUS } from '@/constants';
-
 /**
  * Check user by email
  * @param {string} email

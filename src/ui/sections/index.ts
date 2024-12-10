@@ -15,3 +15,4 @@ export { default as SignUpSection } from '@/ui/sections/SignUp';
 export { default as SignInSection } from '@/ui/sections/SignIn';
 export { default as CartTable } from '@/ui/sections/Cart/Table';
 export { default as CartSection } from '@/ui/sections/Cart';
+export { default as ProfileSection } from '@/ui/sections/Account/Profile';

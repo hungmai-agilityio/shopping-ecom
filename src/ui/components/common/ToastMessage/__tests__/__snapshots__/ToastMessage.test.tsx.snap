@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastMessage component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="text-white font-semibold fixed py-2 px-4 rounded shadow-lg transition-opacity ease-in-out max-w-lg truncate bg-green-500 top-4 right-4"
+  >
+    Messages success
+  </div>
+</div>
+`;

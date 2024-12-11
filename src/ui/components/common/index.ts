@@ -30,9 +30,10 @@ export { default as Menu } from '@/ui/components/common/Menu';
 export { default as MenuItem } from '@/ui/components/common/Menu/Item';
 export { default as Modal } from '@/ui/components/common/Modal';
 export { default as ModalAddress } from '@/ui/components/common/Modal/Address';
-export {default as Tabs} from '@/ui/components/common/Tabs';
+export { default as Tabs } from '@/ui/components/common/Tabs';
 export * from '@/ui/components/common/Tabs/Tab';
 export * from '@/ui/components/common/Tabs/Panel';
+export { default as ToastMessage } from '@/ui/components/common/ToastMessage';
 
 export * from '@/ui/components/common/Table/Body';
 export * from '@/ui/components/common/Table/Cell';

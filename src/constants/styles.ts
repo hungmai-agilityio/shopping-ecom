@@ -1,4 +1,4 @@
-import { SIZE, TYPE } from '@/constants';
+import { SIZE, STATUS, TYPE } from '@/constants';
 
 export const btnSizeClasses = {
   [SIZE.SMALL]: 'w-btn-sm',
@@ -30,4 +30,10 @@ export const avatarSizeClasses = {
   [SIZE.SMALL]: 'w-avatar-sm h-avatar-sm',
   [SIZE.MEDIUM]: 'w-avatar-md h-avatar-md',
   [SIZE.LARGE]: 'w-avatar-lg h-avatar-lg'
+};
+
+export const toastStyles = {
+  [STATUS.SUCCESS]: 'bg-green-500',
+  [STATUS.ERROR]: 'bg-red-500',
+  [STATUS.WARNING]: 'bg-yellow-500'
 };

@@ -93,3 +93,13 @@ export const slideStaff = [
     desc: 'Co. Founder'
   }
 ];
+
+export const categoryLabels: Record<string, string> = {
+  phone: 'Phones',
+  computer: 'Computers',
+  smartWatch: 'SmartWatch',
+  headphone: 'HeadPhones',
+  camera: 'Camera',
+  gaming: 'Gaming',
+  shirt: 'Shirt'
+};

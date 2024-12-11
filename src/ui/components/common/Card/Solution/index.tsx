@@ -21,7 +21,7 @@ const CardSolution = ({
   const baseClasses =
     'flex flex-col w-card-sm h-card-sm items-center justify-center rounded-sm p-6 transition-all duration-300 text-dark truncate';
   const borderClasses = isBorder
-    ? 'border border-dark cursor-pointer hover:bg-primary hover:text-white group'
+    ? 'border border-dark cursor-pointer hover:bg-primary hover:text-white group bg-white'
     : '';
 
   return (

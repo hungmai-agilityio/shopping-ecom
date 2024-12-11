@@ -73,6 +73,11 @@ const meta: Meta<typeof CardProduct> = {
     onView: {
       description:
         'Callback function to view more details about the product when clicked (optional).'
+    },
+    isShowAction: {
+      description:
+        'Allows you to show card actions or hide them (usually used for auth testing to avoid spam)',
+      control: 'boolean'
     }
   }
 };
@@ -92,7 +97,8 @@ export const primary: Story = {
     icon: '/heart.svg',
     selectedColor: 'Red',
     onAdd: () => alert('Added to cart'),
-    onIconClick: () => alert('Icon clicked')
+    onIconClick: () => alert('Icon clicked'),
+    onView: () => alert('View detail')
   }
 };
 

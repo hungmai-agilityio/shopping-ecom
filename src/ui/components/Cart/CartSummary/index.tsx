@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 import { popping, SIZE } from '@/constants';
 
 // Components
-import { Button, CartItem } from '@/ui/components';
+import { Button, FieldLabel } from '@/ui/components';
 
 interface totalProps {
   subTotal: number;
@@ -22,9 +22,13 @@ const CartTotal = memo(({ subTotal, onCheckout, isDisable }: totalProps) => {
     >
       <h4 className="text-xl capitalize font-medium">cart total</h4>
       <div className="my-6">
-        <CartItem title="Subtotal" children={`$ ${subTotal}`} />
-        <CartItem title="Shipping" children="Free" />
-        <CartItem title="Total" children={`$ ${subTotal}`} underline={false} />
+        <FieldLabel title="Subtotal" children={`$ ${subTotal}`} />
+        <FieldLabel title="Shipping" children="Free" />
+        <FieldLabel
+          title="Total"
+          children={`$ ${subTotal}`}
+          underline={false}
+        />
 
         <div className="w-64 mx-auto">
           <Button disabled={isDisable} onClick={onCheckout} size={SIZE.LARGE}>

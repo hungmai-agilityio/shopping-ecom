@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 // Components
-import { CartItem } from '@/ui/components';
+import { FieldLabel } from '@/ui/components';
 
 describe('CartTotalItem component', () => {
   const defaultProps = {
@@ -10,14 +10,14 @@ describe('CartTotalItem component', () => {
   };
 
   test('Should render component with default props', () => {
-    render(<CartItem {...defaultProps} />);
+    render(<FieldLabel {...defaultProps} />);
 
     const total = screen.getByText('Subtotal:');
     expect(total).toBeInTheDocument();
   });
 
   test('Should be render match to snapshot', () => {
-    const { container } = render(<CartItem {...defaultProps} />);
+    const { container } = render(<FieldLabel {...defaultProps} />);
 
     expect(container).toMatchSnapshot();
   });

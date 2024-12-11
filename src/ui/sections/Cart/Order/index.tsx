@@ -12,7 +12,7 @@ import { ICart, IProduct, IUser } from '@/interface';
 import { popping, QUERY } from '@/constants';
 
 // Components
-import { Button, CartItem } from '@/ui/components';
+import { Button, FieldLabel } from '@/ui/components';
 
 // Libs
 import { getUserCart } from '@/libs';
@@ -99,9 +99,9 @@ const CartOrder = memo(({ products, user }: CartOrderProps) => {
       </div>
 
       <section className="my-16">
-        <CartItem title="Subtotal" children={`$ ${subtotal}`} underline />
-        <CartItem title="Shipping" underline children="Free" />
-        <CartItem title="Total" children={`$ ${subtotal}`} />
+        <FieldLabel title="Subtotal" children={`$ ${subtotal}`} underline />
+        <FieldLabel title="Shipping" underline children="Free" />
+        <FieldLabel title="Total" children={`$ ${subtotal}`} />
       </section>
 
       <Button onClick={handleOrderProduct}>Place Order</Button>

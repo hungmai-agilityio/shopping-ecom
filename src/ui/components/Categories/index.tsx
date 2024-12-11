@@ -1,26 +1,26 @@
 'use client';
 import { clsx } from 'clsx';
+import { memo } from 'react';
 
 // Constants
-import { popping } from '@/constants';
+import { categoryLabels, popping } from '@/constants';
 
 // Interfaces
 import { ICategory } from '@/interface';
 
 // Components
 import { Icon } from '@/ui/components';
-import { memo } from 'react';
 
 interface CategoriesProps {
   categories: ICategory[];
   selected?: string;
-  onSelect?: (id: string) => void;
+  onSelect?: (category: string) => void;
 }
 
 const Categories = memo(
   ({ categories, selected, onSelect }: CategoriesProps) => {
-    const handleClick = (id: string) => {
-      if (onSelect) onSelect(id);
+    const handleClick = (category: string) => {
+      if (onSelect) onSelect(category);
     };
 
     return (
@@ -28,14 +28,14 @@ const Categories = memo(
         {categories.map((category) => (
           <div
             key={category.id}
-            onClick={handleClick.bind(null, category.id)}
+            onClick={handleClick.bind(null, category.title)}
             className={clsx(
               'cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300',
               {
                 'bg-primary text-white border-transparent':
-                  selected === category.id,
+                  selected === category.title,
                 'hover:bg-primary hover:border-transparent':
-                  selected !== category.id
+                  selected !== category.title
               }
             )}
           >
@@ -45,18 +45,21 @@ const Categories = memo(
               width={56}
               height={56}
               className={clsx('transition duration-300', {
-                'brightness-0 invert': selected === category.id,
+                'brightness-0 invert': selected === category.title,
                 'group-hover:brightness-0 group-hover:invert':
-                  selected !== category.id
+                  selected !== category.title
               })}
             />
             <span
-              className={clsx('mt-5 text-dark transition duration-300 capitalize', {
-                'text-white': selected === category.id,
-                'group-hover:text-white': selected !== category.id
-              })}
+              className={clsx(
+                'mt-5 text-dark transition duration-300 capitalize',
+                {
+                  'text-white': selected === category.title,
+                  'group-hover:text-white': selected !== category.title
+                }
+              )}
             >
-              {category.title}
+              {categoryLabels[category.title] || category.title}
             </span>
           </div>
         ))}

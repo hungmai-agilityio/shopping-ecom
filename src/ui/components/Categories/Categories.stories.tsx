@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 // Mock
@@ -19,8 +19,9 @@ const meta: Meta<typeof Categories> = {
       control: 'object'
     },
     selected: {
-      description: 'ID of the currently selected category',
-      control: 'text'
+      description: 'Title of the currently selected category',
+      control: 'radio',
+      options: categories.map((item) => item.title)
     },
     onSelect: {
       description: 'Function called when a category is selected'
@@ -35,9 +36,14 @@ export const Primary: Story = {
   render: (args) => {
     const [selected, setSelected] = useState<string | undefined>(args.selected);
 
-    const handleSelect = (id: string) => {
-      setSelected(id);
-      args.onSelect?.(id);
+    useEffect(() => {
+      setSelected(args.selected);
+    }, [args.selected]);
+
+    const handleSelect = (category: string) => {
+      setSelected(category);
+      args.onSelect?.(category);
+      alert(`Selected category: ${category}`);
     };
 
     return (

@@ -20,7 +20,9 @@ const meta: Meta<typeof Avatar> = {
       description: 'Alternative text for the image, used for accessibility.'
     },
     size: {
-      description: 'Set size optional for Avatar'
+      description: 'Set size optional for Avatar',
+      control: 'radio',
+      options: Object.values(SIZE)
     },
     styles: {
       description: 'Add custom css'

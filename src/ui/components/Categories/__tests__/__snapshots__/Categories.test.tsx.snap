@@ -77,7 +77,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
       <span
         class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
       >
-        smartWatch
+        SmartWatch
       </span>
     </div>
     <div
@@ -102,7 +102,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
       <span
         class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
       >
-        camera
+        Camera
       </span>
     </div>
   </div>

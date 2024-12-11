@@ -5,7 +5,7 @@ interface ItemProps {
   children: number | string;
   underline?: boolean;
 }
-const CartItem = ({ title, children, underline = true }: ItemProps) => {
+const FieldLabel = ({ title, children, underline = true }: ItemProps) => {
   return (
     <div
       className={clsx('flex justify-between text-dark text-base mb-2 py-4', {
@@ -18,4 +18,4 @@ const CartItem = ({ title, children, underline = true }: ItemProps) => {
   );
 };
 
-export default CartItem;
+export default FieldLabel;

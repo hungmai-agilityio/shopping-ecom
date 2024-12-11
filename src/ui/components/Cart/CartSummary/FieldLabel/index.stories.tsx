@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 // Components
-import { CartItem } from '@/ui/components';
+import { FieldLabel } from '@/ui/components';
 
-const meta: Meta<typeof CartItem> = {
-  component: CartItem,
+const meta: Meta<typeof FieldLabel> = {
+  component: FieldLabel,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -22,7 +22,7 @@ const meta: Meta<typeof CartItem> = {
 
 export default meta;
 
-type Story = StoryObj<typeof CartItem>;
+type Story = StoryObj<typeof FieldLabel>;
 
 export const primary: Story = {
   args: {

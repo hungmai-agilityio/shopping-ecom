@@ -202,6 +202,7 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
               oldPrice={product.originalPrice}
               onAdd={handleAddToCart.bind(null)}
               onIconClick={handleRemoveWishList}
+              isShowAction
             />
           );
         })}

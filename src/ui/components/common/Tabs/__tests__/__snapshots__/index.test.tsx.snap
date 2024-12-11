@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-wrap lg:flex-col justify-center gap-4 items-start w-96"
+  >
+    <button
+      class="lg:text-base text-lg text-dark lg:border-none border border-dark lg:p-0 p-2  text-primary font-medium border-primary "
+      value="1"
+    >
+      Tab 1
+    </button>
+    <button
+      class="lg:text-base text-lg text-dark lg:border-none border border-dark lg:p-0 p-2"
+      value="2"
+    >
+      Tab 2
+    </button>
+  </div>
+</div>
+`;

@@ -29,7 +29,7 @@ const Button = ({
   return (
     <button
       className={clsx(
-        `h-14 rounded font-medium md:text-base text-xs ${popping.className}`,
+        `rounded font-medium md:text-base text-xs ${popping.className}`,
         btnSizeClasses[size],
         btnTypeClasses[variant],
         styles,

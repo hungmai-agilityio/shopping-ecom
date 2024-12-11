@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="w-full"
+  >
+    <p>
+      Content
+    </p>
+  </div>
+</div>
+`;

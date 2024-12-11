@@ -139,6 +139,7 @@ const ProductList = ({
             colors={item.colors}
             isNewProduct={isNewProduct ? item.isNew : undefined}
             discount={isDiscount ? item.discount : undefined}
+            isShowAction={!!user}
           />
         ))}
       </div>

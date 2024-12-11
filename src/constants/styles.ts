@@ -7,9 +7,9 @@ export const btnSizeClasses = {
 };
 
 export const btnTypeClasses = {
-  [TYPE.PRIMARY]: 'bg-primary text-white',
+  [TYPE.PRIMARY]: 'h-14 bg-primary text-white',
   [TYPE.SECOND]:
-    'bg-white border border-black text-black hover:bg-primary hover:text-white hover:border-transparent',
+    'h-14 bg-white border border-black text-black hover:bg-primary hover:text-white hover:border-transparent',
   [TYPE.THIRD]: 'bg-transparent text-primary hover:underline'
 };
 

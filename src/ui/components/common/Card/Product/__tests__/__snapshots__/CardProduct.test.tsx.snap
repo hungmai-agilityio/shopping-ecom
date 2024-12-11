@@ -27,7 +27,7 @@ exports[`CardProduct Should render match to snapshot 1`] = `
         </div>
       </div>
       <div
-        class="w-9 h-9 absolute top-14 right-5"
+        class="w-9 h-9 absolute right-5 top-14"
       >
         <div
           class="flex bg-white p-2 rounded-full cursor-pointer"

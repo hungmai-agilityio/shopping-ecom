@@ -17,7 +17,8 @@ describe('CardProduct', () => {
     selectedColor: 'Red',
     onAdd: jest.fn(),
     onIconClick: jest.fn(),
-    onView: jest.fn()
+    onView: jest.fn(),
+    isShowAction: true
   };
 
   test('Should render with default props', () => {

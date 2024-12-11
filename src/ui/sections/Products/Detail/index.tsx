@@ -134,21 +134,21 @@ const ProductDetail = ({ product, user }: DetailProps) => {
   return (
     <section
       className={clsx(
-        'md:flex flex-wrap justify-center gap-10 container',
+        'md:flex flex-wrap gap-10 container my-10',
         popping.className
       )}
     >
-      <div className="lg:block hidden my-4 gap-6">
+      <div className="lg:block hidden gap-6 p-0">
         {product.imageDetail?.map((item, index) => (
           <div
             key={index}
-            className="bg-gray-light w-44 h-36 mb-5 flex justify-center items-center"
+            className="bg-gray-light w-44 h-32 mb-5 flex justify-center items-center"
           >
             <Image
               src={item}
               alt="detail-img"
-              width={120}
-              height={120}
+              width={110}
+              height={110}
               objectFit="contain"
               priority
             />
@@ -166,7 +166,6 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           priority
         />
       </div>
-
       <div>
         <div className="border-b border-dark">
           <h1
@@ -242,22 +241,26 @@ const ProductDetail = ({ product, user }: DetailProps) => {
               onChange={handleQuantityChange}
               max={product.stock}
             />
-            <Button size={SIZE.MEDIUM} onClick={handleAddToCart}>
-              Buy Now
-            </Button>
-            <div className="w-10 h-10 border border-dark rounded-lg flex justify-center items-center">
-              <Icon
-                src={
-                  isProductInWishlist(product.id)
-                    ? '/heart-red.svg'
-                    : '/heart.svg'
-                }
-                alt="heart-icon"
-                width={32}
-                height={32}
-                onClick={handleToggleFavorite.bind(null, product)}
-              />
-            </div>
+            {user && (
+              <>
+                <Button size={SIZE.MEDIUM} onClick={handleAddToCart}>
+                  Buy Now
+                </Button>
+                <div className="w-10 h-10 border border-dark rounded-lg flex justify-center items-center">
+                  <Icon
+                    src={
+                      isProductInWishlist(product.id)
+                        ? '/heart-red.svg'
+                        : '/heart.svg'
+                    }
+                    alt="heart-icon"
+                    width={32}
+                    height={32}
+                    onClick={handleToggleFavorite.bind(null, product)}
+                  />
+                </div>
+              </>
+            )}
           </div>
           <div className="mt-10 max-w-card-md h-full border border-dark rounded-md">
             <div className="border-b border-dark p-5 flex gap-5">

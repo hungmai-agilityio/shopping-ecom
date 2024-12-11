@@ -50,7 +50,7 @@ exports[`CartTotal component Should be render match to snapshot 1`] = `
         class="w-64 mx-auto"
       >
         <button
-          class="h-14 rounded font-medium md:text-base text-xs className w-full bg-primary text-white"
+          class="rounded font-medium md:text-base text-xs className w-full h-14 bg-primary text-white"
         >
           Process to checkout
         </button>

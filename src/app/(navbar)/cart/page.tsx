@@ -1,6 +1,11 @@
 import { getProducts, getUserCookie } from '@/libs';
 import { Breadcrumb } from '@/ui/components';
 import { CartSection } from '@/ui/sections';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cart'
+};
 
 const Cart = async () => {
   const { data: products, error: errorProduct } = await getProducts();

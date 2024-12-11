@@ -4,6 +4,7 @@ export const MESSAGE_VALID = {
   EMAIL_EXIST: 'Email already exists',
   PASSWORD_ERROR: 'Password must be at least 6 characters',
   CONFIRM_ERROR: 'Passwords do not match',
+  NEW_PASS_ERROR: 'Password cannot be the same as the old password',
   UPLOAD: 'Only file .png, .jpg, .jpeg, .svg allowed',
 };
 
@@ -14,6 +15,8 @@ export const MESSAGE_API = {
   ADD_PRODUCT_SUCCESS: 'Add product success',
   UPDATE_PROFILE_SUCCESS: 'Update profile success',
   UPDATE_PROFILE_ERROR: 'Update profile error',
+  DELETE_ADDRESS_SUCCESS: 'Delete address success',
+  DELETE_ADDRESS_ERROR: 'Delete address error',
   UPDATE_CART_ERROR: 'Update cart error',
   UPDATE_CART_SUCCESS: 'Update cart success',
 };

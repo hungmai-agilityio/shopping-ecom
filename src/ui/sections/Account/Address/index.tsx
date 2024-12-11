@@ -1,33 +1,217 @@
 'use client';
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
-import { useCallback } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { SIZE, TYPE } from '@/constants';
+import { MESSAGE_API, SIZE, STATUS, TYPE } from '@/constants';
 
 // Interfaces
-import { IUser } from '@/interface';
+import { IUser, Address } from '@/interface';
 
 // Components
-import { Button, Icon, ModalAddress } from '@/ui/components';
+import {
+  Button,
+  Icon,
+  Modal,
+  ModalAddress,
+  ToastMessage
+} from '@/ui/components';
 
 // Hooks
 import { useModal } from '@/hooks/useModal';
 
+// Libs
+import { setCookieUser, updateUser } from '@/libs';
+
 interface AddressProps {
   user: IUser;
 }
+
 const AddressSection = ({ user }: AddressProps) => {
   const addModal = useModal();
   const editModal = useModal();
+  const deleteModal = useModal();
 
+  const [currentUser, setCurrentUser] = useState<IUser>(user);
+  const [editingAddress, setEditingAddress] = useState<Address | null>(null);
+  const [addressToDelete, setAddressToDelete] = useState<string | null>(null);
+
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
+
+  const defaultData = (address: Address) => ({
+    street: address.street,
+    city: address.city,
+    apartment: address.apartment,
+    company: currentUser.company
+  });
+
+  // Convert AddressForm to Address
+  const convertToAddress = (
+    form: {
+      street: string;
+      city: string;
+      apartment?: string;
+      company?: string;
+    },
+    existingAddress?: Address
+  ): Address => ({
+    id: existingAddress?.id || uuidv4(),
+    street: form.street,
+    city: form.city,
+    apartment: form.apartment,
+    isDefault: existingAddress?.isDefault || false
+  });
+
+  // Handle open add new address modal
   const handleOpenAddModal = useCallback(() => {
     addModal.openModal();
+  }, [addModal]);
+
+  // Handle open edit address modal and load data on form
+  const handleOpenEditModal = useCallback(
+    (address: Address) => {
+      setEditingAddress(address);
+      editModal.openModal();
+    },
+    [editModal]
+  );
+
+  /**
+   *  Handle open delete address modal
+   *  @param {string} id - id of the address to be deleted
+   */
+  const handleOpenDeleteModal = useCallback(
+    (id: string) => {
+      setAddressToDelete(id);
+
+      deleteModal.openModal();
+    },
+    [editModal]
+  );
+
+  // Handle add new address
+  const handleAddAddress = async (form: {
+    street: string;
+    city: string;
+    apartment?: string;
+    company?: string;
+  }) => {
+    const newAddress = convertToAddress(form);
+    const updatedUser = {
+      ...currentUser,
+      company: form.company,
+      updated_at: new Date().toISOString(),
+      address: [...currentUser.address, newAddress]
+    };
+
+    setCurrentUser(updatedUser);
+    const response = await updateUser(currentUser.id, updatedUser);
+
+    if (response.data) {
+      setCurrentUser(updatedUser);
+      setCookieUser(updatedUser);
+
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
+      });
+      return;
+    }
+    setToast({
+      status: STATUS.ERROR,
+      message: MESSAGE_API.UPDATE_PROFILE_ERROR
+    });
+  };
+
+  // Handle Edit address and update to user
+  const handleEditAddress = async (form: {
+    street: string;
+    city: string;
+    apartment?: string;
+    company?: string;
+  }) => {
+    const updatedAddress = convertToAddress(form, editingAddress!);
+    const updatedUser = {
+      ...currentUser,
+      company: form.company,
+      address: currentUser.address.map((addr) =>
+        addr.id === editingAddress?.id ? updatedAddress : addr
+      )
+    };
+
+    const response = await updateUser(currentUser.id, updatedUser);
+
+    if (response.data) {
+      setCurrentUser(updatedUser);
+      setCookieUser(updatedUser);
+
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
+      });
+      return;
+    }
+    setToast({
+      status: STATUS.ERROR,
+      message: MESSAGE_API.UPDATE_PROFILE_ERROR
+    });
+  };
+
+  // Handle setting default address
+  const handleSetDefaultAddress = useCallback(async (address: Address) => {
+    const updatedAddresses = currentUser.address.map((addr) =>
+      addr.id === address.id
+        ? { ...addr, isDefault: true }
+        : { ...addr, isDefault: false }
+    );
+
+    // Sort addresses to have the default address first
+    const sortedAddresses = updatedAddresses.sort(
+      (a, b) => (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0)
+    );
+
+    const updatedUser = { ...currentUser, address: sortedAddresses };
+    const response = await updateUser(currentUser.id, updatedUser);
+
+    if (response.data) {
+      setCurrentUser(updatedUser);
+      setCookieUser(updatedUser);
+    }
   }, []);
 
-  const handleOpenEditModal = useCallback(() => {
-    editModal.openModal();
-  }, []);
+  // Handle remove address
+  const handleRemoveAddress = useCallback(async () => {
+    const updatedAddresses = user.address.filter(
+      (address) => address.id !== addressToDelete
+    );
+
+    const updatedUser = {
+      ...user,
+      address: updatedAddresses
+    };
+
+    const response = await updateUser(currentUser.id, updatedUser);
+
+    if (response.data) {
+      setCurrentUser(updatedUser);
+      setCookieUser(updatedUser);
+      deleteModal.closeModal();
+
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.DELETE_ADDRESS_SUCCESS
+      });
+      return;
+    }
+    setToast({
+      status: STATUS.ERROR,
+      message: MESSAGE_API.DELETE_ADDRESS_ERROR
+    });
+  }, [addressToDelete]);
 
   return (
     <div className="bg-white shadow-md h-full">
@@ -47,14 +231,18 @@ const AddressSection = ({ user }: AddressProps) => {
         </Button>
       </div>
       <div className="p-5">
-        {user.address.map((item) => (
+        {currentUser.address.map((item) => (
           <div className="border-b border-gray-300 py-4" key={item.id}>
             <div className="flex justify-between">
               <div>
-                <p className="text-base text-dark leading-loose">
-                  Phone:
-                  <span className="ml-2 text-primary">{user.phone}</span>
-                </p>
+                {currentUser.phone && (
+                  <p className="text-base text-dark leading-loose">
+                    Phone:
+                    <span className="ml-2 text-primary">
+                      {currentUser.phone}
+                    </span>
+                  </p>
+                )}
                 {item.apartment && (
                   <p className="leading-loose">
                     Apartment:
@@ -79,11 +267,11 @@ const AddressSection = ({ user }: AddressProps) => {
                     </span>
                   </p>
                 )}
-                {user.company && (
+                {currentUser.company && (
                   <p className="leading-loose">
                     Company:
                     <span className="ml-2 text-primary font-medium">
-                      {user.company}
+                      {currentUser.company}
                     </span>
                   </p>
                 )}
@@ -100,7 +288,7 @@ const AddressSection = ({ user }: AddressProps) => {
                     alt="icon edit"
                     width={24}
                     height={24}
-                    onClick={handleOpenEditModal}
+                    onClick={handleOpenEditModal.bind(null, item)}
                     priority
                   />
                   {!item.isDefault && (
@@ -108,6 +296,7 @@ const AddressSection = ({ user }: AddressProps) => {
                       variant={TYPE.THIRD}
                       size={SIZE.SMALL}
                       disabled={item.isDefault}
+                      onClick={handleOpenDeleteModal.bind(null, item.id)}
                     >
                       Delete
                     </Button>
@@ -117,6 +306,7 @@ const AddressSection = ({ user }: AddressProps) => {
                   variant={TYPE.SECOND}
                   size={SIZE.SMALL}
                   disabled={item.isDefault}
+                  onClick={handleSetDefaultAddress.bind(null, item)}
                 >
                   Set Default
                 </Button>
@@ -128,14 +318,25 @@ const AddressSection = ({ user }: AddressProps) => {
       <ModalAddress
         isOpen={addModal.isOpen}
         onClose={addModal.closeModal}
-        onClick={() => {}}
+        onSubmit={handleAddAddress}
       />
       <ModalAddress
         isOpen={editModal.isOpen}
         onClose={editModal.closeModal}
-        onClick={() => {}}
+        onSubmit={handleEditAddress}
+        defaultValues={editingAddress ? defaultData(editingAddress) : undefined}
         isEdit
       />
+      <Modal
+        isOpen={deleteModal.isOpen}
+        onClose={deleteModal.closeModal}
+        btnSecond="Delete"
+        onClick={handleRemoveAddress}
+        title="Delete Address"
+      >
+        Do you want to delete this address?
+      </Modal>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </div>
   );
 };

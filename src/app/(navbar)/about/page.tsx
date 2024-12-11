@@ -7,6 +7,11 @@ import { AdvertisementSale, ServiceSection, StorySection } from '@/ui/sections';
 // Components
 import { Breadcrumb } from '@/ui/components';
 import { CarouselStaff } from '@/ui/sections';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About'
+};
 
 const About = () => {
   return (

@@ -8,6 +8,11 @@ import { CardContact, ContactSection } from '@/ui/sections';
 
 // Components
 import { Breadcrumb } from '@/ui/components';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact'
+};
 
 const Contact = () => {
   return (

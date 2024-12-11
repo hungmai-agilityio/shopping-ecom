@@ -21,7 +21,7 @@ export const signInSchema = z.object({
   password: z.string().min(6, MESSAGE_VALID.PASSWORD_ERROR)
 });
 
-export const ProfileSchema = z.object({
+export const profileSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required.' }),
   lastName: z.string().min(1, { message: 'Last Name is required.' }),
   email: z.string().email({ message: 'Invalid email address.' }),
@@ -32,3 +32,10 @@ export const ProfileSchema = z.object({
     message: MESSAGE_VALID.CONFIRM_ERROR,
     path: ['confirm']
   });
+
+export const addressSchema = z.object({
+  apartment: z.string().optional(),
+  street: z.string().nonempty('Street is required'),
+  city: z.string().nonempty('City is required'),
+  company: z.string().optional()
+});

@@ -37,7 +37,8 @@ export const updateUser = async (id: string, data: IUser) => {
   return await updateData({
     endpoint: END_POINT.USERS,
     id: id,
-    data: data
+    data: data,
+    updateMethod: 'PATCH'
   });
 };
 

@@ -16,3 +16,5 @@ export { default as SignInSection } from '@/ui/sections/SignIn';
 export { default as CartTable } from '@/ui/sections/Cart/Table';
 export { default as CartSection } from '@/ui/sections/Cart';
 export { default as ProfileSection } from '@/ui/sections/Account/Profile';
+export { default as AddressSection } from '@/ui/sections/Account/Address';
+export { default as AccountSection } from '@/ui/sections/Account';

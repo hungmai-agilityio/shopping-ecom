@@ -7,24 +7,30 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import bcrypt from 'bcryptjs';
 
 // Constants
-import { INPUT_TYPE, TYPE } from '@/constants';
+import {
+  INPUT_TYPE,
+  MESSAGE_API,
+  MESSAGE_VALID,
+  STATUS,
+  TYPE
+} from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interface';
 
 // Components
-import { Button, InputController } from '@/ui/components';
+import { Button, InputController, ToastMessage } from '@/ui/components';
 
 // Libs
 import {
   checkPassword,
-  ProfileSchema,
+  profileSchema,
   setCookieUser,
   updateUser
 } from '@/libs';
 import { useRouter } from 'next/navigation';
 
-type ProfileForm = z.infer<typeof ProfileSchema>;
+type ProfileForm = z.infer<typeof profileSchema>;
 
 interface ProfileProps {
   user: IUser;
@@ -33,7 +39,10 @@ interface ProfileProps {
 const ProfileSection = ({ user }: ProfileProps) => {
   const [showNewPass, setShowNewPass] = useState<boolean>(false);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
-
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
   const router = useRouter();
 
   const {
@@ -42,7 +51,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
     reset,
     formState: { isSubmitting }
   } = useForm<ProfileForm>({
-    resolver: zodResolver(ProfileSchema),
+    resolver: zodResolver(profileSchema),
     defaultValues: {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -58,7 +67,10 @@ const ProfileSection = ({ user }: ProfileProps) => {
     const hashedPassword = await bcrypt.hash(data.newPassword, 10);
 
     if (isPasswordMatch) {
-      alert('The new password cannot be the same as the old password');
+      setToast({
+        status: STATUS.ERROR,
+        message: MESSAGE_VALID.NEW_PASS_ERROR
+      });
       return;
     }
 
@@ -72,10 +84,19 @@ const ProfileSection = ({ user }: ProfileProps) => {
     setCookieUser(updatedUser);
 
     if (response.data) {
-      alert('Update profile success');
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
+      });
+      router.refresh();
+
+      return;
     }
 
-    router.refresh();
+    setToast({
+      status: STATUS.ERROR,
+      message: MESSAGE_API.UPDATE_PROFILE_ERROR
+    });
   };
 
   // Toggle password visibility
@@ -161,6 +182,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
           </Button>
         </div>
       </form>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </div>
   );
 };

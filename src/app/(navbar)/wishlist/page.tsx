@@ -3,7 +3,11 @@ import { getProductLimit, getProducts, getUserCookie } from '@/libs';
 
 // Sections
 import WishListSection from '@/ui/sections/WishList';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Wishlist'
+};
 const Wishlist = async () => {
   const user = await getUserCookie();
 

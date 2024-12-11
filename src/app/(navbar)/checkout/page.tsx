@@ -1,7 +1,12 @@
+import { Metadata } from 'next';
 import { getProducts, getUserCookie } from '@/libs';
 import { Breadcrumb } from '@/ui/components';
 import BillingDetails from '@/ui/sections/BillingDetail';
 import CartOrder from '@/ui/sections/Cart/Order';
+
+export const metadata: Metadata = {
+  title: 'Checkout'
+};
 
 const Checkout = async () => {
   const user = await getUserCookie();

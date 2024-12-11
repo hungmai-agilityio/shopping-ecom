@@ -1,47 +1,76 @@
-import Input from '@/ui/components/common/Input';
-import Modal from '@/ui/components/common/Modal';
-import { memo } from 'react';
+'use client';
+
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+// Components
+import { InputController, Modal } from '@/ui/components';
+
+// Libs
+import { addressSchema } from '@/libs';
+
+type AddressForm = z.infer<typeof addressSchema>;
 
 interface ModalAddressProps {
-  onClick: () => void;
-  isEdit?: boolean;
   isOpen: boolean;
   onClose: () => void;
+  onSubmit: (data: AddressForm) => void;
+  defaultValues?: AddressForm;
+  isEdit?: boolean;
 }
 
-const ModalAddress = memo(
-  ({ onClick, isEdit = false, isOpen, onClose }: ModalAddressProps) => {
-    return (
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        title={isEdit ? 'Update Address' : 'Add new address'}
-        btnSecond={isEdit ? 'Update address' : 'Add address'}
-        onClick={onClick}
-      >
-        <div className="md:flex gap-8">
-          <div className="basis-1/2 md:mb-0 mb-10">
-            <Input label="Phone" isRequired />
-          </div>
-          <div className="basis-1/2 md:mb-0 mb-10">
-            <Input label="Email" disabled />
-          </div>
-        </div>
-        <div className="my-10">
-          <Input label="Apartment" />
-        </div>
-        <div className="my-10">
-          <Input label="Street" isRequired />
-        </div>
-        <div className="my-10">
-          <Input label="City" isRequired />
-        </div>
-        <div className="my-10">
-          <Input label="Company" />
-        </div>
-      </Modal>
-    );
-  }
-);
+const ModalAddress = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  defaultValues,
+  isEdit = false
+}: ModalAddressProps) => {
+  const { control, handleSubmit, reset } = useForm<AddressForm>({
+    resolver: zodResolver(addressSchema),
+    defaultValues
+  });
+
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues);
+    }
+  }, [defaultValues, reset]);
+
+  const handleFormSubmit = (data: AddressForm) => {
+    onSubmit(data);
+    reset();
+    onClose();
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={isEdit ? 'Update Address' : 'Add New Address'}
+      btnSecond={isEdit ? 'Update' : 'Add'}
+      onClick={handleSubmit(handleFormSubmit)}
+    >
+      <div className="flex flex-col gap-8">
+        <InputController control={control} name="apartment" label="Apartment" />
+        <InputController
+          control={control}
+          name="street"
+          label="Street"
+          isRequired
+        />
+        <InputController
+          control={control}
+          name="city"
+          label="City"
+          isRequired
+        />
+        <InputController control={control} name="company" label="Company" />
+      </div>
+    </Modal>
+  );
+};
 
 export default ModalAddress;

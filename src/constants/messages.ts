@@ -19,4 +19,5 @@ export const MESSAGE_API = {
   DELETE_ADDRESS_ERROR: 'Delete address error',
   UPDATE_CART_ERROR: 'Update cart error',
   UPDATE_CART_SUCCESS: 'Update cart success',
+  UPDATE_QUANTITY: 'Add quantity +1 to existing products'
 };

@@ -65,7 +65,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
         </div>
         <div className="my-10">
           <InputController
-            name="company"
+            name="address.company"
             label="Company name"
             control={control}
             variant={TYPE.THIRD}
@@ -99,7 +99,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
         </div>
         <div className="my-10">
           <InputController
-            name="phone"
+            name="address.phone"
             label="Phone number"
             isRequired
             control={control}

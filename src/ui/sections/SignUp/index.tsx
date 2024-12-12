@@ -10,10 +10,23 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Constants
-import { END_POINT, INPUT_TYPE, MESSAGE_VALID, SIZE, TYPE } from '@/constants';
+import {
+  END_POINT,
+  INPUT_TYPE,
+  MESSAGE_API,
+  MESSAGE_VALID,
+  SIZE,
+  STATUS,
+  TYPE
+} from '@/constants';
 
 // Components
-import { AuthForm, Button, InputController } from '@/ui/components';
+import {
+  AuthForm,
+  Button,
+  InputController,
+  ToastMessage
+} from '@/ui/components';
 
 // Interfaces
 import { IUser } from '@/interface';
@@ -23,7 +36,10 @@ import { addUser, checkUserByEmail, setCookieUser, signUpSchema } from '@/libs';
 
 const SignUpSection = () => {
   const router = useRouter();
-
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
   const [formData, setFormData] = useState<IUser>({
     id: '',
     firstName: '',
@@ -32,8 +48,6 @@ const SignUpSection = () => {
     password: '',
     avatar: '',
     address: [],
-    phone: '',
-    company: '',
     created_at: '',
     updated_at: ''
   });
@@ -66,8 +80,6 @@ const SignUpSection = () => {
       lastName: '',
       avatar: '',
       address: [],
-      phone: '',
-      company: '',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
@@ -80,10 +92,19 @@ const SignUpSection = () => {
       setFormData(formData);
 
       setCookieUser(newData);
-
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.SIGN_UP_SUCCESS
+      });
       router.push(END_POINT.HOME);
       router.refresh();
+      return;
     }
+
+    setToast({
+      status: STATUS.ERROR,
+      message: MESSAGE_API.SIGN_UP_ERROR
+    });
   };
 
   return (
@@ -147,6 +168,7 @@ const SignUpSection = () => {
           </p>
         </div>
       </form>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </AuthForm>
   );
 };

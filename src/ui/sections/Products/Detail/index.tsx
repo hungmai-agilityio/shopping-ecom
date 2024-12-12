@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { clsx } from 'clsx';
 
 // Constants
-import { inter, popping, QUERY, SIZE } from '@/constants';
+import { inter, MESSAGE_API, popping, QUERY, SIZE, STATUS } from '@/constants';
 
 // Interfaces
 import { ICart, IProduct, IUser, IWishlist } from '@/interface';
@@ -19,7 +19,8 @@ import {
   Icon,
   QuantityHorizontal,
   Rating,
-  SizePicker
+  SizePicker,
+  ToastMessage
 } from '@/ui/components';
 
 // Libs
@@ -41,6 +42,10 @@ const ProductDetail = ({ product, user }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors?.[0] || '');
   const [size, setSize] = useState<string>(product.sizes?.[0] || '');
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
   const addDataToCart = useAddDataToCart();
   const addToWishlist = useAddToWishlist();
   const removeFromWishlist = useRemoveFromWishlist();
@@ -115,6 +120,11 @@ const ProductDetail = ({ product, user }: DetailProps) => {
       await updateCart(existingItem.id, {
         quantity: existingItem.quantity + quantity
       });
+
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.UPDATE_QUANTITY
+      });
     }
 
     if (!existingItem) {
@@ -128,6 +138,10 @@ const ProductDetail = ({ product, user }: DetailProps) => {
       };
 
       addDataToCart.mutate(cartData);
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.ADD_PRODUCT_SUCCESS
+      });
     }
   }, [product, color, quantity, addDataToCart, cartItems]);
 
@@ -294,6 +308,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           </div>
         </div>
       </div>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>
   );
 };

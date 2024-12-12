@@ -4,19 +4,28 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useState } from 'react';
 
 // Libs
 import { handleSignIn, setCookieUser, signInSchema } from '@/libs';
 
 // Constants
-import { END_POINT, INPUT_TYPE, SIZE, TYPE } from '@/constants';
+import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
 
 // Components
-import { AuthForm, Button, InputController } from '@/ui/components';
+import {
+  AuthForm,
+  Button,
+  InputController,
+  ToastMessage
+} from '@/ui/components';
 
 const SignInSection = () => {
   const router = useRouter();
-
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
   const {
     control,
     handleSubmit,
@@ -33,6 +42,10 @@ const SignInSection = () => {
     const { data: user, error } = await handleSignIn(data.email, data.password);
 
     if (error) {
+      setToast({
+        status: STATUS.ERROR,
+        message: error.toString()
+      });
       return;
     }
     setCookieUser(user);
@@ -75,6 +88,7 @@ const SignInSection = () => {
           </Link>
         </div>
       </form>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </AuthForm>
   );
 };

@@ -67,6 +67,12 @@ const ModalAddress = ({
           label="City"
           isRequired
         />
+        <InputController
+          control={control}
+          name="phone"
+          label="Phone"
+          isRequired
+        />
         <InputController control={control} name="company" label="Company" />
       </div>
     </Modal>

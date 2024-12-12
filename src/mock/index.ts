@@ -36,8 +36,6 @@ export const mockUser: IUser = {
   lastName: '',
   avatar: '',
   address: [],
-  phone: '',
-  company: '',
   created_at: '2024-12-07T15:09:14.436Z',
   updated_at: '2024-12-07T15:09:14.436Z'
 };

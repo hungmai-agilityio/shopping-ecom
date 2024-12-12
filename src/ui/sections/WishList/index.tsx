@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { QUERY, SIZE, TYPE, popping } from '@/constants';
+import { MESSAGE_API, QUERY, SIZE, STATUS, TYPE, popping } from '@/constants';
 
 // Interfaces
 import { IProduct, IUser, IWishlist, ICart } from '@/interface';
@@ -19,7 +19,13 @@ import {
 } from '@/libs';
 
 // Components
-import { Button, CardProduct, ProductList, Tag } from '@/ui/components';
+import {
+  Button,
+  CardProduct,
+  ProductList,
+  Tag,
+  ToastMessage
+} from '@/ui/components';
 
 // Hooks
 import {
@@ -39,7 +45,10 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
   const [displayedProducts, setDisplayedProducts] =
     useState<IProduct[]>(productSelling);
   const [start, setStart] = useState<number>(0);
-
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
   const { data: wishlist = [], error: wishlistError } = useQuery<IWishlist[]>({
     queryKey: [QUERY.WISHLIST],
     queryFn: () => getUserWishList(user.id)
@@ -94,7 +103,10 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
           data: { quantity: existingItem.quantity + 1 }
         });
 
-        alert('Add quantity +1 to existing products');
+        setToast({
+          status: STATUS.SUCCESS,
+          message: MESSAGE_API.UPDATE_QUANTITY
+        });
       }
       if (!existingItem) {
         const newItem: ICart = {
@@ -106,7 +118,10 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
           quantity: 1
         };
         addToCart.mutate(newItem);
-        alert('Add success');
+        setToast({
+          status: STATUS.SUCCESS,
+          message: MESSAGE_API.ADD_PRODUCT_SUCCESS
+        });
       }
     },
     [user]
@@ -143,6 +158,10 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
         };
 
         addToCart.mutate(cartData);
+        setToast({
+          status: STATUS.SUCCESS,
+          message: MESSAGE_API.ADD_PRODUCT_SUCCESS
+        });
       });
     });
 
@@ -226,6 +245,7 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
           user={user}
         />
       </div>
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>
   );
 };

@@ -4,6 +4,8 @@ export interface Address {
   city: string;
   apartment?: string;
   isDefault: boolean;
+  phone?: string;
+  company?: string;
 }
 
 export interface IUser {
@@ -14,8 +16,6 @@ export interface IUser {
   password: string;
   avatar: string;
   address: Address[];
-  phone: string;
-  company?: string;
   created_at: string;
   updated_at: string;
 }

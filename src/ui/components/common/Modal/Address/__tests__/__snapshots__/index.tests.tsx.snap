@@ -17,69 +17,14 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
         <h2
           class="text-lg font-bold"
         >
-          Add new address
+          Add New Address
         </h2>
       </div>
       <div
         class="p-4"
       >
         <div
-          class="md:flex gap-8"
-        >
-          <div
-            class="basis-1/2 md:mb-0 mb-10"
-          >
-            <div
-              class="flex flex-col gap-2"
-            >
-              <label
-                class="text-sm font-medium text-gray-600 capitalize"
-              >
-                Phone
-                <span
-                  class="text-primary ml-1"
-                >
-                  *
-                </span>
-              </label>
-              <div
-                class="relative"
-              >
-                <input
-                  class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
-                  required=""
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            class="basis-1/2 md:mb-0 mb-10"
-          >
-            <div
-              class="flex flex-col gap-2"
-            >
-              <label
-                class="text-sm font-medium text-gray-600 capitalize"
-              >
-                Email
-              </label>
-              <div
-                class="relative"
-              >
-                <input
-                  class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
-                  disabled=""
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="my-10"
+          class="flex flex-col gap-8"
         >
           <div
             class="flex flex-col gap-2"
@@ -94,15 +39,12 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
             >
               <input
                 class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
+                name="apartment"
                 type="text"
                 value=""
               />
             </div>
           </div>
-        </div>
-        <div
-          class="my-10"
-        >
           <div
             class="flex flex-col gap-2"
           >
@@ -121,16 +63,13 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
             >
               <input
                 class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
+                name="street"
                 required=""
                 type="text"
                 value=""
               />
             </div>
           </div>
-        </div>
-        <div
-          class="my-10"
-        >
           <div
             class="flex flex-col gap-2"
           >
@@ -149,16 +88,38 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
             >
               <input
                 class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
+                name="city"
                 required=""
                 type="text"
                 value=""
               />
             </div>
           </div>
-        </div>
-        <div
-          class="my-10"
-        >
+          <div
+            class="flex flex-col gap-2"
+          >
+            <label
+              class="text-sm font-medium text-gray-600 capitalize"
+            >
+              Phone
+              <span
+                class="text-primary ml-1"
+              >
+                *
+              </span>
+            </label>
+            <div
+              class="relative"
+            >
+              <input
+                class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
+                name="phone"
+                required=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
           <div
             class="flex flex-col gap-2"
           >
@@ -172,6 +133,7 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
             >
               <input
                 class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14"
+                name="company"
                 type="text"
                 value=""
               />
@@ -190,7 +152,7 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
         <button
           class="rounded font-medium md:text-base text-xs className w-btn-sm h-14 bg-primary text-white"
         >
-          Add address
+          Add
         </button>
       </div>
     </div>

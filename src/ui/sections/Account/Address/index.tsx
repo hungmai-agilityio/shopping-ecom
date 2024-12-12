@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
@@ -46,7 +47,8 @@ const AddressSection = ({ user }: AddressProps) => {
     street: address.street,
     city: address.city,
     apartment: address.apartment,
-    company: currentUser.company
+    company: address.company,
+    phone: address.phone ?? ''
   });
 
   // Convert AddressForm to Address
@@ -56,6 +58,7 @@ const AddressSection = ({ user }: AddressProps) => {
       city: string;
       apartment?: string;
       company?: string;
+      phone?: string;
     },
     existingAddress?: Address
   ): Address => ({
@@ -63,6 +66,8 @@ const AddressSection = ({ user }: AddressProps) => {
     street: form.street,
     city: form.city,
     apartment: form.apartment,
+    phone: form.phone,
+    company: form.company,
     isDefault: existingAddress?.isDefault || false
   });
 
@@ -99,11 +104,11 @@ const AddressSection = ({ user }: AddressProps) => {
     city: string;
     apartment?: string;
     company?: string;
+    phone?: string;
   }) => {
     const newAddress = convertToAddress(form);
     const updatedUser = {
       ...currentUser,
-      company: form.company,
       updated_at: new Date().toISOString(),
       address: [...currentUser.address, newAddress]
     };
@@ -133,11 +138,11 @@ const AddressSection = ({ user }: AddressProps) => {
     city: string;
     apartment?: string;
     company?: string;
+    phone?: string;
   }) => {
     const updatedAddress = convertToAddress(form, editingAddress!);
     const updatedUser = {
       ...currentUser,
-      company: form.company,
       address: currentUser.address.map((addr) =>
         addr.id === editingAddress?.id ? updatedAddress : addr
       )
@@ -161,27 +166,33 @@ const AddressSection = ({ user }: AddressProps) => {
     });
   };
 
-  // Handle setting default address
-  const handleSetDefaultAddress = useCallback(async (address: Address) => {
-    const updatedAddresses = currentUser.address.map((addr) =>
-      addr.id === address.id
-        ? { ...addr, isDefault: true }
-        : { ...addr, isDefault: false }
-    );
+  // Handle set default address
+  const handleSetDefaultAddress = useCallback(
+    async (address: Address) => {
+      const updatedAddresses = currentUser.address.map((addr) =>
+        addr.id === address.id
+          ? { ...addr, isDefault: true }
+          : { ...addr, isDefault: false }
+      );
 
-    // Sort addresses to have the default address first
-    const sortedAddresses = updatedAddresses.sort(
-      (a, b) => (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0)
-    );
+      const sortedAddresses = updatedAddresses.sort((a, b) =>
+        b.isDefault ? 1 : a.isDefault ? -1 : 0
+      );
 
-    const updatedUser = { ...currentUser, address: sortedAddresses };
-    const response = await updateUser(currentUser.id, updatedUser);
+      const updatedUser = {
+        ...currentUser,
+        address: sortedAddresses
+      };
 
-    if (response.data) {
-      setCurrentUser(updatedUser);
-      setCookieUser(updatedUser);
-    }
-  }, []);
+      const response = await updateUser(currentUser.id, updatedUser);
+
+      if (response.data) {
+        setCurrentUser(updatedUser);
+        setCookieUser(updatedUser);
+      }
+    },
+    [currentUser]
+  );
 
   // Handle remove address
   const handleRemoveAddress = useCallback(async () => {
@@ -235,12 +246,10 @@ const AddressSection = ({ user }: AddressProps) => {
           <div className="border-b border-gray-300 py-4" key={item.id}>
             <div className="flex justify-between">
               <div>
-                {currentUser.phone && (
+                {item.phone && (
                   <p className="text-base text-dark leading-loose">
                     Phone:
-                    <span className="ml-2 text-primary">
-                      {currentUser.phone}
-                    </span>
+                    <span className="ml-2 text-primary">{item.phone}</span>
                   </p>
                 )}
                 {item.apartment && (
@@ -267,11 +276,11 @@ const AddressSection = ({ user }: AddressProps) => {
                     </span>
                   </p>
                 )}
-                {currentUser.company && (
+                {item.company && (
                   <p className="leading-loose">
                     Company:
                     <span className="ml-2 text-primary font-medium">
-                      {currentUser.company}
+                      {item.company}
                     </span>
                   </p>
                 )}

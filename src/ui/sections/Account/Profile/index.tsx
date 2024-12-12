@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import bcrypt from 'bcryptjs';
+import { useRouter } from 'next/navigation';
 
 // Constants
 import {
@@ -28,7 +29,6 @@ import {
   setCookieUser,
   updateUser
 } from '@/libs';
-import { useRouter } from 'next/navigation';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 
@@ -63,40 +63,38 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
   const onSubmit = async (data: ProfileForm) => {
     const { newPassword, confirm, ...rest } = data;
-    const isPasswordMatch = await checkPassword(newPassword, user.password);
-    const hashedPassword = await bcrypt.hash(data.newPassword, 10);
 
-    if (isPasswordMatch) {
-      setToast({
-        status: STATUS.ERROR,
-        message: MESSAGE_VALID.NEW_PASS_ERROR
-      });
-      return;
+    let hashedPassword = user.password;
+    if (newPassword) {
+      if (await checkPassword(newPassword, user.password)) {
+        setToast({
+          status: STATUS.ERROR,
+          message: MESSAGE_VALID.NEW_PASS_ERROR
+        });
+        return;
+      }
+
+      hashedPassword = await bcrypt.hash(newPassword, 10);
     }
 
     const updatedUser: IUser = {
       ...user,
       ...rest,
-      password: hashedPassword || user.password,
+      password: hashedPassword,
       updated_at: new Date().toISOString()
     };
+
     const response = await updateUser(user.id, updatedUser);
     setCookieUser(updatedUser);
 
-    if (response.data) {
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
-      });
-      router.refresh();
-
-      return;
-    }
-
     setToast({
-      status: STATUS.ERROR,
-      message: MESSAGE_API.UPDATE_PROFILE_ERROR
+      status: response.data ? STATUS.SUCCESS : STATUS.ERROR,
+      message: response.data
+        ? MESSAGE_API.UPDATE_PROFILE_SUCCESS
+        : MESSAGE_API.UPDATE_PROFILE_ERROR
     });
+
+    if (response.data) router.refresh();
   };
 
   // Toggle password visibility
@@ -130,7 +128,6 @@ const ProfileSection = ({ user }: ProfileProps) => {
               label="Last Name"
               placeholder="Last Name"
               control={control}
-              isRequired
               variant={TYPE.THIRD}
             />
           </div>

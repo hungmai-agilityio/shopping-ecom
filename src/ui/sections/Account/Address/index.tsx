@@ -230,13 +230,15 @@ const AddressSection = ({ user }: AddressProps) => {
         <h2 className="text-lg text-dark font-medium">My Address</h2>
         <Button onClick={handleOpenAddModal}>
           <div className="flex items-center gap-5 justify-center">
-            <Image
-              src="/icon-add.svg"
-              alt="icon add"
-              width={24}
-              height={24}
-              priority
-            />
+            <div className="lg:block hidden">
+              <Image
+                src="/icon-add.svg"
+                alt="icon add"
+                width={24}
+                height={24}
+                priority
+              />
+            </div>
             <span>New Address</span>
           </div>
         </Button>
@@ -244,7 +246,7 @@ const AddressSection = ({ user }: AddressProps) => {
       <div className="p-5">
         {currentUser.address.map((item) => (
           <div className="border-b border-gray-300 py-4" key={item.id}>
-            <div className="flex justify-between">
+            <div className="md:flex justify-between">
               <div>
                 {item.phone && (
                   <p className="text-base text-dark leading-loose">
@@ -290,7 +292,7 @@ const AddressSection = ({ user }: AddressProps) => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col justify-center items-center gap-5">
+              <div className="flex md:flex-col justify-center items-center gap-5 md:my-0 my-5">
                 <div className="flex items-end">
                   <Icon
                     src="/icon-edit.svg"

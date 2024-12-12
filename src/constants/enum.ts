@@ -43,3 +43,8 @@ export enum STATUS {
   ERROR = 'error',
   WARNING = 'warning'
 }
+
+export enum TAB {
+  PROFILE = 'profile',
+  ADDRESS = 'address'
+}

@@ -23,15 +23,26 @@ export const signInSchema = z.object({
 export const profileSchema = z
   .object({
     firstName: z.string().min(1, { message: 'First Name is required.' }),
-    lastName: z.string().min(1, { message: 'Last Name is required.' }),
+    lastName: z.string().optional(),
     email: z.string().email({ message: 'Invalid email address.' }),
-    newPassword: z.string().min(6, MESSAGE_VALID.PASSWORD_ERROR),
-    confirm: z.string().min(6, MESSAGE_VALID.PASSWORD_ERROR)
+    newPassword: z.string().optional(),
+    confirm: z.string().optional()
   })
-  .refine((data) => data.newPassword === data.confirm, {
-    message: MESSAGE_VALID.CONFIRM_ERROR,
-    path: ['confirm']
-  });
+  .refine(
+    (data) => !data.newPassword || data.newPassword.length >= 6, // true
+    {
+      message: MESSAGE_VALID.PASSWORD_ERROR,
+      path: ['newPassword']
+    }
+  )
+  .refine(
+    (data) => !data.newPassword || data.newPassword === data.confirm, // true
+    {
+      message: MESSAGE_VALID.CONFIRM_ERROR,
+      path: ['confirm']
+    }
+  );
+
 
 export const addressSchema = z.object({
   apartment: z.string().optional(),

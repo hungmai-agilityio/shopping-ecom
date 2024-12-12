@@ -12,7 +12,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
         class="flex"
       >
         <img
-          alt="phones"
+          alt="phone"
           class="transition duration-300 group-hover:brightness-0 group-hover:invert"
           data-nimg="1"
           decoding="async"
@@ -27,7 +27,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
       <span
         class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
       >
-        phones
+        Phones
       </span>
     </div>
     <div
@@ -37,7 +37,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
         class="flex"
       >
         <img
-          alt="computers"
+          alt="computer"
           class="transition duration-300 group-hover:brightness-0 group-hover:invert"
           data-nimg="1"
           decoding="async"
@@ -52,7 +52,7 @@ exports[`Categories component Should render match to snapshot 1`] = `
       <span
         class="mt-5 text-dark transition duration-300 capitalize group-hover:text-white"
       >
-        computers
+        Computers
       </span>
     </div>
     <div

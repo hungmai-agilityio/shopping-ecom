@@ -8,7 +8,7 @@ interface TabsProps {
 }
 
 const Tabs = ({ list, onClick, selected }: TabsProps) => (
-  <div className="flex flex-wrap lg:flex-col justify-center gap-4 items-start w-96">
+  <div className="flex flex-wrap lg:flex-col justify-center lg:items-start gap-4 lg:w-96">
     {list.map((item) => (
       <Tab
         key={item.value}

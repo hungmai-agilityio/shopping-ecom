@@ -11,7 +11,7 @@ import { getUserCookie } from '@/libs';
 import { Breadcrumb } from '@/ui/components';
 
 // Sections
-import { AddressSection } from '@/ui/sections';
+import { AccountSection } from '@/ui/sections';
 
 export const metadata: Metadata = {
   title: 'Account'
@@ -30,7 +30,7 @@ const Account = async () => {
         </p>
       </div>
       <div className="my-20">
-        <AddressSection user={user} />
+        <AccountSection user={user} />
       </div>
     </div>
   );

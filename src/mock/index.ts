@@ -5,12 +5,12 @@ export const colors = ['White', 'Black', 'Green'];
 export const categories = [
   {
     id: 'i7g6i9i2-8f89-6h15-9i0e-6j2f7j37211',
-    title: 'phones',
+    title: 'phone',
     image: 'https://i.ibb.co/Z6f7PYW/cell-Phone.png'
   },
   {
     id: '29g6i9i2-8f89-6h15-9i0e-6j2f7266337211',
-    title: 'computers',
+    title: 'computer',
     image: 'https://i.ibb.co/WsVyW5N/computer.png'
   },
   {

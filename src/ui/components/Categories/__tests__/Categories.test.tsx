@@ -16,8 +16,8 @@ describe('Categories component', () => {
   test('Should render with default props', () => {
     render(<Categories {...defaultProps} />);
 
-    const title = screen.getByText('phones');
-    const image = screen.getByAltText('phones');
+    const title = screen.getByText('Phones');
+    const image = screen.getByAltText('phone');
 
     expect(title).toBeInTheDocument();
     expect(image).toHaveClass('transition duration-300');
@@ -26,7 +26,7 @@ describe('Categories component', () => {
   test('Function is called to select the category', () => {
     render(<Categories {...defaultProps} />);
 
-    const image = screen.getByAltText('phones');
+    const image = screen.getByAltText('phone');
 
     fireEvent.click(image);
     expect(defaultProps.onSelect).toHaveBeenCalledTimes(1);

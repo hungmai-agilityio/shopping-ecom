@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col w-card-sm h-card-md p-4 bg-gray-200 rounded-lg shadow-lg"
+  >
+    <div
+      class="h-32 bg-gray-300 animate-pulse rounded-lg mb-4"
+    />
+    <div
+      class="w-4/5 h-6 bg-gray-300 animate-pulse rounded-md mb-2"
+    />
+    <div
+      class="w-3/4 h-6 bg-gray-300 animate-pulse rounded-md mb-2"
+    />
+    <div
+      class="w-32 h-6 bg-gray-300 animate-pulse rounded-md"
+    />
+  </div>
+</div>
+`;

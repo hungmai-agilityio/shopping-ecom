@@ -41,3 +41,4 @@ export * from '@/ui/components/common/Table/Head';
 export * from '@/ui/components/common/Table/Row';
 export * from '@/ui/components/common/Table/Row/Empty';
 export * from '@/ui/components/common/Typo';
+export * from '@/ui/components/common/Skeleton';

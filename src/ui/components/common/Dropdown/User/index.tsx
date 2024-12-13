@@ -4,12 +4,20 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
-import { Dropdown, Icon, Menu, MenuItem } from '@/ui/components';
+import { Badge, Dropdown, Icon, Menu, MenuItem } from '@/ui/components';
 
 // Constants
 import { END_POINT } from '@/constants';
+import Link from 'next/link';
 
-const UserDropdown = () => {
+interface UserDropdownProps {
+  wishlistLength?: number;
+  cartLength?: number;
+}
+const UserDropdown = ({
+  wishlistLength = 0,
+  cartLength = 0
+}: UserDropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const router = useRouter();
@@ -38,6 +46,30 @@ const UserDropdown = () => {
           link={END_POINT.ACCOUNT}
         />
         <MenuItem image="/logout.svg" name="Logout" onClick={handleSignOut} />
+        <div className="lg:hidden flex justify-center gap-8 my-5">
+          <Link href={END_POINT.WISHLIST}>
+            <Badge quantity={wishlistLength}>
+              <Icon
+                src="/heart.svg"
+                alt="heart-icon"
+                width={32}
+                height={32}
+                priority
+              />
+            </Badge>
+          </Link>
+          <Link href={END_POINT.CART}>
+            <Badge quantity={cartLength}>
+              <Icon
+                src="/cart.svg"
+                alt="cart-icon"
+                width={32}
+                height={32}
+                priority
+              />
+            </Badge>
+          </Link>
+        </div>
       </Menu>
     </Dropdown>
   );

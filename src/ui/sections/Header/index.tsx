@@ -3,17 +3,22 @@ import { navItems } from '@/constants';
 import { getUserCookie } from '@/libs';
 
 // Components
-import { Logo, Navbar, UserAction } from '@/ui/components';
+import { BurgerMenu, Logo, Navbar, UserAction } from '@/ui/components';
 
 const Header = async () => {
   const user = getUserCookie();
   return (
-    <header className=" py-8 border-b h-24 border-dark">
-      <div className="w-full flex items-center bg-white shadow-header container">
+    <header className="py-8 border-b h-24 border-dark">
+      <div className="lg:flex hidden justify-between items-center bg-white shadow-header container">
         <Logo />
-        <div className="w-full lg:flex lg:justify-center hidden gap-10 items-end">
+        <div className="flex justify-center gap-10 items-end">
           <Navbar items={navItems} styles="flex gap-12" />
         </div>
+        {user && <UserAction user={user} />}
+      </div>
+      <div className="lg:hidden flex justify-between items-center">
+        <BurgerMenu items={navItems} />
+        <Logo />
         {user && <UserAction user={user} />}
       </div>
     </header>

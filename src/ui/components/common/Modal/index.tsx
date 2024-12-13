@@ -1,7 +1,11 @@
-import { SIZE, TYPE } from '@/constants';
-import { Button } from '@/ui/components/common';
-import { clsx } from 'clsx';
 import { ReactNode } from 'react';
+
+// Constants
+import { SIZE, TYPE } from '@/constants';
+
+// Components
+import { Button } from '@/ui/components';
+import { clsx } from 'clsx';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,6 +14,7 @@ interface ModalProps {
   children: ReactNode;
   btnSecond?: string;
   onClick?: () => void;
+  styles?: string;
 }
 
 const Modal = ({
@@ -18,7 +23,8 @@ const Modal = ({
   title,
   children,
   btnSecond,
-  onClick
+  onClick,
+  styles
 }: ModalProps) => {
   if (!isOpen) return null;
 
@@ -28,7 +34,7 @@ const Modal = ({
         className="fixed inset-0 bg-black opacity-50"
         onClick={onClose}
       ></div>
-      <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full z-10">
+      <div className={clsx('bg-white rounded-lg shadow-lg z-10 w-96', styles)}>
         <div className="p-4 border-b">
           <h2 className="text-lg font-bold">{title}</h2>
         </div>

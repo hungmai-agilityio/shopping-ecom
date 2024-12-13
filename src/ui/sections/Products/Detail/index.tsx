@@ -146,17 +146,12 @@ const ProductDetail = ({ product, user }: DetailProps) => {
   }, [product, color, quantity, addDataToCart, cartItems]);
 
   return (
-    <section
-      className={clsx(
-        'md:flex flex-wrap gap-10 container my-10',
-        popping.className
-      )}
-    >
+    <section className={clsx('md:flex flex-wrap gap-10 my-10 w-full', popping.className)}>
       <div className="lg:block hidden gap-6 p-0">
         {product.imageDetail?.map((item, index) => (
           <div
             key={index}
-            className="bg-gray-light w-44 h-32 mb-5 flex justify-center items-center"
+            className="bg-gray-light w-44 h-32 mb-7 flex justify-center items-center"
           >
             <Image
               src={item}
@@ -169,18 +164,17 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           </div>
         ))}
       </div>
-      <div className="lg:w-card-detail lg:h-card-detail w-full h-[250px] bg-gray-light rounded-md flex justify-center items-center">
+      <div className="lg:w-card-detail h-card-detail w-full mb-5 bg-gray-light rounded-md flex justify-center items-center">
         <Image
           src={product.image}
           alt={product.name}
           width={446}
           height={315}
           objectFit="contain"
-          className="lg:w-[446px] lg:h-[315px] w-[200px] h-[200px]"
           priority
         />
       </div>
-      <div>
+      <div className='flex-1'>
         <div className="border-b border-dark">
           <h1
             className={clsx(
@@ -199,7 +193,6 @@ const ProductDetail = ({ product, user }: DetailProps) => {
               In Stock
             </p>
           </div>
-
           <p
             className={clsx(
               'md:text-2xl text-base my-5 text-gray-600',
@@ -208,7 +201,6 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           >
             ${product.price}
           </p>
-
           <p className="my-5 md:text-base text-xs">{product.description}</p>
         </div>
         <div className="my-5">

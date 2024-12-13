@@ -16,7 +16,7 @@ const Header = async () => {
         </div>
         {user && <UserAction user={user} />}
       </div>
-      <div className="lg:hidden flex justify-between items-center">
+      <div className="lg:hidden flex justify-between items-center px-5">
         <BurgerMenu items={navItems} />
         <Logo />
         {user && <UserAction user={user} />}

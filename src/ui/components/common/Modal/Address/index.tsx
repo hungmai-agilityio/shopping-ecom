@@ -52,6 +52,7 @@ const ModalAddress = ({
       title={isEdit ? 'Update Address' : 'Add New Address'}
       btnSecond={isEdit ? 'Update' : 'Add'}
       onClick={handleSubmit(handleFormSubmit)}
+      styles="max-w-3xl w-full"
     >
       <div className="flex flex-col gap-8">
         <InputController control={control} name="apartment" label="Apartment" />

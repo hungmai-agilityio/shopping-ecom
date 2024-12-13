@@ -28,7 +28,7 @@ const config: Config = {
         'cart-md': '470px',
         'card-about': '500px',
         'card-info': '370px',
-        'card-detail': '500px',
+        'card-detail': '600px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',

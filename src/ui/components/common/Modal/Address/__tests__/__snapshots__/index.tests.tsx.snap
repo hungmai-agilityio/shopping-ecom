@@ -9,7 +9,7 @@ exports[`ModalAddress component Should be render match to snapshot 1`] = `
       class="fixed inset-0 bg-black opacity-50"
     />
     <div
-      class="bg-white rounded-lg shadow-lg max-w-3xl w-full z-10"
+      class="bg-white rounded-lg shadow-lg z-10 w-96 max-w-3xl w-full"
     >
       <div
         class="p-4 border-b"

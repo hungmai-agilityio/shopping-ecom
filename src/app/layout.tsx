@@ -19,14 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <Monitoring
           apiKey="788wgqGBwdxZcVszRqSz8NYf7vax8yYG"
           url="https://monitoring.react-scan.com/api/v1/ingest"
         />
         <QueryProvider>
           <Header />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Footer />
         </QueryProvider>
       </body>

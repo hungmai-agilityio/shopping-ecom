@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-overlay':
-          'linear-gradient(317deg, #A8BFFF, #884D80)'
+          'linear-gradient(157deg, #A8BFFF, #884D80)'
       },
 
 

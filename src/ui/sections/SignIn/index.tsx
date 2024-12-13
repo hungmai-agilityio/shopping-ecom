@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 // Libs
-import { handleSignIn, setCookieUser, signInSchema } from '@/libs';
+import { signInSchema } from '@/libs';
+import { handleSignIn } from '@/actions';
 
 // Constants
 import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
@@ -19,6 +20,7 @@ import {
   InputController,
   ToastMessage
 } from '@/ui/components';
+import { log } from 'node:console';
 
 const SignInSection = () => {
   const router = useRouter();
@@ -39,18 +41,16 @@ const SignInSection = () => {
   });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const { data: user, error } = await handleSignIn(data.email, data.password);
+    const response = await handleSignIn(data.email, data.password);
 
-    if (error) {
+    if (response.success) {
+      router.push(END_POINT.HOME);
+    } else {
       setToast({
         status: STATUS.ERROR,
-        message: error.toString()
+        message: response.message
       });
-      return;
     }
-    setCookieUser(user);
-
-    router.push(END_POINT.HOME);
   };
 
   return (

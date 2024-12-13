@@ -55,34 +55,6 @@ export const postData = async ({ endpoint, data }: APIOptions) => {
   }
 };
 
-export const handleSignIn = async (email: string, password: string) => {
-  try {
-    const { data, error } = await getUserEmail(email);
-
-    if (error || !data || !data.length) {
-      throw new Error('User not found');
-    }
-
-    const [user] = data;
-
-    const isPasswordMatch = await checkPassword(password, user.password);
-
-    if (!isPasswordMatch) {
-      throw new Error('Invalid password');
-    }
-
-    return {
-      data: user,
-      error: null
-    };
-  } catch (error) {
-    return {
-      data: null,
-      error: error
-    };
-  }
-};
-
 export const updateData = async ({
   endpoint,
   id,

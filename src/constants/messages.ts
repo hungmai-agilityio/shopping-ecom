@@ -11,6 +11,7 @@ export const MESSAGE_VALID = {
 export const MESSAGE_API = {
   SIGN_UP_ERROR: 'An error occurred. Please try again',
   SIGN_UP_SUCCESS: 'You have successfully registered',
+  SIGN_IN_SUCCESS: 'Sign in success, Redirect to Home',
   SIGN_IN_ERROR: 'email or password is incorrect',
   ADD_PRODUCT_SUCCESS: 'Add product success',
   UPDATE_PROFILE_SUCCESS: 'Update profile success',

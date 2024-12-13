@@ -4,21 +4,11 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
-import bcrypt from 'bcryptjs';
-import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Constants
-import {
-  END_POINT,
-  INPUT_TYPE,
-  MESSAGE_API,
-  MESSAGE_VALID,
-  SIZE,
-  STATUS,
-  TYPE
-} from '@/constants';
+import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
 
 // Components
 import {
@@ -32,7 +22,8 @@ import {
 import { IUser } from '@/interface';
 
 // Libs
-import { addUser, checkUserByEmail, setCookieUser, signUpSchema } from '@/libs';
+import { signUpSchema } from '@/libs';
+import { createUser } from '@/actions';
 
 const SignUpSection = () => {
   const router = useRouter();
@@ -40,70 +31,26 @@ const SignUpSection = () => {
     status: STATUS;
     message: string;
   } | null>(null);
-  const [formData, setFormData] = useState<IUser>({
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    avatar: '',
-    address: [],
-    created_at: '',
-    updated_at: ''
-  });
 
   const {
     control,
     handleSubmit,
-    setError,
     formState: { isSubmitting }
   } = useForm<IUser>({
-    resolver: zodResolver(signUpSchema),
-    defaultValues: formData
+    resolver: zodResolver(signUpSchema)
   });
 
   const onSubmit = async (data: IUser) => {
-    const userExists = await checkUserByEmail(data.email);
-    if (userExists) {
-      setError('email', {
-        type: 'manual',
-        message: MESSAGE_VALID.EMAIL_EXIST
-      });
-      return;
-    }
-
-    const hashedPassword = await bcrypt.hash(data.password, 10);
-    const newData = {
-      ...data,
-      id: uuidv4(),
-      password: hashedPassword,
-      lastName: '',
-      avatar: '',
-      address: [],
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    };
-
-    setFormData(newData);
-
-    const newUser = await addUser(newData);
-
-    if (newUser.data) {
-      setFormData(formData);
-
-      setCookieUser(newData);
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.SIGN_UP_SUCCESS
-      });
-      router.push(END_POINT.HOME);
-      return;
-    }
+    const response = await createUser(data);
 
     setToast({
-      status: STATUS.ERROR,
-      message: MESSAGE_API.SIGN_UP_ERROR
+      status: response.success ? STATUS.SUCCESS : STATUS.ERROR,
+      message: response.message
     });
+
+    if (response.success) {
+      router.push(END_POINT.HOME);
+    }
   };
 
   return (

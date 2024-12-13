@@ -25,6 +25,7 @@ const UserDropdown = () => {
 
   const handleSignOut = async () => {
     await fetch('/api/logout', { method: 'POST' });
+    router.push(END_POINT.SIGN_IN);
     router.refresh();
   };
 
@@ -36,12 +37,7 @@ const UserDropdown = () => {
           name="User Profile"
           link={END_POINT.ACCOUNT}
         />
-        <MenuItem
-          image="/logout.svg"
-          name="Logout"
-          onClick={handleSignOut}
-          link={END_POINT.SIGN_IN}
-        />
+        <MenuItem image="/logout.svg" name="Logout" onClick={handleSignOut} />
       </Menu>
     </Dropdown>
   );

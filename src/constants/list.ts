@@ -7,7 +7,7 @@ export const navItems = [
 ];
 
 export const listAbout = [
-  { name: 'My Account', url: END_POINT.PROFILE },
+  { name: 'My Account', url: END_POINT.ACCOUNT },
   { name: 'Login / Register', url: END_POINT.SIGN_IN },
   { name: 'Cart', url: END_POINT.CART },
   { name: 'Wishlist', url: END_POINT.WISHLIST }

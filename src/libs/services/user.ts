@@ -12,14 +12,27 @@ export const getUserId = async (id: string) => {
 };
 
 export const getUserCart = async (id: string) => {
-  return await fetchDataId({ endpoint: `${END_POINT.CART}?userId=`, id: id });
+  try {
+    const data = await fetchDataId({
+      endpoint: `${END_POINT.CART}?userId=`,
+      id: id
+    });
+    return data || [];
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getUserWishList = async (id: string) => {
-  return await fetchDataId({
-    endpoint: `${END_POINT.WISHLIST}?userId=`,
-    id: id
-  });
+  try {
+    const data = await fetchDataId({
+      endpoint: `${END_POINT.WISHLIST}?userId=`,
+      id: id
+    });
+    return data || [];
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getUserEmail = async (email: string) => {

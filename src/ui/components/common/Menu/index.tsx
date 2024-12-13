@@ -1,11 +1,15 @@
+import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
 interface MenuProps {
   children: ReactNode;
+  styles?: string;
 }
-const Menu = ({ children }: MenuProps) => {
+const Menu = ({ children, styles }: MenuProps) => {
   return (
-    <div className="w-56 h-full bg-gradient-overlay rounded-md">{children}</div>
+    <div className={clsx('w-56 bg-gradient-overlay rounded-md', styles)}>
+      {children}
+    </div>
   );
 };
 

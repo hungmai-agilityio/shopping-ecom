@@ -97,7 +97,6 @@ const SignUpSection = () => {
         message: MESSAGE_API.SIGN_UP_SUCCESS
       });
       router.push(END_POINT.HOME);
-      router.refresh();
       return;
     }
 

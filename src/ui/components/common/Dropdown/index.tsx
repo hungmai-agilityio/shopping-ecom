@@ -32,12 +32,12 @@ const Dropdown = ({
   return (
     <div ref={dropdownRef}>
       <div
-        className={clsx('flex items-center relative', styles)}
+        className={clsx('relative', styles)}
         onClick={toggleVisibility}
       >
         {menuButton}
-      </div>
       {isOpen && children}
+      </div>
     </div>
   );
 };

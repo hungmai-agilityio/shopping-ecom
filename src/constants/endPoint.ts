@@ -9,7 +9,7 @@ export const END_POINT = {
   PRODUCT: '/product',
   CATEGORY: '/category',
   USERS: '/users',
-  PROFILE: '/profiles',
+  ACCOUNT: '/account',
   CART: '/cart',
   CHECKOUT: '/checkout'
 };

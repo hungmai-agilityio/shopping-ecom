@@ -51,7 +51,6 @@ const SignInSection = () => {
     setCookieUser(user);
 
     router.push(END_POINT.HOME);
-    router.refresh();
   };
 
   return (

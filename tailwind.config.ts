@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-overlay':
-          'linear-gradient(317deg, rgba(107, 120, 255, 0.6), rgba(134, 9, 233, 0.3), rgba(0, 0, 0, 0.2))'
+          'linear-gradient(317deg, rgba(107, 120, 255), rgba(134, 9, 233, 0.3), rgba(0, 0, 0, 0.2))'
       },
       colors: {
         primary: '#DB4444',
@@ -69,7 +69,7 @@ const config: Config = {
       boxShadow: {
         card: '0px 0px 0px 11px #ADADAD',
         'card-hover': '0px 0px 0px 11px #E0E0E0',
-        table: '0 4px 5px 9px #0000000D',
+        table: '0 4px 5px 2px #0000000D',
         contact: ' 0px 1px 13px 0px #0000000D'
       }
     }

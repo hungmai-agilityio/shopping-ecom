@@ -7,7 +7,7 @@ import { ISearchParams } from '@/interface/util';
 import { getCategories } from '@/libs';
 
 // Components
-import { Heading, SkeletonProductList, Tag } from '@/ui/components';
+import { Heading, Tag } from '@/ui/components';
 
 // Sections
 import { CategorySection, ProductListCategory } from '@/ui/sections';
@@ -36,7 +36,7 @@ const OurProductSection = async ({ searchParams, user }: OurProductProps) => {
         />
       )}
       <div className="mt-10">
-        <Suspense key={queryCategory} fallback={<SkeletonProductList />}>
+        <Suspense fallback={<>Loading </>}>
           <ProductListCategory user={user} query={queryCategory} />
         </Suspense>
       </div>

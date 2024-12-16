@@ -4,7 +4,15 @@ import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
-import { Badge, Dropdown, Icon, Menu, MenuItem, Modal } from '@/ui/components';
+import {
+  Badge,
+  Dropdown,
+  Icon,
+  Menu,
+  MenuItem,
+  Modal,
+  UserIcon
+} from '@/ui/components';
 
 // Constants
 import { END_POINT } from '@/constants';
@@ -25,15 +33,7 @@ const UserDropdown = ({
   const modal = useModal();
 
   const router = useRouter();
-  const menuButton = (
-    <Icon
-      src="/user-white.svg"
-      alt="user dropdown"
-      width={24}
-      height={24}
-      styles="bg-primary p-2 rounded-full cursor-pointer"
-    />
-  );
+  const menuButton = <UserIcon />;
 
   const handleOpenLogOutModal = useCallback(() => {
     modal.openModal();
@@ -48,7 +48,7 @@ const UserDropdown = ({
   return (
     <>
       <Dropdown menuButton={menuButton} setVisible={setIsOpen} isOpen={isOpen}>
-        <Menu styles="absolute top-10 right-0">
+        <Menu styles="absolute top-10 right-0 z-50">
           <MenuItem
             image="/user-white.svg"
             name="User Profile"

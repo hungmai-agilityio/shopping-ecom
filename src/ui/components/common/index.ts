@@ -13,6 +13,7 @@ export { default as ColorPicker } from '@/ui/components/common/ColorPicker';
 export { default as Countdown } from '@/ui/components/common/Countdown';
 export { default as Dropdown } from '@/ui/components/common/Dropdown';
 export { default as Icon } from '@/ui/components/common/Icon';
+export { default as UserIcon } from '@/ui/components/common/Icon/User';
 export { default as Input } from '@/ui/components/common/Input';
 export { default as InputController } from '@/ui/components/common/Input/Controller';
 export { default as List } from '@/ui/components/common/List';

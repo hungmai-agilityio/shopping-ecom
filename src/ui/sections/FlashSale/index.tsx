@@ -1,55 +1,39 @@
 import { Suspense } from 'react';
 
-// Libs
-import { getProductLimit } from '@/libs';
-
 // Components
 import {
   Countdown,
   Heading,
   PaginationProduct,
-  ProductList,
+  SkeletonProductList,
   Tag
 } from '@/ui/components';
+import { ProductListFlashSale } from '@/ui/sections';
 
 // Interfaces
-import { IUser } from '@/interface';
+import { ISearchParams, IUser } from '@/interface';
 
 interface FlashSaleProps {
   user: IUser;
+  searchParams: ISearchParams;
 }
-const FlashSale = async ({ user }: FlashSaleProps) => {
-  const { data, error } = await getProductLimit('isFlashSale=true', 0, 4);
 
-  const start = 0;
+const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
+  const start = parseInt(searchParams['flash-sale-page'] || '0', 10);
 
   return (
     <div className="container my-20">
       <Tag label="Today's" />
-
       <div className="flex justify-between flex-wrap items-end mb-12">
         <div className="md:flex mt-7 lg:gap-28 gap-9 items-end">
           <Heading>Flash sales</Heading>
           <Countdown days={3} hours={1} minutes={25} seconds={5} />
         </div>
-        <Suspense fallback={<>Loading</>}>
-          <PaginationProduct queryPage="flash-sale-page" start={start} />
-        </Suspense>
+        <PaginationProduct queryPage="flash-sale-page" start={start} />
       </div>
-
-      {error ? (
-        <p className="text-center text-5xl text-primary">
-          Unable to load products! Try later
-        </p>
-      ) : (
-        <ProductList
-          products={data}
-          user={user}
-          isDiscount
-          isShowMore
-          query={'isFlashSale=true'}
-        />
-      )}
+      <Suspense key={start} fallback={<SkeletonProductList />}>
+        <ProductListFlashSale user={user} page={start} />
+      </Suspense>
     </div>
   );
 };

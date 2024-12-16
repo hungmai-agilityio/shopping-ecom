@@ -1,41 +1,37 @@
-// Interfaces
-import { IUser } from '@/interface';
+import { Suspense } from 'react';
 
-// Libs
-import { getProductLimit } from '@/libs';
+// Interfaces
+import { ISearchParams, IUser } from '@/interface';
 
 // Components
-import { Heading, ProductList, Tag } from '@/ui/components';
+import {
+  Heading,
+  PaginationProduct,
+  SkeletonProductList,
+  Tag
+} from '@/ui/components';
+import { ProductListSelling } from '@/ui/sections';
 
 interface SellingProp {
   user: IUser;
+  searchParams: ISearchParams;
 }
 
-const BestSelling = async ({ user }: SellingProp) => {
-  const { data, error } = await getProductLimit('bestSelling=true', 0, 4);
-
+const BestSellingSection = async ({ user, searchParams }: SellingProp) => {
+  const start = parseInt(searchParams['best-selling-page'] || '0', 10);
   return (
     <div className="container my-20">
       <Tag label="This Month" />
 
-      <div className="my-12">
+      <div className="my-12 md:flex justify-between lg:gap-28 gap-9 items-end">
         <Heading>Best Selling Products</Heading>
+        <PaginationProduct queryPage="best-selling-page" start={start} />
       </div>
-
-      {error ? (
-        <p className="text-center text-5xl text-primary">
-          Unable to load products! Try later
-        </p>
-      ) : (
-        <ProductList
-          products={data}
-          query={'bestSelling=true'}
-          isShowMore
-          user={user}
-        />
-      )}
+      <Suspense key={start} fallback={<SkeletonProductList />}>
+        <ProductListSelling user={user} page={start} />
+      </Suspense>
     </div>
   );
 };
 
-export default BestSelling;
+export default BestSellingSection;

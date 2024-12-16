@@ -7,7 +7,7 @@ import { popping } from '@/constants';
 import { Breadcrumb, Tag } from '@/ui/components';
 
 // Sections
-import { ProductDetail, ProductSection } from '@/ui/sections';
+import { ProductDetail, ProductList, ProductListCategory } from '@/ui/sections';
 
 // Libs
 import { getProductId, getUserCookie } from '@/libs';
@@ -36,7 +36,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
   const { data: product } = await getProductId(id);
   const user = getUserCookie();
 
-  const queryCategory = product.category ? `?category=${product.category}` : '';
+  const queryCategory = product.category ? `category=${product.category}` : '';
 
   return (
     <div className={`${popping.className} mt-10`}>
@@ -49,7 +49,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
         <Tag label="Related Item" />
         <div className="mt-10">
           <Suspense key={product.category} fallback={<>Loading</>}>
-            <ProductSection user={user} query={queryCategory} />
+            <ProductListCategory user={user} query={queryCategory} />
           </Suspense>
         </div>
       </section>

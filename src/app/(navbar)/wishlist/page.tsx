@@ -1,9 +1,14 @@
+import { Suspense } from 'react';
+import { Metadata } from 'next';
+
 // Libs
-import { getProductLimit, getProducts, getUserCookie } from '@/libs';
+import { getProducts, getUserCookie } from '@/libs';
+
+// Components
+import { Button, SkeletonProductList, Tag } from '@/ui/components';
 
 // Sections
-import WishListSection from '@/ui/sections/WishList';
-import { Metadata } from 'next';
+import { ProductListSelling, WishListSection } from '@/ui/sections';
 
 export const metadata: Metadata = {
   title: 'Wishlist'
@@ -12,11 +17,6 @@ const Wishlist = async () => {
   const user = await getUserCookie();
 
   const { data: products, error: errorProduct } = await getProducts();
-  const { data: selling, error: errorSelling } = await getProductLimit(
-    'bestSelling=true',
-    0,
-    4
-  );
 
   if (errorProduct) {
     return (
@@ -28,18 +28,19 @@ const Wishlist = async () => {
     );
   }
 
-  if (errorSelling) {
-    return (
-      <div className="container my-10">
-        <p className="text-center text-primary">
-          Error: Failed to fetch best-selling products. Please try again later.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <WishListSection products={products} user={user} productSelling={selling} />
+    <>
+      <WishListSection products={products} user={user} />
+      <div className="flex justify-between items-center my-20 container">
+        <Tag label="Just For You" />
+        <Button>See All</Button>
+      </div>
+      <div className="container">
+        <Suspense fallback={<SkeletonProductList />}>
+          <ProductListSelling user={user} />
+        </Suspense>
+      </div>
+    </>
   );
 };
 

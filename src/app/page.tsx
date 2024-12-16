@@ -1,13 +1,53 @@
+import { clsx } from 'clsx';
+import { popping, slideHero } from '@/constants';
+
 // Libs
 import { getUserCookie } from '@/libs';
 
 // Sections
-import { FlashSale } from '@/ui/sections';
+import {
+  Arrival,
+  BestSellingSection,
+  FlashSale,
+  OurProductSection,
+  ServiceSection,
+  Advertisement
+} from '@/ui/sections';
 
-const Home = async () => {
+// Components
+import { Carousel } from '@/ui/components';
+
+// Interfaces
+import { ISearchParams } from '@/interface';
+
+interface HomeProps {
+  searchParams: ISearchParams;
+}
+const Home = async ({ searchParams }: HomeProps) => {
   const user = await getUserCookie();
-
-  return <FlashSale user={user} />;
+  return (
+    <div className={clsx('my-10', popping.className)}>
+      <div className="lg:block hidden">
+        <Carousel items={slideHero} />
+      </div>
+      <section className="my-20 container">
+        <FlashSale user={user} searchParams={searchParams} />
+      </section>
+      <section className="my-20 container">
+        <BestSellingSection user={user} searchParams={searchParams} />
+      </section>
+      <section className="my-20 container">
+        <Advertisement />
+      </section>
+      <section className="my-20 container">
+        <OurProductSection searchParams={searchParams} user={user} />
+      </section>
+      <section className="my-20 container">
+        <Arrival />
+      </section>
+      <ServiceSection />
+    </div>
+  );
 };
 
 export default Home;

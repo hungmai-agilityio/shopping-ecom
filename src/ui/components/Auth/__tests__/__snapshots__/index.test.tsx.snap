@@ -5,20 +5,24 @@ exports[`AuthForm component Should be render match to snapshot 1`] = `
   <div
     class="flex my-10"
   >
-    <img
-      alt="img-form"
-      class="md:block hidden"
-      data-nimg="1"
-      decoding="async"
-      height="781"
-      loading="lazy"
-      src="/_next/image?url=%2Fimage-form.webp&w=1920&q=75"
-      srcset="/_next/image?url=%2Fimage-form.webp&w=828&q=75 1x, /_next/image?url=%2Fimage-form.webp&w=1920&q=75 2x"
-      style="color: transparent;"
-      width="805"
-    />
     <div
-      class="xl:w-form w-full my-auto xl:mx-36 mx-14"
+      class="lg:w-1/2"
+    >
+      <img
+        alt="img-form"
+        class="w-full h-auto object-contain md:block hidden"
+        data-nimg="1"
+        decoding="async"
+        height="600"
+        loading="lazy"
+        src="/_next/image?url=%2Fimage-form.webp&w=1080&q=75"
+        srcset="/_next/image?url=%2Fimage-form.webp&w=640&q=75 1x, /_next/image?url=%2Fimage-form.webp&w=1080&q=75 2x"
+        style="color: transparent;"
+        width="500"
+      />
+    </div>
+    <div
+      class="lg:w-form w-full my-auto lg:mx-36 mx-14"
     >
       <div
         class="className"

@@ -5,46 +5,26 @@ import { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { MESSAGE_API, QUERY, SIZE, STATUS, TYPE, popping } from '@/constants';
+import { MESSAGE_API, QUERY, STATUS, TYPE, popping } from '@/constants';
 
 // Interfaces
 import { IProduct, IUser, IWishlist, ICart } from '@/interface';
 
 // Libs
-import {
-  getProductLimit,
-  getUserCart,
-  getUserWishList,
-  updateCart
-} from '@/libs';
+import { getUserCart, getUserWishList, updateCart } from '@/libs';
 
 // Components
-import {
-  Button,
-  CardProduct,
-  ProductList,
-  Tag,
-  ToastMessage
-} from '@/ui/components';
+import { Button, CardWishList, ToastMessage } from '@/ui/components';
 
 // Hooks
-import {
-  useAddDataToCart,
-  useClearWishlist,
-  useRemoveFromWishlist,
-  useUpdateDataToCart
-} from '@/hooks';
+import { useAddDataToCart, useClearWishlist } from '@/hooks';
 
 interface WishlistProps {
   user: IUser;
   products: IProduct[];
-  productSelling: IProduct[];
 }
 
-const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
-  const [displayedProducts, setDisplayedProducts] =
-    useState<IProduct[]>(productSelling);
-  const [start, setStart] = useState<number>(0);
+const WishListSection = ({ products, user }: WishlistProps) => {
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
@@ -54,9 +34,7 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
     queryFn: () => getUserWishList(user.id)
   });
 
-  const removeFromWishlist = useRemoveFromWishlist();
   const addToCart = useAddDataToCart();
-  const updateDataToCart = useUpdateDataToCart();
   const clearWishlist = useClearWishlist({ wishlist });
 
   if (wishlistError) {
@@ -68,64 +46,6 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
       </div>
     );
   }
-
-  /**
-   * Handle removing an item from the wishlist by its id.
-   * @param {string} id - The id of the wishlist item to remove.
-   */
-  const handleRemoveWishList = useCallback(
-    (id: string) => {
-      if (id) {
-        removeFromWishlist.mutate(id);
-      }
-    },
-    [removeFromWishlist]
-  );
-
-  /**
-   * Handle adding a product to the cart.
-   * If the product already exists in the cart, its quantity is incremented by 1.
-   * If not, a new cart item is added.
-   * @param {string} productId
-   */
-  const handleAddToCart = useCallback(
-    async (productId: string) => {
-      const cartItems = await getUserCart(user!.id);
-
-      const existingItem = cartItems.find(
-        (cartItem: ICart) =>
-          cartItem.productId === productId && cartItem.userId === user?.id
-      );
-
-      if (existingItem) {
-        updateDataToCart.mutate({
-          id: existingItem.id,
-          data: { quantity: existingItem.quantity + 1 }
-        });
-
-        setToast({
-          status: STATUS.SUCCESS,
-          message: MESSAGE_API.UPDATE_QUANTITY
-        });
-      }
-      if (!existingItem) {
-        const newItem: ICart = {
-          id: uuidv4(),
-          userId: user!.id,
-          productId: productId,
-          color: '',
-          size: '',
-          quantity: 1
-        };
-        addToCart.mutate(newItem);
-        setToast({
-          status: STATUS.SUCCESS,
-          message: MESSAGE_API.ADD_PRODUCT_SUCCESS
-        });
-      }
-    },
-    [user]
-  );
 
   // Handle adding all products from the wishlist to the cart and remove all wishlist
   const handleAddAllProduct = useCallback(() => {
@@ -170,22 +90,6 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
     });
   }, [wishlist, products, addToCart, user.id]);
 
-  /**
-   * Load more products when the "See All" button is clicked.
-   */
-  const handleShowMoreProduct = useCallback(async () => {
-    const limit = 4;
-    const newStart = start + limit;
-    setStart(newStart);
-
-    const newProducts = await getProductLimit(
-      'bestSelling=true',
-      newStart,
-      limit
-    );
-    setDisplayedProducts((prev) => [...prev, ...newProducts.data]);
-  }, [start]);
-
   return (
     <section className={`${popping.className}`}>
       <div className="flex justify-between items-center my-20 container">
@@ -205,45 +109,21 @@ const WishListSection = ({ products, user, productSelling }: WishlistProps) => {
           if (!product) return null;
 
           return (
-            <CardProduct
+            <CardWishList
               key={item.id}
-              src={product.image}
-              alt={product.name}
-              icon="icon-delete.svg"
-              id={item.id}
+              image={product.image}
               name={product.name}
+              id={item.id}
               price={product.price}
-              rating={product.ratings}
-              colors={product.colors}
+              ratings={product.ratings}
+              colors={product.colors || []}
               discount={product.discount}
               isNewProduct={product.isNew}
-              selectedColor={product.colors![0]}
-              oldPrice={product.originalPrice}
-              onAdd={handleAddToCart.bind(null)}
-              onIconClick={handleRemoveWishList}
-              isShowAction
+              originalPrice={product.originalPrice}
+              user={user}
             />
           );
         })}
-      </div>
-
-      <div className="flex justify-between items-center my-20 container">
-        <Tag label="Just For You" />
-        <Button
-          variant={TYPE.SECOND}
-          size={SIZE.SMALL}
-          onClick={handleShowMoreProduct}
-        >
-          See All
-        </Button>
-      </div>
-      <div className="container">
-        <ProductList
-          products={displayedProducts}
-          isDiscount
-          isNewProduct
-          user={user}
-        />
       </div>
       {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>

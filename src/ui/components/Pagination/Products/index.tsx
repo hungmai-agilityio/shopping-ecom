@@ -40,6 +40,7 @@ const PaginationProduct = ({ queryPage, start }: PaginationProductProps) => {
         width={24}
         height={24}
         onClick={handlePrev}
+        isDisabled={start === 0}
       />
       <Icon
         src="/arrow-right.svg"

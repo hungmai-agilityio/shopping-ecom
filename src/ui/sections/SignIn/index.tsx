@@ -75,7 +75,7 @@ const SignInSection = () => {
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-4">
           <Button size={SIZE.SMALL} disabled={isSubmitting}>
             Login
           </Button>

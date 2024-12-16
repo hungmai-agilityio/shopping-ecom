@@ -17,6 +17,7 @@ interface OurProductProps {
   searchParams: ISearchParams;
   user: IUser;
 }
+
 const OurProductSection = async ({ searchParams, user }: OurProductProps) => {
   const { data: categories, error } = await getCategories();
 

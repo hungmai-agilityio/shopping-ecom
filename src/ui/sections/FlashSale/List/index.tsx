@@ -1,6 +1,14 @@
+// Libs
 import { getProductLimit } from '@/libs';
+
+// Interfaces
 import { IUser } from '@/interface';
+
+// Sections
 import { ProductList } from '@/ui/sections';
+
+// Components
+import { ButtonShowMore } from '@/ui/components';
 
 interface ProductListProps {
   user: IUser;
@@ -8,7 +16,12 @@ interface ProductListProps {
 }
 
 const ProductListFlashSale = async ({ user, page = 0 }: ProductListProps) => {
-  const { data, error } = await getProductLimit('isFlashSale=true', page, 4);
+  const limit = 4;
+  const { data, error } = await getProductLimit(
+    'isFlashSale=true',
+    page,
+    limit
+  );
 
   if (error) {
     return (
@@ -23,6 +36,11 @@ const ProductListFlashSale = async ({ user, page = 0 }: ProductListProps) => {
   return (
     <div className="flex flex-wrap lg:gap-x-32 gap-14 lg:justify-normal justify-center">
       <ProductList user={user} products={data} />
+      <ButtonShowMore
+        queryKey="isFlashSale=true"
+        user={user}
+        startQuery={limit}
+      />
     </div>
   );
 };

@@ -20,7 +20,6 @@ import {
   InputController,
   ToastMessage
 } from '@/ui/components';
-import { log } from 'node:console';
 
 const SignInSection = () => {
   const router = useRouter();

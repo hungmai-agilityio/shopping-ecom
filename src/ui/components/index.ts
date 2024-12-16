@@ -8,3 +8,4 @@ export { default as AuthForm } from '@/ui/components/Auth';
 export { default as UserAction } from '@/ui/components/UserAction';
 export { default as CardProductAction } from '@/ui/components/CardAction/CardProduct';
 export { default as CardWishList } from '@/ui/components/CardAction/CardWishList';
+export { default as ButtonShowMore } from '@/ui/components/ButtonShowMore';

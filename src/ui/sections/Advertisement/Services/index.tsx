@@ -2,7 +2,7 @@ import { CardSolution } from '@/ui/components';
 
 const ServiceSection = () => {
   return (
-    <section className="my-32 container flex justify-center gap-20">
+    <section className="my-32 container flex justify-center lg:gap-20 gap-8 flex-wrap">
       <CardSolution
         src="/ship.svg"
         alt="icon shop"

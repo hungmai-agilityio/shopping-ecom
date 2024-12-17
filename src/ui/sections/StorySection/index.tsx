@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const StorySection = () => {
   return (
-    <div className="flex items-center justify-between gap-10">
+    <section className="container flex items-center justify-between gap-10 my-20">
       <div className="w-card-about">
         <Heading>Our Story</Heading>
         <p className="text-base mt-16">
@@ -21,7 +21,7 @@ const StorySection = () => {
       </div>
 
       <Image src="/about.png" alt="about-image" width={705} height={609} />
-    </div>
+    </section>
   );
 };
 

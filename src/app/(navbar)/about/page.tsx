@@ -19,9 +19,7 @@ const About = () => {
       <div className="container">
         <Breadcrumb />
       </div>
-      <section className="container my-20">
-        <StorySection />
-      </section>
+      <StorySection />
       <AdvertisementSale />
       <CarouselStaff slides={slideStaff} />
       <ServiceSection />

@@ -2,7 +2,7 @@ import { CardSolution } from '@/ui/components';
 
 const AdvertisementSale = () => {
   return (
-    <section className="my-32 container flex justify-center gap-10">
+    <section className="my-32 container flex justify-center gap-10 flex-wrap">
       <CardSolution
         src="/icon_shop.svg"
         alt="icon shop"

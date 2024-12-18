@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 // Interfaces
 import { IProduct, IUser, ICart } from '@/interface';
@@ -18,7 +19,6 @@ import { END_POINT, QUERY } from '@/constants';
 
 // Hooks
 import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
-import { useRouter } from 'next/navigation';
 
 interface CartSectionProps {
   products: IProduct[];

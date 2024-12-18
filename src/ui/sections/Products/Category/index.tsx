@@ -22,7 +22,9 @@ const ProductListCategory = async ({ user, query }: ProductListProps) => {
   if (error) {
     return (
       <div className="container my-10">
-        <p className="text-center text-primary">Error loading data</p>
+        <p className="text-center text-primary">
+          Error: Failed to fetch cart data. Please try again later.
+        </p>
       </div>
     );
   }

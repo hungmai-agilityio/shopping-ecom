@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { getProducts, getUserCookie } from '@/libs';
 
 // Components
-import { Button, SkeletonProductList, Tag } from '@/ui/components';
+import { SkeletonProductList, Tag } from '@/ui/components';
 
 // Sections
 import { ProductListSelling, WishListSection } from '@/ui/sections';
@@ -33,7 +33,6 @@ const Wishlist = async () => {
       <WishListSection products={products} user={user} />
       <div className="flex justify-between items-center my-20 container">
         <Tag label="Just For You" />
-        <Button>See All</Button>
       </div>
       <div className="container">
         <Suspense fallback={<SkeletonProductList />}>

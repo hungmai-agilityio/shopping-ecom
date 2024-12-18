@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { popping } from '@/constants';
 
 // Components
-import { Breadcrumb, Tag } from '@/ui/components';
+import { Breadcrumb, SkeletonProductList, Tag } from '@/ui/components';
 
 // Sections
 import { ProductDetail, ProductList, ProductListCategory } from '@/ui/sections';
@@ -48,7 +48,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
       <section className="my-20 container">
         <Tag label="Related Item" />
         <div className="mt-10">
-          <Suspense key={product.category} fallback={<>Loading</>}>
+          <Suspense key={product.category} fallback={<SkeletonProductList />}>
             <ProductListCategory user={user} query={queryCategory} />
           </Suspense>
         </div>

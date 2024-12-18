@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 import { popping } from '@/constants';
 
 // Libs
-import { getUserCookie } from '@/libs';
+import { getUserCookie, getUserId } from '@/libs';
 
 // Components
 import { Breadcrumb } from '@/ui/components';
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 const Account = async () => {
   const user = await getUserCookie();
+  const data = await getUserId(user.id);
 
   const fullName = `${user.firstName} ${user.lastName}`;
   return (
@@ -30,7 +31,7 @@ const Account = async () => {
         </p>
       </div>
       <div className="my-20">
-        <AccountSection user={user} />
+        <AccountSection user={data} />
       </div>
     </div>
   );

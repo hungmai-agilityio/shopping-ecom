@@ -7,7 +7,7 @@ import { avatarSizeClasses, SIZE } from '@/constants';
 interface AvatarProps extends ImageProps {
   size?: SIZE.SMALL | SIZE.MEDIUM | SIZE.LARGE;
   styles?: string;
-  circle?: boolean;
+  isCircle?: boolean;
   onClick?: () => void;
 }
 
@@ -16,15 +16,16 @@ const Avatar = ({
   alt,
   size = SIZE.SMALL,
   styles,
-  circle,
+  isCircle,
   onClick
 }: AvatarProps) => {
   const defaultAvatar = '/user.svg';
 
   return (
     <div
-      className={clsx('relative', avatarSizeClasses[size], styles, {
-        'cursor-pointer': onClick
+      className={clsx('relative bg-gray-300', avatarSizeClasses[size], styles, {
+        'cursor-pointer': onClick,
+        'rounded-full': isCircle
       })}
     >
       <Image
@@ -35,7 +36,7 @@ const Avatar = ({
         fill
         className={clsx(
           'object-cover font-bold',
-          circle && 'rounded-full',
+          isCircle && 'rounded-full',
           styles
         )}
       />

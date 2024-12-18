@@ -6,7 +6,7 @@ describe('Avatar component', () => {
   const defaultProps = {
     src: '/user.svg',
     alt: 'test user',
-    circle: false,
+    isCircle: false,
     onClick: jest.fn()
   };
 
@@ -19,8 +19,8 @@ describe('Avatar component', () => {
     expect(avatar).toHaveClass('object-cover font-bold');
   });
 
-  test('Should render component with circle', () => {
-    render(<Avatar {...defaultProps} sizes={SIZE.SMALL} circle />);
+  test('Should render component with isCircle', () => {
+    render(<Avatar {...defaultProps} sizes={SIZE.SMALL} isCircle />);
 
     const avatar = screen.getByAltText('test user');
 

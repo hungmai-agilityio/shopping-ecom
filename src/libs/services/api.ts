@@ -55,6 +55,30 @@ export const postData = async ({ endpoint, data }: APIOptions) => {
   }
 };
 
+export const postAvatar = async (file: File) => {
+  try {
+    const formData = new FormData();
+    const expirationTime = 43200;
+    formData.append('image', file);
+    formData.append('expiration', expirationTime.toString());
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+      {
+        method: 'POST',
+        body: formData
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+
+      return data.data.url;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
 export const updateData = async ({
   endpoint,
   id,

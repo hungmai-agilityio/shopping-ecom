@@ -12,6 +12,7 @@ import {
   INPUT_TYPE,
   MESSAGE_API,
   MESSAGE_VALID,
+  SIZE,
   STATUS,
   TYPE
 } from '@/constants';
@@ -20,15 +21,19 @@ import {
 import { IUser } from '@/interface';
 
 // Components
-import { Button, InputController, ToastMessage } from '@/ui/components';
+import { Avatar, Button, InputController, ToastMessage } from '@/ui/components';
 
 // Libs
 import {
   checkPassword,
+  postAvatar,
   profileSchema,
   setCookieUser,
   updateUser
 } from '@/libs';
+import { clsx } from 'clsx';
+import Image from 'next/image';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 
@@ -43,6 +48,11 @@ const ProfileSection = ({ user }: ProfileProps) => {
     status: STATUS;
     message: string;
   } | null>(null);
+  const [avatar, setAvatar] = useState<string | StaticImport>(
+    user.avatar || ''
+  );
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const router = useRouter();
 
   const {
@@ -61,6 +71,17 @@ const ProfileSection = ({ user }: ProfileProps) => {
     }
   });
 
+  // Handle change avatar upload
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const newAvatarURL = URL.createObjectURL(file);
+      setAvatar(newAvatarURL);
+      setSelectedFile(file);
+    }
+  };
+
+  // Submit input value and avatar and save on server
   const onSubmit = async (data: ProfileForm) => {
     const { newPassword, confirm, ...rest } = data;
 
@@ -76,15 +97,18 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
       hashedPassword = await bcrypt.hash(newPassword, 10);
     }
+    const imageUrl = await postAvatar(selectedFile!);
 
     const updatedUser: IUser = {
       ...user,
       ...rest,
+      avatar: imageUrl,
       password: hashedPassword,
       updated_at: new Date().toISOString()
     };
 
     const response = await updateUser(user.id, updatedUser);
+
     setCookieUser(updatedUser);
 
     setToast({
@@ -107,9 +131,38 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
   return (
     <div className="bg-white shadow-md py-10 px-8">
-      <h2 className="text-primary font-semibold text-lg mb-6">
-        Edit Your Profile
-      </h2>
+      <div className="md:flex justify-between items-center gap-5">
+        <h2 className="text-primary font-semibold text-lg mb-6">
+          Edit Your Profile
+        </h2>
+        <div className="relative group">
+          <Avatar
+            src={avatar}
+            alt={user.firstName}
+            isCircle
+            size={SIZE.LARGE}
+          />
+          <label
+            htmlFor="upload-image"
+            className="absolute bg-primary rounded-full opacity-60 w-6 h-6 left-14 top-14 justify-center group-hover:flex hidden cursor-pointer"
+          >
+            <Image
+              src="/icon-add.svg"
+              alt="add icon"
+              fill
+              className="p-1"
+              priority
+            />
+          </label>
+          <input
+            type="file"
+            id="upload-image"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+        </div>
+      </div>
       <form className="my-10" onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex gap-8">
           <div className="basis-1/2 lg:mb-0 mb-10">

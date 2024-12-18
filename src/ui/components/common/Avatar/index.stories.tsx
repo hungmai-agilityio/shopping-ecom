@@ -14,7 +14,7 @@ const meta: Meta<typeof Avatar> = {
   tags: ['autodocs'],
   argTypes: {
     src: {
-      description: 'Link avatar'
+      description: 'The src attribute for the img element.(passing link image)'
     },
     alt: {
       description: 'Alternative text for the image, used for accessibility.'
@@ -27,7 +27,7 @@ const meta: Meta<typeof Avatar> = {
     styles: {
       description: 'Add custom css'
     },
-    circle: {
+    isCircle: {
       description: 'Render Avatar with border radius full'
     },
     onClick: {
@@ -61,7 +61,12 @@ export const size: Story = {
       <div className="flex gap-5 items-end">
         <Avatar src="/avatar.jpg" alt="test user" />
         <Avatar src="/avatar.jpg" alt="test user" size={SIZE.MEDIUM} />
-        <Avatar src="/avatar.jpg" alt="test user" size={SIZE.LARGE} onClick={() => {}}/>
+        <Avatar
+          src="/avatar.jpg"
+          alt="test user"
+          size={SIZE.LARGE}
+          onClick={() => {}}
+        />
       </div>
     );
   }
@@ -72,6 +77,6 @@ export const avatarCircle: Story = {
     src: '/avatar.jpg',
     size: SIZE.LARGE,
     alt: 'Test User',
-    circle: true
+    isCircle: true
   }
 };

@@ -3,7 +3,7 @@
 exports[`Avatar component Should be render match to snapshot 1`] = `
 <div>
   <div
-    class="relative w-avatar-sm h-avatar-sm cursor-pointer"
+    class="relative bg-gray-300 w-avatar-sm h-avatar-sm cursor-pointer"
   >
     <img
       alt="test user"

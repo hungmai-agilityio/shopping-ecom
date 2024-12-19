@@ -21,15 +21,8 @@ interface BillingDetailsProps {
 }
 
 const BillingDetails = ({ user }: BillingDetailsProps) => {
-  const defaultAddress = user.address.find((addr) => addr.isDefault) || {
-    id: '',
-    street: '',
-    city: '',
-    apartment: '',
-    phone: '',
-    company: '',
-    isDefault: true
-  };
+  const defaultAddress =
+    user.address.find((addr) => addr.isDefault) || user.address[0];
 
   const [currentUser, setCurrentUser] = useState<IUser>(user);
   const [isChecked, setIsChecked] = useState<boolean>(true);

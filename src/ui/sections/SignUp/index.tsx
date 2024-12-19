@@ -68,7 +68,7 @@ const SignUpSection = () => {
           <InputController
             name={'email'}
             control={control}
-            placeholder="Email or Phone Number"
+            placeholder="Email"
             variant={TYPE.SECOND}
           />
         </div>

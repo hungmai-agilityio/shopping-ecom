@@ -61,7 +61,7 @@ const SignInSection = () => {
             control={control}
             variant={TYPE.SECOND}
             type={INPUT_TYPE.EMAIL}
-            placeholder="Email or Phone Number"
+            placeholder="Email"
           />
         </div>
         <div className="my-10">

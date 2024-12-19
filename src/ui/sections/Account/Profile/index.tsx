@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import bcrypt from 'bcryptjs';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 // Constants
 import {
@@ -31,9 +33,6 @@ import {
   setCookieUser,
   updateUser
 } from '@/libs';
-import { clsx } from 'clsx';
-import Image from 'next/image';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 

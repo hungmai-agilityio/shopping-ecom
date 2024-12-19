@@ -1,15 +1,21 @@
 import { Metadata } from 'next';
-import { getProducts, getUserCookie } from '@/libs';
+
+// Libs
+import { getProducts, getUserCookie, getUserId } from '@/libs';
+
+// Component
 import { Breadcrumb } from '@/ui/components';
-import BillingDetails from '@/ui/sections/BillingDetail';
-import CartOrder from '@/ui/sections/Cart/Order';
+
+// Sections
+import { CartOrder, BillingMenu } from '@/ui/sections';
 
 export const metadata: Metadata = {
   title: 'Checkout'
 };
 
 const Checkout = async () => {
-  const user = await getUserCookie();
+  const userCookie = await getUserCookie();
+  const user = await getUserId(userCookie.id);
   const { data, error } = await getProducts();
 
   if (error) {
@@ -27,9 +33,9 @@ const Checkout = async () => {
       <section className="my-20">
         <Breadcrumb />
       </section>
-      <section className="flex justify-between items-center gap-10">
+      <section className="md:flex justify-between items-center gap-10 relative">
         <div className="flex-1">
-          <BillingDetails user={user} />
+          <BillingMenu user={user} />
         </div>
         <div className="flex-1">
           <CartOrder products={data} user={user} />

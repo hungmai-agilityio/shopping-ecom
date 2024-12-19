@@ -21,7 +21,7 @@ const Account = async () => {
   const user = await getUserCookie();
   const data = await getUserId(user.id);
 
-  const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${data.firstName} ${data.lastName}`;
   return (
     <div className={clsx('container my-20', popping.className)}>
       <div className="flex justify-between">

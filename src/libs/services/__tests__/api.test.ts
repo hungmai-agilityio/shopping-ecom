@@ -2,6 +2,7 @@ import {
   deleteData,
   fetchData,
   fetchDataId,
+  postAvatar,
   postData,
   updateData
 } from '@/libs';
@@ -180,6 +181,43 @@ describe('API Utility Functions', () => {
           id: 'it224s7155-f4j543gc-654fg0a11'
         })
       ).rejects.toThrow('Failed to delete data');
+    });
+  });
+
+  describe('postAvatar', () => {
+    it('should upload an avatar and return URL', async () => {
+      const mockFile = new File(['avatar'], 'avatar.png', {
+        type: 'image/png'
+      });
+      const mockUrl = 'https://mockurl.com/avatar.png';
+
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ data: { url: mockUrl } })
+      });
+
+      const response = await postAvatar(mockFile);
+
+      expect(fetch).toHaveBeenCalledWith(
+        `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        {
+          method: 'POST',
+          body: expect.any(FormData)
+        }
+      );
+      expect(response).toEqual(mockUrl);
+    });
+
+    it('should handle avatar upload error', async () => {
+      const mockError = new Error('Upload error');
+      (fetch as jest.Mock).mockRejectedValueOnce(mockError);
+
+      const mockFile = new File(['avatar'], 'avatar.png', {
+        type: 'image/png'
+      });
+      const response = await postAvatar(mockFile);
+
+      expect(response).toEqual(mockError);
     });
   });
 });

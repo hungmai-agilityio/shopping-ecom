@@ -24,7 +24,7 @@ const Categories = memo(
     };
 
     return (
-      <div className={clsx('flex flex-wrap gap-5', popping.className)}>
+      <div className={clsx('flex flex-wrap justify-center gap-5', popping.className)}>
         {categories.map((category) => (
           <div
             key={category.id}

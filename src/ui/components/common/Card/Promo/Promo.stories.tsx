@@ -10,21 +10,22 @@ const meta: Meta<typeof CardPromo> = {
     layout: 'centered'
   },
   argTypes: {
-    src: {
-      description: 'Link image to render',
+    img: {
+      description:
+        'The src attribute for the img element.(link image to render)',
       control: 'text'
     },
-    alt: {
+    name: {
       description: 'Describes the image and shows if the image is corrupted',
       control: 'text'
     },
     width: {
-      description: 'Width for images',
-      control: 'number'
+      description: 'Width for images (ex: w-[500px])',
+      control: 'text'
     },
     height: {
-      description: 'Height for images',
-      control: 'number'
+      description: 'Height for images (ex: h-[500px])',
+      control: 'text'
     },
     children: {
       description: 'Content is descriptive or promotional',
@@ -38,10 +39,10 @@ type Story = StoryObj<typeof CardPromo>;
 
 export const primary: Story = {
   args: {
-    src: '/arrival-2.png',
-    alt: "Women's Collections",
-    width: 570,
-    height: 284,
+    img: '/arrival-2.png',
+    name: "Women's Collections",
+    width: 'w-[570px]',
+    height: 'h-[284px]',
     children: <p>content</p>
   }
 };

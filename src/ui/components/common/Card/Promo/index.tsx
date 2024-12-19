@@ -1,37 +1,32 @@
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 
 // Components
 import { Card } from '@/ui/components';
 
-interface CardPromoProps extends ImageProps {
+interface CardPromoProps {
   children?: React.ReactNode;
+  width: string;
+  height: string;
+  img: string;
+  name: string;
 }
 
-const CardPromo = ({
-  src,
-  alt,
-  width,
-  height,
-  children,
-  ...props
-}: CardPromoProps) => {
+const CardPromo = ({ img, name, width, height, children }: CardPromoProps) => {
   return (
-    <Card>
-      <div className="relative bg-dark" style={{ width, height }}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          style={{ objectFit: 'contain', width: '100%', height: '100%' }}
-          {...props}
-        />
-        {children && (
-          <div className="absolute bottom-0 left-0 p-6 text-white">
-            {children}
-          </div>
-        )}
-      </div>
+    <Card styles={`relative bg-dark ${width} ${height}`}>
+      <Image
+        src={img}
+        alt={name}
+        layout="responsive"
+        width={500}
+        height={500}
+        style={{ objectFit: 'contain' }}
+      />
+      {children && (
+        <div className="absolute bottom-0 left-0 p-6 text-white">
+          {children}
+        </div>
+      )}
     </Card>
   );
 };

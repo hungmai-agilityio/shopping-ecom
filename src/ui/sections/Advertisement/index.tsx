@@ -9,7 +9,9 @@ const Advertisement = () => {
         <Heading styles="my-5 text-white w-80">
           Enhance Your Music Experience
         </Heading>
-        <Countdown days={5} hours={24} minutes={0} seconds={5} isCircle />
+        <div className="md:flex hidden">
+          <Countdown days={5} hours={24} minutes={0} seconds={5} isCircle />
+        </div>
         <div className="mt-8">
           <Button className="bg-success w-btn-sm text-white h-14 rounded font-medium md:text-base text-xs">
             Buy Now!

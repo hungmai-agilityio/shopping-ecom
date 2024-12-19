@@ -11,10 +11,10 @@ jest.mock('next/image', () => ({
 
 describe('CardPromo component', () => {
   const defaultProps = {
-    src: '/arrival.png',
-    alt: 'Jean Image',
-    width: 590,
-    height: 350,
+    img: '/arrival.png',
+    name: 'Jean Image',
+    width: 'w-full',
+    height: 'h-[340px]',
     children: <p>Title jean</p>
   };
 

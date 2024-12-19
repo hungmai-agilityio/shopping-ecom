@@ -1,16 +1,11 @@
-import { Suspense } from 'react';
-
 // Interfaces
 import { ISearchParams } from '@/interface/util';
 
-// Libs
-import { getCategories } from '@/libs';
-
 // Components
-import { Heading, Tag } from '@/ui/components';
+import { Heading, PaginationProduct, Tag } from '@/ui/components';
+import OurProductList from '@/ui/sections/Products/OurProducts/List';
 
 // Sections
-import { CategorySection, ProductListCategory } from '@/ui/sections';
 import { IUser } from '@/interface';
 
 interface OurProductProps {
@@ -19,29 +14,20 @@ interface OurProductProps {
 }
 
 const OurProductSection = async ({ searchParams, user }: OurProductProps) => {
-  const { data: categories, error } = await getCategories();
+  const start = parseInt(searchParams['category'] || '0', 10);
 
   const query = searchParams?.['product-query'] ?? '';
   const queryCategory = query ? `category=${query}` : '';
 
   return (
-    <>
+    <div>
       <Tag label="Our Products" />
-      <Heading styles="my-10">Explore Our Products</Heading>
-      {error ? (
-        ''
-      ) : (
-        <CategorySection
-          categories={categories || []}
-          queryParam="product-query"
-        />
-      )}
-      <div className="mt-10">
-        <Suspense fallback={<>Loading </>}>
-          <ProductListCategory user={user} query={queryCategory} />
-        </Suspense>
+      <div className="md:flex justify-between my-7 lg:gap-28 gap-9 items-center">
+        <Heading styles="my-10">Explore Our Products</Heading>
+        <PaginationProduct queryPage="category" start={start} />
       </div>
-    </>
+      <OurProductList page={start} queryCategory={queryCategory} user={user} />
+    </div>
   );
 };
 

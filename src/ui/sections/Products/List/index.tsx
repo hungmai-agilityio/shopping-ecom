@@ -8,7 +8,7 @@ interface ProductListProps {
 
 const ProductList = async ({ user, products }: ProductListProps) => {
   return (
-    <div className="flex flex-wrap lg:gap-x-32 gap-14 lg:justify-normal justify-center">
+    <div className="flex flex-wrap lg:gap-x-32 gap-14 justify-center">
       {products.map((product: IProduct) => (
         <CardProductAction
           key={product.id}

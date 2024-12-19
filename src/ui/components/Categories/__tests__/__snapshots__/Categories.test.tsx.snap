@@ -3,7 +3,7 @@
 exports[`Categories component Should render match to snapshot 1`] = `
 <div>
   <div
-    class="flex flex-wrap gap-5 className"
+    class="flex flex-wrap justify-center gap-5 className"
   >
     <div
       class="cursor-pointer group flex flex-col justify-center items-center w-44 h-36 border border-black rounded-sm transition duration-300 hover:bg-primary hover:border-transparent"

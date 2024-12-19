@@ -31,13 +31,13 @@ const CategorySection = memo(
     }, []);
 
     return (
-      <div>
+      <>
         <Categories
           categories={categories}
           selected={selected}
           onSelect={handleSelect}
         />
-      </div>
+      </>
     );
   }
 );

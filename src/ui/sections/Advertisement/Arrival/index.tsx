@@ -8,20 +8,32 @@ const Arrival = () => {
     <>
       <Tag label="Featured" />
       <Heading styles="my-10">New Arrival</Heading>
-      <div className="flex gap-7">
-        <CardPromo src="/arrival-1.png" alt="ads-1" width={750} height={740}>
-          <h5 className={clsx('font-semibold text-2xl', inter.className)}>
-            PlayStation 5
-          </h5>
-          <p className="text-sm my-3">
-            Black and White version of the PS5 coming out on sale.
-          </p>
-          <Link href="#" className="underline">
-            Shop Now
-          </Link>
-        </CardPromo>
-        <div>
-          <CardPromo src="/arrival-2.png" alt="ads-2" width={750} height={404}>
+      <div className="flex flex-wrap gap-7">
+        <div className="w-full lg:w-[700px]">
+          <CardPromo
+            img="/arrival-1.png"
+            name="ads-1"
+            width="w-full"
+            height="h-[700px]"
+          >
+            <h5 className={clsx('font-semibold text-2xl', inter.className)}>
+              PlayStation 5
+            </h5>
+            <p className="text-sm my-3">
+              Black and White version of the PS5 coming out on sale.
+            </p>
+            <Link href="#" className="underline">
+              Shop Now
+            </Link>
+          </CardPromo>
+        </div>
+        <div className="w-full lg:w-[700px]">
+          <CardPromo
+            img="/arrival-2.png"
+            name="ads-2"
+            width="w-full"
+            height="h-[340px]"
+          >
             <h5 className={clsx('font-semibold text-2xl', inter.className)}>
               Women's Collections
             </h5>
@@ -32,12 +44,12 @@ const Arrival = () => {
               Shop Now
             </Link>
           </CardPromo>
-          <div className="mt-8 flex gap-7">
+          <div className="mt-8 md:flex hidden gap-7">
             <CardPromo
-              src="/arrival-3.png"
-              alt="ads-3"
-              width={360}
-              height={304}
+              img="/arrival-3.png"
+              name="ads-3"
+              width="w-[340px]"
+              height="h-[330px]"
             >
               <h5 className={clsx('font-semibold text-2xl', inter.className)}>
                 Speakers
@@ -48,10 +60,10 @@ const Arrival = () => {
               </Link>
             </CardPromo>
             <CardPromo
-              src="/arrival-4.png"
-              alt="ads-4"
-              width={360}
-              height={304}
+              img="/arrival-4.png"
+              name="ads-4"
+              width="w-[340px]"
+              height="h-[330px]"
             >
               <h5 className={clsx('font-semibold text-2xl', inter.className)}>
                 Perfume
@@ -67,4 +79,5 @@ const Arrival = () => {
     </>
   );
 };
+
 export default Arrival;

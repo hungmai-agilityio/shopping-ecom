@@ -15,7 +15,7 @@ describe('Category API Service Tests', () => {
       json: async () => categories
     });
 
-    const result = await getCategories();
+    const result = await getCategories('');
 
     expect(fetch).toHaveBeenCalledWith(
       `${process.env.NEXT_PUBLIC_URL}${END_POINT.CATEGORY}`
@@ -27,7 +27,7 @@ describe('Category API Service Tests', () => {
     const mockError = new Error('Network Error');
     (fetch as jest.Mock).mockRejectedValueOnce(mockError);
 
-    const result = await getCategories();
+    const result = await getCategories('');
 
     expect(fetch).toHaveBeenCalledWith(
       `${process.env.NEXT_PUBLIC_URL}${END_POINT.CATEGORY}`

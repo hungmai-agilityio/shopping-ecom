@@ -23,6 +23,8 @@ import {
 
 const SignInSection = () => {
   const router = useRouter();
+
+  const [showPass, setShowPass] = useState<boolean>(false);
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
@@ -30,7 +32,7 @@ const SignInSection = () => {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting, isSubmitSuccessful }
   } = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -39,6 +41,10 @@ const SignInSection = () => {
     }
   });
 
+  // Toggle password visibility
+  const toggleShowPassword = () => setShowPass(!showPass);
+
+  // Handle submit data for loginlogin
   const onSubmit = async (data: { email: string; password: string }) => {
     const response = await handleSignIn(data.email, data.password);
 
@@ -68,14 +74,19 @@ const SignInSection = () => {
           <InputController
             name="password"
             control={control}
-            type={INPUT_TYPE.PASSWORD}
+            type={showPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
             variant={TYPE.SECOND}
             placeholder="Password"
+            showIcon={showPass ? '/eye.svg' : '/eye-hide.svg'}
+            toggleShow={toggleShowPassword}
           />
         </div>
 
         <div className="flex justify-between items-center gap-4">
-          <Button size={SIZE.SMALL} disabled={isSubmitting}>
+          <Button
+            size={SIZE.SMALL}
+            disabled={isSubmitting || isSubmitSuccessful}
+          >
             Login
           </Button>
           <Link

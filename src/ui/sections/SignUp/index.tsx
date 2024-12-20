@@ -31,11 +31,12 @@ const SignUpSection = () => {
     status: STATUS;
     message: string;
   } | null>(null);
+  const [showPass, setShowPass] = useState<boolean>(false);
 
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting, isSubmitSuccessful }
   } = useForm<IUser>({
     resolver: zodResolver(signUpSchema)
   });
@@ -52,6 +53,9 @@ const SignUpSection = () => {
       router.push(END_POINT.HOME);
     }
   };
+
+  // Toggle password visibility
+  const toggleShowPassword = () => setShowPass(!showPass);
 
   return (
     <AuthForm title="Create an account" subtitle="Enter your details below">
@@ -76,9 +80,11 @@ const SignUpSection = () => {
           <InputController
             name={'password'}
             control={control}
-            type={INPUT_TYPE.PASSWORD}
+            type={showPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
             placeholder="Password"
             variant={TYPE.SECOND}
+            showIcon={showPass ? '/eye.svg' : '/eye-hide.svg'}
+            toggleShow={toggleShowPassword}
           />
         </div>
         <Button size={SIZE.LARGE} disabled={isSubmitting}>
@@ -89,7 +95,7 @@ const SignUpSection = () => {
             size={SIZE.LARGE}
             type="submit"
             styles="bg-white border border-dark"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isSubmitSuccessful}
           >
             <div className="flex items-center justify-center gap-5">
               <Image

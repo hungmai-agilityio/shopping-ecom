@@ -47,7 +47,7 @@ const ToastMessage = ({
   return (
     <div
       className={clsx(
-        'text-white font-semibold fixed py-2 px-4 rounded shadow-lg transition-opacity ease-in-out max-w-lg truncate',
+        'text-white font-semibold fixed py-2 px-4 rounded shadow-lg transition-opacity ease-in-out max-w-lg truncate z-50',
         toastStyles[status],
         setPosition
       )}

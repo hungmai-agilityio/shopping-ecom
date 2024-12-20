@@ -41,6 +41,7 @@ interface ProfileProps {
 }
 
 const ProfileSection = ({ user }: ProfileProps) => {
+  const [showPass, setShowPass] = useState<boolean>(false);
   const [showNewPass, setShowNewPass] = useState<boolean>(false);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const [toast, setToast] = useState<{
@@ -82,9 +83,18 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
   // Submit input value and avatar and save on server
   const onSubmit = async (data: ProfileForm) => {
-    const { newPassword, confirm, ...rest } = data;
-
+    const { password, newPassword, confirm, ...rest } = data;
     let hashedPassword = user.password;
+    const isPasswordCorrect = await checkPassword(password, user.password);
+
+    if (!isPasswordCorrect) {
+      setToast({
+        status: STATUS.ERROR,
+        message: MESSAGE_VALID.CONFIRM_ERROR
+      });
+      return;
+    }
+
     if (newPassword) {
       if (await checkPassword(newPassword, user.password)) {
         setToast({
@@ -96,7 +106,10 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
       hashedPassword = await bcrypt.hash(newPassword, 10);
     }
-    const imageUrl = await postAvatar(selectedFile!);
+
+    const imageUrl = selectedFile
+      ? await postAvatar(selectedFile)
+      : user.avatar;
 
     const updatedUser: IUser = {
       ...user,
@@ -121,6 +134,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
   };
 
   // Toggle password visibility
+  const toggleShowPassword = () => setShowPass(!showPass);
   const toggleShowNewPassword = () => setShowNewPass(!showNewPass);
   const toggleShowConfirm = () => setShowConfirm(!showConfirm);
 
@@ -194,27 +208,40 @@ const ProfileSection = ({ user }: ProfileProps) => {
             variant={TYPE.THIRD}
           />
         </div>
-        <div className="space-y-6">
+        <div className="my-5">
+          <InputController
+            name="password"
+            placeholder="Password"
+            label="Password Changes"
+            type={showPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
+            isRequired
+            control={control}
+            variant={TYPE.THIRD}
+            showIcon={showPass ? '/eye.svg' : '/eye-hide.svg'}
+            toggleShow={toggleShowPassword}
+          />
+        </div>
+        <div className="my-5">
           <InputController
             name="newPassword"
             placeholder="New Password"
-            label="New Password"
             type={showNewPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
             control={control}
             variant={TYPE.THIRD}
             showIcon={showNewPass ? '/eye.svg' : '/eye-hide.svg'}
             toggleShow={toggleShowNewPassword}
           />
-          <InputController
-            name="confirm"
-            placeholder="Confirm New Password"
-            label="Confirm Password"
-            type={showConfirm ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-            control={control}
-            variant={TYPE.THIRD}
-            showIcon={showConfirm ? '/eye.svg' : '/eye-hide.svg'}
-            toggleShow={toggleShowConfirm}
-          />
+          <div className="my-5">
+            <InputController
+              name="confirm"
+              placeholder="Confirm New Password"
+              type={showConfirm ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
+              control={control}
+              variant={TYPE.THIRD}
+              showIcon={showConfirm ? '/eye.svg' : '/eye-hide.svg'}
+              toggleShow={toggleShowConfirm}
+            />
+          </div>
         </div>
 
         <div className="my-10 flex justify-end gap-10 items-center">

@@ -25,6 +25,7 @@ export const profileSchema = z
     firstName: z.string().min(1, { message: 'First Name is required.' }),
     lastName: z.string().optional(),
     email: z.string().email({ message: 'Invalid email address.' }),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
     newPassword: z.string().optional(),
     confirm: z.string().optional()
   })

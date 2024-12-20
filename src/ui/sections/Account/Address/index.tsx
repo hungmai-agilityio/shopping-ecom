@@ -196,12 +196,12 @@ const AddressSection = ({ user }: AddressProps) => {
 
   // Handle remove address
   const handleRemoveAddress = useCallback(async () => {
-    const updatedAddresses = user.address.filter(
+    const updatedAddresses = currentUser.address.filter(
       (address) => address.id !== addressToDelete
     );
 
     const updatedUser = {
-      ...user,
+      ...currentUser,
       address: updatedAddresses
     };
 

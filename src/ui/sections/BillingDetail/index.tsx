@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 
 // Interfaces
 import { IUser, Address } from '@/interface';
@@ -12,8 +13,7 @@ import { InputController, ToastMessage } from '@/ui/components';
 // Constants
 import { MESSAGE_API, STATUS, TYPE } from '@/constants';
 
-// Utility
-import { v4 as uuidv4 } from 'uuid';
+// Libs
 import { setCookieUser, updateUser } from '@/libs';
 
 interface BillingDetailsProps {
@@ -53,9 +53,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
     const formAddress = getValues('address');
     const defaultAddress = currentUser.address.find((addr) => addr.isDefault);
 
-    if (JSON.stringify(formAddress) === JSON.stringify(defaultAddress)) {
-      return;
-    }
+    if (JSON.stringify(formAddress) === JSON.stringify(defaultAddress)) return;
 
     const updatedAddress: Address = {
       ...formAddress,
@@ -63,15 +61,20 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
       isDefault: true
     };
 
+    const updatedAddresses = currentUser.address
+      .map((addr) => (addr.isDefault ? { ...addr, isDefault: false } : addr))
+      .concat(updatedAddress);
+
+    const sortedAddresses = updatedAddresses.sort((a, b) =>
+      b.isDefault ? 1 : a.isDefault ? -1 : 0
+    );
+
     const addressUpdate: IUser = {
       ...currentUser,
-      address: currentUser.address
-        .map((addr) => (addr.isDefault ? { ...addr, isDefault: false } : addr))
-        .concat(updatedAddress)
+      address: sortedAddresses
     };
 
     setCurrentUser(addressUpdate);
-    setIsChecked(true);
     setCookieUser(addressUpdate);
 
     const response = await updateUser(user.id, addressUpdate);
@@ -84,13 +87,8 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
   };
 
   const onCheckboxChange = () => {
-    const formAddress = getValues('address');
-    const defaultAddress = currentUser.address.find((addr) => addr.isDefault);
-
-    if (JSON.stringify(formAddress) !== JSON.stringify(defaultAddress)) {
-      setIsChecked(true);
-      handleSubmit(onSubmit)();
-    }
+    setIsChecked(true);
+    handleSubmit(onSubmit)();
   };
 
   return (

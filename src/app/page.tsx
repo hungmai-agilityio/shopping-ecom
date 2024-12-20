@@ -30,9 +30,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <div className="lg:block hidden">
         <Carousel items={slideHero} />
       </div>
-      <section className="my-20 container">
-        <FlashSale user={user} searchParams={searchParams} />
-      </section>
+      <FlashSale user={user} searchParams={searchParams} />
       <section className="my-20 container">
         <BestSellingSection user={user} searchParams={searchParams} />
       </section>

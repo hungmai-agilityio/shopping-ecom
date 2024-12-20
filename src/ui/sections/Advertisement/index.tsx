@@ -6,7 +6,7 @@ const Advertisement = () => {
     <div className="h-full bg-dark py-16 px-14 flex flex-wrap justify-between ">
       <div>
         <p className="text-success">Categories</p>
-        <Heading styles="my-5 text-white w-80">
+        <Heading styles="my-5 text-white">
           Enhance Your Music Experience
         </Heading>
         <div className="md:flex hidden">

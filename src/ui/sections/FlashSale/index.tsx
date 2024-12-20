@@ -22,7 +22,7 @@ const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
   const start = parseInt(searchParams['flash-sale-page'] || '0', 10);
 
   return (
-    <div className="container my-20">
+    <section className="container my-20">
       <Tag label="Today's" />
       <div className="flex justify-between flex-wrap items-end mb-12">
         <div className="md:flex mt-7 lg:gap-28 gap-9 items-end">
@@ -34,7 +34,7 @@ const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
       <Suspense key={start} fallback={<SkeletonProductList />}>
         <ProductListFlashSale user={user} page={start} />
       </Suspense>
-    </div>
+    </section>
   );
 };
 

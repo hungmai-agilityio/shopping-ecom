@@ -30,10 +30,10 @@ const ProductListCategory = async ({ user, query }: ProductListProps) => {
   }
 
   return (
-    <>
+    <div className="flex flex-wrap lg:gap-x-32 gap-14">
       <ProductList user={user} products={data} />
       <ButtonShowMore user={user} queryKey={query} startQuery={limit} />
-    </>
+    </div>
   );
 };
 

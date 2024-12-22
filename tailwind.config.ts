@@ -56,6 +56,9 @@ const config: Config = {
         'btn-size': '70px',
         'card-md': '470px'
       },
+      maxHeight: {
+        'card-md': '250px',
+      },
       fontSize: {
         'heading-page': '110px'
       },

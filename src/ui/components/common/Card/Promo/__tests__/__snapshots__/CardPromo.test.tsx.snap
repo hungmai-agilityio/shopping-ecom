@@ -8,7 +8,6 @@ exports[`CardPromo component should be render match to snapshot 1`] = `
     <img
       alt="Jean Image"
       height="500"
-      layout="responsive"
       src="/arrival.png"
       style="object-fit: contain;"
       width="500"

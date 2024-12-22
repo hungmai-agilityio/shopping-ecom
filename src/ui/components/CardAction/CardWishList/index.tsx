@@ -3,6 +3,7 @@
 import { ICart, IUser } from '@/interface';
 import { memo, useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
 
 // Hooks
 import {
@@ -18,12 +19,14 @@ import { CardProduct, ToastMessage } from '@/ui/components';
 import { getUserCart } from '@/libs';
 
 // Constants
-import { MESSAGE_API, STATUS } from '@/constants';
+import { END_POINT, MESSAGE_API, STATUS } from '@/constants';
 
 interface CardWishListProps {
   colors: string[];
+  sizes: string[];
   discount?: number;
   id: string;
+  productId: string;
   image: string;
   isDiscount?: boolean;
   isNew?: boolean;
@@ -38,8 +41,10 @@ interface CardWishListProps {
 const CardWishList = memo(
   ({
     colors = [],
+    sizes = [],
     discount,
     id,
+    productId,
     image,
     isNewProduct,
     name,
@@ -52,6 +57,7 @@ const CardWishList = memo(
       status: STATUS;
       message: string;
     } | null>(null);
+    const router = useRouter();
 
     const removeFromWishlist = useRemoveFromWishlist();
     const updateDataToCart = useUpdateDataToCart();
@@ -88,8 +94,8 @@ const CardWishList = memo(
             id: uuidv4(),
             userId: user!.id,
             productId: productId,
-            color: '',
-            size: '',
+            color: colors![0],
+            size: sizes![0],
             quantity: 1
           };
           addToCart.mutate(newItem);
@@ -115,6 +121,14 @@ const CardWishList = memo(
       [removeFromWishlist]
     );
 
+    /**
+     * Handle redirecting to the product detail page using productId
+     * @param {string} productId - The id of the product to preview
+     */
+    const handleRedirectPreview = (productId: string) => {
+      router.push(`${END_POINT.PRODUCT}/${productId}`);
+    };
+
     return (
       <>
         <CardProduct
@@ -131,9 +145,10 @@ const CardWishList = memo(
           isNewProduct={isNewProduct}
           selectedColor={colors![0]}
           oldPrice={originalPrice}
-          onAdd={handleAddToCart.bind(null)}
+          onAdd={handleAddToCart.bind(null, productId)}
           onIconClick={handleRemoveWishList}
           isShowAction
+          onView={handleRedirectPreview.bind(null, productId)}
         />
         {toast && (
           <ToastMessage status={toast.status} message={toast.message} />

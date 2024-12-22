@@ -6,7 +6,6 @@ import CountdownItem from '@/ui/components/common/Countdown/Item';
 
 // Libs
 import { convertToSeconds, formatNumber, formatTime } from '@/libs';
-import { clsx } from 'clsx';
 
 interface CountdownProps {
   days: number;

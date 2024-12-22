@@ -14,22 +14,39 @@ import { getUserCart } from '@/libs';
 import { CardWishList } from '@/ui/components';
 
 // Mocks
-import { mockProduct, mockUser } from '@/mock';
+import { mockUser } from '@/mock';
 
 jest.mock('@/hooks');
 jest.mock('@/libs');
-
+jest.mock('next/navigation');
 describe('CardWishList Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  test('renders product information correctly', () => {
-    render(<CardWishList {...mockProduct} />);
+  const defaultProps = {
+    colors: ['Red', 'Blue', 'Green'],
+    sizes: ['S', 'M', 'L'],
+    discount: 10,
+    id: '3b0c8e6a-95d3-4f4d-8d47-bb4d6b7e4b2e',
+    productId: 'd92b5c47-2f8a-4b7c-9ff9-58c1d3cf92da',
+    image: 'https://example.com/product-image.jpg',
+    isDiscount: true,
+    isNew: true,
+    isNewProduct: true,
+    name: 'Sample Product Name',
+    originalPrice: 100,
+    price: 90,
+    ratings: 4.5,
+    user: mockUser
+  };
 
-    expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
-    expect(screen.getByText(`$${mockProduct.price}`)).toBeInTheDocument();
-    expect(screen.getByAltText(mockProduct.name)).toBeInTheDocument();
+  test('renders product information correctly', () => {
+    render(<CardWishList {...defaultProps} />);
+
+    expect(screen.getByText(defaultProps.name)).toBeInTheDocument();
+    expect(screen.getByText(`$${defaultProps.price}`)).toBeInTheDocument();
+    expect(screen.getByAltText(defaultProps.name)).toBeInTheDocument();
     expect(screen.getByAltText('icon-click')).toBeInTheDocument();
   });
 
@@ -37,18 +54,20 @@ describe('CardWishList Component', () => {
     const mockAddToCart = jest.fn();
     (useAddDataToCart as jest.Mock).mockReturnValue({ mutate: mockAddToCart });
 
-    // Get empty user cart
     (getUserCart as jest.Mock).mockResolvedValue([]);
 
-    render(<CardWishList {...mockProduct} />);
+    render(<CardWishList {...defaultProps} />);
 
     fireEvent.click(screen.getByText('Add To Cart'));
 
     await waitFor(() =>
       expect(mockAddToCart).toHaveBeenCalledWith(
         expect.objectContaining({
-          productId: mockProduct.id,
-          quantity: 1
+          productId: defaultProps.productId,
+          quantity: 1,
+          color: 'Red',
+          size: 'S',
+          userId: expect.any(String)
         })
       )
     );
@@ -59,16 +78,17 @@ describe('CardWishList Component', () => {
     (useUpdateDataToCart as jest.Mock).mockReturnValue({
       mutate: mockUpdateCart
     });
+
     (getUserCart as jest.Mock).mockResolvedValue([
       {
         id: 'cart1',
-        productId: mockProduct.id,
+        productId: defaultProps.productId,
         userId: mockUser.id,
         quantity: 2
       }
     ]);
 
-    render(<CardWishList {...mockProduct} />);
+    render(<CardWishList {...defaultProps} />);
 
     fireEvent.click(screen.getByText('Add To Cart'));
 
@@ -86,12 +106,12 @@ describe('CardWishList Component', () => {
       mutate: mockRemoveFromWishlist
     });
 
-    render(<CardWishList {...mockProduct} />);
+    render(<CardWishList {...defaultProps} />);
 
     fireEvent.click(screen.getByAltText('icon-click'));
 
     await waitFor(() =>
-      expect(mockRemoveFromWishlist).toHaveBeenCalledWith(mockProduct.id)
+      expect(mockRemoveFromWishlist).toHaveBeenCalledWith(defaultProps.id)
     );
   });
 });

@@ -1,9 +1,9 @@
-import { Heading } from '@/ui/components';
 import Image from 'next/image';
+import { Heading } from '@/ui/components';
 
 const StorySection = () => {
   return (
-    <section className="container flex items-center justify-between gap-10 my-20">
+    <section className="container flex flex-wrap items-center justify-between gap-10 my-20">
       <div className="w-card-about">
         <Heading>Our Story</Heading>
         <p className="text-base mt-16">

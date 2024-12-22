@@ -17,7 +17,11 @@ import { getUserCart, getUserWishList, updateCart } from '@/libs';
 import { Button, CardWishList, ToastMessage } from '@/ui/components';
 
 // Hooks
-import { useAddDataToCart, useClearWishlist } from '@/hooks';
+import {
+  useAddDataToCart,
+  useClearWishlist,
+  useUpdateDataToCart
+} from '@/hooks';
 
 interface WishlistProps {
   user: IUser;
@@ -35,6 +39,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
   });
 
   const addToCart = useAddDataToCart();
+  const updateDataToCart = useUpdateDataToCart();
   const clearWishlist = useClearWishlist({ wishlist });
 
   if (wishlistError) {
@@ -62,8 +67,9 @@ const WishListSection = ({ products, user }: WishlistProps) => {
         );
 
         if (existingItem) {
-          updateCart(existingItem.id, {
-            quantity: existingItem.quantity + 1
+          updateDataToCart.mutate({
+            id: existingItem.id,
+            data: { quantity: existingItem.quantity + 1 }
           });
           return;
         }
@@ -114,9 +120,11 @@ const WishListSection = ({ products, user }: WishlistProps) => {
               image={product.image}
               name={product.name}
               id={item.id}
+              productId={item.productId}
               price={product.price}
               ratings={product.ratings}
               colors={product.colors || []}
+              sizes={product.sizes || []}
               discount={product.discount}
               isNewProduct={product.isNew}
               originalPrice={product.originalPrice}

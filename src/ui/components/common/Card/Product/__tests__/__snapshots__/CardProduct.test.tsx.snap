@@ -3,7 +3,7 @@
 exports[`CardProduct Should render match to snapshot 1`] = `
 <div>
   <div
-    class="rounded-sm overflow-hidden className w-card-sm h-card-product font-medium"
+    class="rounded-sm overflow-hidden className w-card-sm h-card-product font-medium cursor-pointer"
   >
     <div
       class="bg-gray-light p-4 rounded-b-sm h-card-md relative flex group"
@@ -12,7 +12,7 @@ exports[`CardProduct Should render match to snapshot 1`] = `
         class="w-9 h-9 absolute top-3 right-5"
       >
         <div
-          class="flex bg-white p-2 rounded-full cursor-pointer"
+          class="flex bg-white p-2 rounded-full"
         >
           <img
             alt="icon-click"
@@ -21,24 +21,6 @@ exports[`CardProduct Should render match to snapshot 1`] = `
             fetchpriority="high"
             height="34"
             src="/heart.svg"
-            style="color: transparent;"
-            width="34"
-          />
-        </div>
-      </div>
-      <div
-        class="w-9 h-9 absolute right-5 top-14"
-      >
-        <div
-          class="flex bg-white p-2 rounded-full cursor-pointer"
-        >
-          <img
-            alt="icon-view"
-            data-nimg="1"
-            decoding="async"
-            fetchpriority="high"
-            height="34"
-            src="/eye.svg"
             style="color: transparent;"
             width="34"
           />
@@ -57,7 +39,7 @@ exports[`CardProduct Should render match to snapshot 1`] = `
         width="152"
       />
       <div
-        class="absolute bg-dark w-full h-10 group-hover:flex justify-center items-center gap-4 hover:bg-slate-600 hidden bottom-0 left-0 cursor-pointer"
+        class="absolute bg-dark w-full h-10 md:group-hover:flex justify-center items-center gap-4 hover:bg-slate-600 hidden bottom-0 left-0 cursor-pointer"
       >
         <div
           class="flex"

@@ -71,7 +71,7 @@ const CartOrder = memo(({ products, user }: CartOrderProps) => {
 
   return (
     <section className={clsx('w-full', popping.className)}>
-      <div className="h-cart-md overflow-y-auto scrollbar">
+      <div className="lg:h-cart-md h-full max-h-card-md overflow-y-auto scrollbar">
         {cartData.map((item) => {
           const product = products.find((p) => p.id === item.productId);
           if (!product) return null;

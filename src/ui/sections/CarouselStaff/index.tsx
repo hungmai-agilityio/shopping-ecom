@@ -27,7 +27,7 @@ const CarouselStaff = ({ slides }: CarouselStaffProps) => {
 
   return (
     <section className="overflow-hidden container">
-      <div className="flex gap-6 justify-center">
+      <div className="flex flex-wrap gap-6 justify-center">
         {currentSlides.map((staff) => (
           <CardInfo
             key={staff.id}

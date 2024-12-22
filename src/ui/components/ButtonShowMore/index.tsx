@@ -56,7 +56,7 @@ const ButtonShowMore = memo(
 
     return (
       <div className="w-full">
-        <div className="flex flex-wrap lg:gap-x-32 gap-14 lg:justify-normal justify-center">
+        <div className="flex flex-wrap lg:gap-x-32 gap-14 justify-center">
           {products.map((product) => (
             <CardProductAction
               key={product.id}

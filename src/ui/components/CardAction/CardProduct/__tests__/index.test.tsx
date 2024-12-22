@@ -87,7 +87,7 @@ describe('CardProductAction Component', () => {
 
     renderWithQueryClient(<CardProductAction {...mockProduct} />);
 
-    fireEvent.click(screen.getByAltText('icon-view'));
+    fireEvent.click(screen.getByAltText('Test Product'));
 
     expect(mockPush).toHaveBeenCalledWith(`/product/${mockProduct.id}`);
   });

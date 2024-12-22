@@ -63,7 +63,7 @@ describe('CardProduct', () => {
   test('Test function onView function when View icon is clicked', () => {
     render(<CardProduct {...defaultProps} />);
 
-    const viewIcon = screen.getByAltText('icon-view');
+    const viewIcon = screen.getByAltText('Example Product Image');
     fireEvent.click(viewIcon);
 
     expect(defaultProps.onView).toHaveBeenCalledTimes(1);

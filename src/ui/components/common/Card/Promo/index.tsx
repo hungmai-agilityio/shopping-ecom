@@ -17,7 +17,6 @@ const CardPromo = ({ img, name, width, height, children }: CardPromoProps) => {
       <Image
         src={img}
         alt={name}
-        layout="responsive"
         width={500}
         height={500}
         style={{ objectFit: 'contain' }}

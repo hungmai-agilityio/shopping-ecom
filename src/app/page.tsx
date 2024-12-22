@@ -31,9 +31,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         <Carousel items={slideHero} />
       </div>
       <FlashSale user={user} searchParams={searchParams} />
-      <section className="my-20 container">
-        <BestSellingSection user={user} searchParams={searchParams} />
-      </section>
+      <BestSellingSection user={user} searchParams={searchParams} />
       <section className="my-20 container">
         <Advertisement />
       </section>

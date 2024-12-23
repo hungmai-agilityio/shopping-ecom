@@ -15,7 +15,7 @@ import {
 } from '@/ui/sections';
 
 // Components
-import { Carousel } from '@/ui/components';
+import { Carousel, ScrollTop } from '@/ui/components';
 
 // Interfaces
 import { ISearchParams } from '@/interface';
@@ -42,6 +42,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         <Arrival />
       </section>
       <ServiceSection />
+      <ScrollTop />
     </div>
   );
 };

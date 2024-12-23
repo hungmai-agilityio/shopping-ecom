@@ -94,8 +94,8 @@ const CardWishList = memo(
             id: uuidv4(),
             userId: user!.id,
             productId: productId,
-            color: colors![0],
-            size: sizes![0],
+            color: colors[0],
+            size: sizes[0],
             quantity: 1
           };
           addToCart.mutate(newItem);

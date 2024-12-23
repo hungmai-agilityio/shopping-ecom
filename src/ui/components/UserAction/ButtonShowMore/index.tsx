@@ -66,6 +66,7 @@ const ButtonShowMore = memo(
               price={product.price}
               ratings={product.ratings}
               colors={product.colors || []}
+              sizes={product.sizes || []}
               isDiscount={product.discount !== undefined}
               discount={product.discount}
               isNew={product.isNew}

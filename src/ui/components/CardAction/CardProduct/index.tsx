@@ -25,6 +25,7 @@ import { useQuery } from '@tanstack/react-query';
 
 interface CardProductActionProps {
   colors: string[];
+  sizes: string[];
   discount?: number;
   id: string;
   image: string;
@@ -41,6 +42,7 @@ interface CardProductActionProps {
 const CardProductAction = memo(
   ({
     colors = [],
+    sizes,
     discount,
     id,
     image,
@@ -123,8 +125,8 @@ const CardProductAction = memo(
             id: uuidv4(),
             userId: user.id,
             productId: productId,
-            color: '',
-            size: '',
+            color: colors[0],
+            size: sizes[0],
             quantity: 1
           };
           addToCart.mutate(newItem);

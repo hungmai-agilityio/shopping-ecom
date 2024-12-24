@@ -20,12 +20,12 @@ const meta: Meta<typeof CardPromo> = {
       control: 'text'
     },
     width: {
-      description: 'Width for images (ex: w-[500px])',
-      control: 'text'
+      description: 'Set width for images',
+      control: 'number'
     },
     height: {
-      description: 'Height for images (ex: h-[500px])',
-      control: 'text'
+      description: 'Set height for images',
+      control: 'number'
     },
     children: {
       description: 'Content is descriptive or promotional',
@@ -41,8 +41,8 @@ export const primary: Story = {
   args: {
     img: '/arrival-2.png',
     name: "Women's Collections",
-    width: 'w-[570px]',
-    height: 'h-[284px]',
+    width: 432,
+    height: 284,
     children: <p>content</p>
   }
 };

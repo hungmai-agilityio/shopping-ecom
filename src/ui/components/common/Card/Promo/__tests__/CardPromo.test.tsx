@@ -13,8 +13,8 @@ describe('CardPromo component', () => {
   const defaultProps = {
     img: '/arrival.png',
     name: 'Jean Image',
-    width: 'w-full',
-    height: 'h-[340px]',
+    width: 400,
+    height: 340,
     children: <p>Title jean</p>
   };
 

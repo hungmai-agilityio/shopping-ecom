@@ -3,14 +3,14 @@
 exports[`CardPromo component should be render match to snapshot 1`] = `
 <div>
   <div
-    class="rounded-sm overflow-hidden className relative bg-dark w-full h-[340px]"
+    class="rounded-sm overflow-hidden className relative bg-dark"
   >
     <img
       alt="Jean Image"
-      height="500"
+      height="340"
       src="/arrival.png"
       style="object-fit: contain;"
-      width="500"
+      width="400"
     />
     <div
       class="absolute bottom-0 left-0 p-6 text-white"

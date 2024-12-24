@@ -10,13 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        md: '768px',
+        md: '650px',
         lg: '1170px',
       },
       container: {
         screens: {
           mobile: '100%',
-          tablet: '768px',
+          tablet: '650px',
           desktop: '1170px',
         },
         center: true,
@@ -38,12 +38,12 @@ const config: Config = {
         'cart-md': '470px',
         'card-about': '500px',
         'card-info': '370px',
-        'card-detail': '600px',
+        'card-detail': '500px',
         'avatar-sm': '40px',
         'avatar-md': '60px',
         'avatar-lg': '130px',
         form: '700px',
-        'btn-sm': '143px',
+        'btn-sm': '165px',
         'btn-md': '240px'
       },
       height: {

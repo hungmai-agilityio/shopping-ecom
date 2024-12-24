@@ -29,7 +29,7 @@ exports[`Modal component Should be render match to snapshot 1`] = `
         class="p-4 border-t flex justify-between"
       >
         <button
-          class="rounded font-medium md:text-base text-xs className w-btn-sm bg-transparent text-primary hover:underline"
+          class="rounded font-medium md:text-base text-xs className w-btn-sm h-[45px] bg-transparent text-primary hover:underline"
         >
           Close
         </button>
@@ -68,7 +68,7 @@ exports[`Modal component Should be render match to snapshot with confirm button 
         class="p-4 border-t flex justify-between"
       >
         <button
-          class="rounded font-medium md:text-base text-xs className w-btn-sm bg-transparent text-primary hover:underline"
+          class="rounded font-medium md:text-base text-xs className w-btn-sm h-[45px] bg-transparent text-primary hover:underline"
         >
           Close
         </button>

@@ -146,7 +146,12 @@ const ProductDetail = ({ product, user }: DetailProps) => {
   }, [product, color, quantity, addDataToCart, cartItems]);
 
   return (
-    <section className={clsx('md:flex flex-wrap gap-10 my-10 w-full', popping.className)}>
+    <section
+      className={clsx(
+        'md:flex flex-wrap gap-10 my-10 w-full',
+        popping.className
+      )}
+    >
       <div className="lg:block hidden gap-6 p-0">
         {product.imageDetail?.map((item, index) => (
           <div
@@ -174,7 +179,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           priority
         />
       </div>
-      <div className='flex-1'>
+      <div className="flex-1">
         <div className="border-b border-dark">
           <h1
             className={clsx(
@@ -184,7 +189,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           >
             {product.name}
           </h1>
-          <div className="mt-4 flex items-center md:gap-5 gap-2">
+          <div className="mt-4 flex items-center md:gap-5 gap-2 ">
             <Rating count={product.ratings} />
             <p className="text-gray-400 md:text-base text-xs">
               ({product.reviewCount} Reviews)
@@ -195,19 +200,19 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           </div>
           <p
             className={clsx(
-              'md:text-2xl text-base my-5 text-gray-600',
+              'md:text-2xl text-base my-5 text-dark',
               inter.className
             )}
           >
             ${product.price}
           </p>
-          <p className="my-5 md:text-base text-xs">{product.description}</p>
+          <p className="my-5 text-sm">{product.description}</p>
         </div>
-        <div className="my-5">
+        <div className="my-6">
           <div className="flex gap-7 items-center">
             <p
               className={clsx(
-                'lg:text-2xl text-base my-5 text-gray-600',
+                'lg:text-2xl text-base text-dark',
                 inter.className
               )}
             >
@@ -221,10 +226,10 @@ const ProductDetail = ({ product, user }: DetailProps) => {
             />
           </div>
           {product.sizes && (
-            <div className="my-5 flex gap-7 items-center">
+            <div className="flex gap-7 items-center">
               <p
                 className={clsx(
-                  'lg:text-2xl text-base my-5 text-gray-600',
+                  'lg:text-2xl text-base my-5 text-dark',
                   inter.className
                 )}
               >
@@ -240,8 +245,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
               ))}
             </div>
           )}
-
-          <div className="flex flex-wrap my-5 gap-5 items-center">
+          <div className="flex flex-wrap gap-5 items-center">
             <QuantityHorizontal
               value={1}
               onChange={handleQuantityChange}
@@ -249,7 +253,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
             />
             {user && (
               <>
-                <Button size={SIZE.MEDIUM} onClick={handleAddToCart}>
+                <Button size={SIZE.SMALL} onClick={handleAddToCart}>
                   Buy Now
                 </Button>
                 <div className="w-10 h-10 border border-dark rounded-lg flex justify-center items-center">
@@ -268,8 +272,8 @@ const ProductDetail = ({ product, user }: DetailProps) => {
               </>
             )}
           </div>
-          <div className="mt-10 max-w-card-md h-full border border-dark rounded-md">
-            <div className="border-b border-dark p-5 flex gap-5">
+          <div className="mt-10 max-w-card-md border h-[180px] border-dark rounded-md ">
+            <div className="border-b border-dark py-5 px-4 flex gap-5">
               <Icon
                 src="/ship-dark.svg"
                 alt="ship icon"
@@ -277,8 +281,8 @@ const ProductDetail = ({ product, user }: DetailProps) => {
                 height={40}
               />
               <div className="flex-col gap-3">
-                <p className="font-medium text-xl">Free Delivery</p>
-                <span className="underline text-sm">
+                <p className="font-medium text-base">Free Delivery</p>
+                <span className="underline text-xs">
                   Enter your postal code for Delivery Availability
                 </span>
               </div>
@@ -291,8 +295,8 @@ const ProductDetail = ({ product, user }: DetailProps) => {
                 height={40}
               />
               <div className="flex-col gap-3">
-                <p className="font-medium text-xl">Return Delivery</p>
-                <span className="underline text-sm">
+                <p className="font-medium text-base">Return Delivery</p>
+                <span className="text-xs">
                   Free 30 Days Delivery Returns. Details
                 </span>
               </div>

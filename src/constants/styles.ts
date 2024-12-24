@@ -1,7 +1,7 @@
 import { SIZE, STATUS, TYPE } from '@/constants';
 
 export const btnSizeClasses = {
-  [SIZE.SMALL]: 'w-btn-sm',
+  [SIZE.SMALL]: 'w-btn-sm h-[45px]',
   [SIZE.MEDIUM]: 'lg:w-btn-md w-btn-sm',
   [SIZE.LARGE]: 'w-full'
 };

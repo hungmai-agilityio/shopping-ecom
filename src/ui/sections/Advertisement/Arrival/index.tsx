@@ -1,39 +1,31 @@
-import { inter } from '@/constants';
-import { CardPromo, Heading, Tag } from '@/ui/components';
-import { clsx } from 'clsx';
 import Link from 'next/link';
+import { clsx } from 'clsx';
+
+// Constants
+import { inter } from '@/constants';
+
+// Components
+import { CardPromo, Heading, Tag } from '@/ui/components';
 
 const Arrival = () => {
   return (
     <>
       <Tag label="Featured" />
       <Heading styles="my-10">New Arrival</Heading>
-      <div className="flex flex-wrap gap-7">
-        <div className="w-full lg:w-[700px]">
-          <CardPromo
-            img="/arrival-1.png"
-            name="ads-1"
-            width="w-full"
-            height="h-[700px]"
-          >
-            <h5 className={clsx('font-semibold text-2xl', inter.className)}>
-              PlayStation 5
-            </h5>
-            <p className="text-sm my-3">
-              Black and White version of the PS5 coming out on sale.
-            </p>
-            <Link href="#" className="underline">
-              Shop Now
-            </Link>
-          </CardPromo>
-        </div>
-        <div className="w-full lg:w-[700px]">
-          <CardPromo
-            img="/arrival-2.png"
-            name="ads-2"
-            width="w-full"
-            height="h-[340px]"
-          >
+      <div className="flex flex-wrap gap-5">
+        <CardPromo img="/arrival-1.png" name="ads-1" width={570} height={600}>
+          <h5 className={clsx('font-semibold text-2xl', inter.className)}>
+            PlayStation 5
+          </h5>
+          <p className="text-sm my-3">
+            Black and White version of the PS5 coming out on sale.
+          </p>
+          <Link href="#" className="underline">
+            Shop Now
+          </Link>
+        </CardPromo>
+        <div>
+          <CardPromo img="/arrival-2.png" name="ads-2" width={432} height={286}>
             <h5 className={clsx('font-semibold text-2xl', inter.className)}>
               Women's Collections
             </h5>
@@ -44,12 +36,12 @@ const Arrival = () => {
               Shop Now
             </Link>
           </CardPromo>
-          <div className="mt-8 md:flex hidden gap-7">
+          <div className="mt-5 md:flex hidden gap-7 w-[570px] h-[265px]">
             <CardPromo
               img="/arrival-3.png"
               name="ads-3"
-              width="w-[340px]"
-              height="h-[330px]"
+              width={270}
+              height={265}
             >
               <h5 className={clsx('font-semibold text-2xl', inter.className)}>
                 Speakers
@@ -62,8 +54,8 @@ const Arrival = () => {
             <CardPromo
               img="/arrival-4.png"
               name="ads-4"
-              width="w-[340px]"
-              height="h-[330px]"
+              width={270}
+              height={265}
             >
               <h5 className={clsx('font-semibold text-2xl', inter.className)}>
                 Perfume

@@ -20,7 +20,7 @@ interface SellingProp {
 const BestSellingSection = async ({ user, searchParams }: SellingProp) => {
   const start = parseInt(searchParams['best-selling-page'] || '0', 10);
   return (
-    <section className="container my-20">
+    <section className="my-20">
       <Tag label="This Month" />
 
       <div className="my-12 md:flex justify-between lg:gap-28 gap-9 items-end">

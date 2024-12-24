@@ -34,14 +34,14 @@ const ProductListSelling = async ({ user, page = 0 }: ProductListProps) => {
   }
 
   return (
-    <div className="flex flex-wrap lg:gap-x-32 gap-14 lg:justify-normal justify-center">
+    <>
       <ProductList user={user} products={data} />
       <ButtonShowMore
         queryKey="bestSelling=true"
         user={user}
         startQuery={limit}
       />
-    </div>
+    </>
   );
 };
 

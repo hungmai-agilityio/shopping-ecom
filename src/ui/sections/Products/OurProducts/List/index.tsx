@@ -7,7 +7,12 @@ import { ISearchParams } from '@/interface/util';
 import { getCategories } from '@/libs';
 
 // Components
-import { Heading, PaginationProduct, Tag } from '@/ui/components';
+import {
+  Heading,
+  PaginationProduct,
+  SkeletonProductList,
+  Tag
+} from '@/ui/components';
 
 // Sections
 import { CategorySection, ProductListCategory } from '@/ui/sections';
@@ -39,7 +44,7 @@ const OurProductList = async ({
         />
       )}
       <div className="mt-10">
-        <Suspense fallback={<>Loading </>}>
+        <Suspense fallback={<SkeletonProductList />}>
           <ProductListCategory user={user} query={queryCategory} />
         </Suspense>
       </div>

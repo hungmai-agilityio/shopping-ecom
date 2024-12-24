@@ -3,7 +3,7 @@
 exports[`Skeleton component should be render match to snapshot 1`] = `
 <div>
   <div
-    class="flex flex-wrap lg:gap-x-32 gap-14 justify-center"
+    class="flex flex-wrap gap-6 justify-center"
   >
     <div
       class="flex flex-col w-card-sm h-card-md p-4 bg-gray-200 rounded-lg shadow-lg"

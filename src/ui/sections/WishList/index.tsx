@@ -108,7 +108,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
           Move All To Bag
         </Button>
       </div>
-      <div className="my-10 flex flex-wrap lg:gap-28 gap-10 container lg:justify-normal justify-center">
+      <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2">
         {wishlist.map((item) => {
           const product = products.find((p) => p.id === item.productId);
 

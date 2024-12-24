@@ -22,10 +22,10 @@ const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
   const start = parseInt(searchParams['flash-sale-page'] || '0', 10);
 
   return (
-    <section className="container my-20">
+    <section className="my-20">
       <Tag label="Today's" />
-      <div className="flex justify-between flex-wrap items-end mb-12">
-        <div className="md:flex mt-7 lg:gap-28 gap-9 items-end">
+      <div className="flex justify-between flex-wrap items-center mb-12 w-full">
+        <div className="md:flex mt-7 mb-4 gap-28 items-end">
           <Heading>Flash sales</Heading>
           <Countdown days={3} hours={1} minutes={25} seconds={5} />
         </div>

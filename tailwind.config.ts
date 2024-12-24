@@ -9,12 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        md: '768px',
+        lg: '1170px',
+      },
+      container: {
+        screens: {
+          mobile: '100%',
+          tablet: '768px',
+          desktop: '1170px',
+        },
+        center: true,
+      },
       backgroundImage: {
         'gradient-overlay':
           'linear-gradient(157deg, #A8BFFF, #884D80)'
       },
-
-
       colors: {
         primary: '#DB4444',
         second: '#00FF66',
@@ -61,15 +71,6 @@ const config: Config = {
       },
       fontSize: {
         'heading-page': '110px'
-      },
-      container: {
-        screens: {
-          mobile: '600px',
-          tablet: '900px',
-          desktop: '1536px'
-        },
-        center: true,
-        padding: '16px'
       },
       boxShadow: {
         card: '0px 0px 0px 11px #ADADAD',

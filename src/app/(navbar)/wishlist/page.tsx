@@ -29,17 +29,15 @@ const Wishlist = async () => {
   }
 
   return (
-    <>
+    <section className="container">
       <WishListSection products={products} user={user} />
       <div className="flex justify-between items-center my-20 container">
         <Tag label="Just For You" />
       </div>
-      <div className="container">
-        <Suspense fallback={<SkeletonProductList />}>
-          <ProductListSelling user={user} />
-        </Suspense>
-      </div>
-    </>
+      <Suspense fallback={<SkeletonProductList />}>
+        <ProductListSelling user={user} />
+      </Suspense>
+    </section>
   );
 };
 

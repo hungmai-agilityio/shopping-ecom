@@ -25,7 +25,7 @@ const ProductListFlashSale = async ({ user, page = 0 }: ProductListProps) => {
 
   if (error) {
     return (
-      <div className="container my-10">
+      <div className="my-10">
         <p className="text-center text-primary">
           Error: Failed to fetch product data. Please try again later.
         </p>
@@ -34,14 +34,14 @@ const ProductListFlashSale = async ({ user, page = 0 }: ProductListProps) => {
   }
 
   return (
-    <div className="flex flex-wrap lg:gap-x-32 gap-14 lg:justify-normal justify-center">
+    <>
       <ProductList user={user} products={data} />
       <ButtonShowMore
         queryKey="isFlashSale=true"
         user={user}
         startQuery={limit}
       />
-    </div>
+    </>
   );
 };
 

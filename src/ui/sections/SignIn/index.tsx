@@ -32,7 +32,7 @@ const SignInSection = () => {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful }
+    formState: { isSubmitting }
   } = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -83,10 +83,7 @@ const SignInSection = () => {
         </div>
 
         <div className="flex justify-between items-center gap-4">
-          <Button
-            size={SIZE.SMALL}
-            disabled={isSubmitting || isSubmitSuccessful}
-          >
+          <Button size={SIZE.SMALL} disabled={isSubmitting}>
             Login
           </Button>
           <Link

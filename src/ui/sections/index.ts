@@ -16,7 +16,7 @@ export { default as Header } from '@/ui/sections/Header';
 export { default as OurProductSection } from '@/ui/sections/Products/OurProducts';
 export { default as ProductDetail } from '@/ui/sections/Products/Detail';
 export { default as ProductList } from '@/ui/sections/Products/List';
-export { default as ProductListCategory } from '@/ui/sections/Products/Category';
+export { default as ProductListCategory } from '@/ui/sections/Products/List/Category';
 export { default as ProductListFlashSale } from '@/ui/sections/FlashSale/List';
 export { default as ProductListSelling } from '@/ui/sections/BestSelling/List';
 export { default as ProfileSection } from '@/ui/sections/Account/Profile';

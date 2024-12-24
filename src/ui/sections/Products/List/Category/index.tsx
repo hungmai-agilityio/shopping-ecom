@@ -23,17 +23,17 @@ const ProductListCategory = async ({ user, query }: ProductListProps) => {
     return (
       <div className="container my-10">
         <p className="text-center text-primary">
-          Error: Failed to fetch cart data. Please try again later.
+          Error: Failed to fetch data. Please try again later.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-wrap lg:gap-x-32 gap-14">
+    <>
       <ProductList user={user} products={data} />
       <ButtonShowMore user={user} queryKey={query} startQuery={limit} />
-    </div>
+    </>
   );
 };
 

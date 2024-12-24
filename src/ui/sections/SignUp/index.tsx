@@ -36,7 +36,7 @@ const SignUpSection = () => {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful }
+    formState: { isSubmitting }
   } = useForm<IUser>({
     resolver: zodResolver(signUpSchema)
   });
@@ -95,7 +95,7 @@ const SignUpSection = () => {
             size={SIZE.LARGE}
             type="submit"
             styles="bg-white border border-dark"
-            disabled={isSubmitting || isSubmitSuccessful}
+            disabled={isSubmitting}
           >
             <div className="flex items-center justify-center gap-5">
               <Image

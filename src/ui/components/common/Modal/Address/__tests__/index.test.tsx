@@ -6,7 +6,7 @@ describe('ModalAddress component', () => {
     isOpen: true,
     onClose: jest.fn(),
     onClick: jest.fn(),
-    onConfirm: jest.fn()
+    onSubmit: jest.fn(),
   };
   test('Should be render match to snapshot', () => {
     const { container } = render(<ModalAddress {...defaultProps} />);

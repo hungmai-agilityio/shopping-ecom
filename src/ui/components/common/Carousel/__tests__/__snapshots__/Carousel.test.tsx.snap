@@ -3,74 +3,74 @@
 exports[`Carousel component Should be render match to snapshot 1`] = `
 <div>
   <div
-    class="relative h-slide bg-black className"
+    class="relative h-slide bg-black overflow-hidden className"
   >
     <div
-      class="overflow-hidden"
+      class="flex transition-transform duration-700 ease-in-out"
+      style="transform: translateX(-0%);"
     >
       <div
-        class="flex transition-transform duration-500"
-        style="transform: translateX(-0%);"
+        class="flex-none w-full h-slide flex items-center justify-between"
       >
         <div
-          class="flex-none w-full h-slide text-white flex items-center justify-between"
+          class="text-white z-10 px-10 md:px-20 w-full "
         >
           <div
-            class="text-white z-10 px-20 w-full"
+            class="flex gap-4 items-center mb-4"
           >
             <div
-              class="flex gap-7 items-center"
+              class="flex"
             >
-              <div
-                class="flex"
-              >
-                <img
-                  alt="IPhone 14 Series"
-                  data-nimg="1"
-                  decoding="async"
-                  height="49"
-                  loading="lazy"
-                  src="/icon-iphone.svg"
-                  style="color: transparent; object-fit: contain;"
-                  width="49"
-                />
-              </div>
-              <p
-                class="text-base font-bold"
-              >
-                IPhone 14 Series
-              </p>
+              <img
+                alt="IPhone 14 Series"
+                data-nimg="1"
+                decoding="async"
+                height="49"
+                loading="lazy"
+                src="/icon-iphone.svg"
+                style="color: transparent; object-fit: contain;"
+                width="49"
+              />
             </div>
             <p
-              class="text-5xl font-semibold mt-5"
+              class="text-base font-bold"
             >
-              Up to 10% off Voucher
+              IPhone 14 Series
             </p>
-            <div
-              class="flex gap-4 items-center mt-16"
+          </div>
+          <p
+            class="lg:text-5xl text-2xl font-semibold"
+          >
+            Up to 10% off Voucher
+          </p>
+          <div
+            class="flex gap-4 items-center mt-10"
+          >
+            <a
+              class="text-white lg:text-lg text-sm underline"
+              href="#"
             >
-              <a
-                class="text-white text-base underline"
-                href="#"
-              >
-                Shop Now
-              </a>
-              <div
-                class="flex"
-              >
-                <img
-                  alt="arrow icon"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="14"
-                  src="/arrow-white.svg"
-                  style="color: transparent;"
-                  width="16"
-                />
-              </div>
+              Shop Now
+            </a>
+            <div
+              class="flex"
+            >
+              <img
+                alt="arrow icon"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="14"
+                src="/arrow-white.svg"
+                style="color: transparent;"
+                width="16"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="w-full"
+        >
           <img
             alt="slide-image"
             data-nimg="1"
@@ -79,55 +79,59 @@ exports[`Carousel component Should be render match to snapshot 1`] = `
             loading="lazy"
             src="/_next/image?url=%2Fhero_iphone.png&w=828&q=75"
             srcset="/_next/image?url=%2Fhero_iphone.png&w=640&q=75 1x, /_next/image?url=%2Fhero_iphone.png&w=828&q=75 2x"
-            style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+            style="color: transparent; object-fit: contain; max-height: 100%; max-width: 100%;"
             width="400"
           />
         </div>
+      </div>
+      <div
+        class="flex-none w-full h-slide flex items-center justify-between"
+      >
         <div
-          class="flex-none w-full h-slide text-white flex items-center justify-between"
+          class="text-white z-10 px-10 md:px-20 w-full "
         >
           <div
-            class="text-white z-10 px-20 w-full"
+            class="flex gap-4 items-center mb-4"
           >
-            <div
-              class="flex gap-7 items-center"
-            >
-              <p
-                class="text-base font-bold"
-              >
-                Canon camera
-              </p>
-            </div>
             <p
-              class="text-5xl font-semibold mt-5"
+              class="text-base font-bold"
             >
-              Capture stunning photos every time.
+              Canon camera
             </p>
-            <div
-              class="flex gap-4 items-center mt-16"
+          </div>
+          <p
+            class="lg:text-5xl text-2xl font-semibold"
+          >
+            Capture stunning photos every time.
+          </p>
+          <div
+            class="flex gap-4 items-center mt-10"
+          >
+            <a
+              class="text-white lg:text-lg text-sm underline"
+              href="#"
             >
-              <a
-                class="text-white text-base underline"
-                href="#"
-              >
-                Shop Now
-              </a>
-              <div
-                class="flex"
-              >
-                <img
-                  alt="arrow icon"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="14"
-                  src="/arrow-white.svg"
-                  style="color: transparent;"
-                  width="16"
-                />
-              </div>
+              Shop Now
+            </a>
+            <div
+              class="flex"
+            >
+              <img
+                alt="arrow icon"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="14"
+                src="/arrow-white.svg"
+                style="color: transparent;"
+                width="16"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="w-full"
+        >
           <img
             alt="slide-image"
             data-nimg="1"
@@ -136,55 +140,59 @@ exports[`Carousel component Should be render match to snapshot 1`] = `
             loading="lazy"
             src="/_next/image?url=%2Fhero-canon.png&w=828&q=75"
             srcset="/_next/image?url=%2Fhero-canon.png&w=640&q=75 1x, /_next/image?url=%2Fhero-canon.png&w=828&q=75 2x"
-            style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+            style="color: transparent; object-fit: contain; max-height: 100%; max-width: 100%;"
             width="400"
           />
         </div>
+      </div>
+      <div
+        class="flex-none w-full h-slide flex items-center justify-between"
+      >
         <div
-          class="flex-none w-full h-slide text-white flex items-center justify-between"
+          class="text-white z-10 px-10 md:px-20 w-full "
         >
           <div
-            class="text-white z-10 px-20 w-full"
+            class="flex gap-4 items-center mb-4"
           >
-            <div
-              class="flex gap-7 items-center"
-            >
-              <p
-                class="text-base font-bold"
-              >
-                Adidas Sneakers
-              </p>
-            </div>
             <p
-              class="text-5xl font-semibold mt-5"
+              class="text-base font-bold"
             >
-              Durable, stylish, all-day comfort
+              Adidas Sneakers
             </p>
-            <div
-              class="flex gap-4 items-center mt-16"
+          </div>
+          <p
+            class="lg:text-5xl text-2xl font-semibold"
+          >
+            Durable, stylish, all-day comfort
+          </p>
+          <div
+            class="flex gap-4 items-center mt-10"
+          >
+            <a
+              class="text-white lg:text-lg text-sm underline"
+              href="#"
             >
-              <a
-                class="text-white text-base underline"
-                href="#"
-              >
-                Shop Now
-              </a>
-              <div
-                class="flex"
-              >
-                <img
-                  alt="arrow icon"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="14"
-                  src="/arrow-white.svg"
-                  style="color: transparent;"
-                  width="16"
-                />
-              </div>
+              Shop Now
+            </a>
+            <div
+              class="flex"
+            >
+              <img
+                alt="arrow icon"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="14"
+                src="/arrow-white.svg"
+                style="color: transparent;"
+                width="16"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="w-full"
+        >
           <img
             alt="slide-image"
             data-nimg="1"
@@ -193,55 +201,59 @@ exports[`Carousel component Should be render match to snapshot 1`] = `
             loading="lazy"
             src="/_next/image?url=%2Fhero-shoes.png&w=828&q=75"
             srcset="/_next/image?url=%2Fhero-shoes.png&w=640&q=75 1x, /_next/image?url=%2Fhero-shoes.png&w=828&q=75 2x"
-            style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+            style="color: transparent; object-fit: contain; max-height: 100%; max-width: 100%;"
             width="400"
           />
         </div>
+      </div>
+      <div
+        class="flex-none w-full h-slide flex items-center justify-between"
+      >
         <div
-          class="flex-none w-full h-slide text-white flex items-center justify-between"
+          class="text-white z-10 px-10 md:px-20 w-full "
         >
           <div
-            class="text-white z-10 px-20 w-full"
+            class="flex gap-4 items-center mb-4"
           >
-            <div
-              class="flex gap-7 items-center"
-            >
-              <p
-                class="text-base font-bold"
-              >
-                Advanced Liquid Cooling System
-              </p>
-            </div>
             <p
-              class="text-5xl font-semibold mt-5"
+              class="text-base font-bold"
             >
-              Max Cooling Power - Liquid Cooling for Your PC!
+              Advanced Liquid Cooling System
             </p>
-            <div
-              class="flex gap-4 items-center mt-16"
+          </div>
+          <p
+            class="lg:text-5xl text-2xl font-semibold"
+          >
+            Max Cooling Power - Liquid Cooling for Your PC!
+          </p>
+          <div
+            class="flex gap-4 items-center mt-10"
+          >
+            <a
+              class="text-white lg:text-lg text-sm underline"
+              href="#"
             >
-              <a
-                class="text-white text-base underline"
-                href="#"
-              >
-                Shop Now
-              </a>
-              <div
-                class="flex"
-              >
-                <img
-                  alt="arrow icon"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="14"
-                  src="/arrow-white.svg"
-                  style="color: transparent;"
-                  width="16"
-                />
-              </div>
+              Shop Now
+            </a>
+            <div
+              class="flex"
+            >
+              <img
+                alt="arrow icon"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="14"
+                src="/arrow-white.svg"
+                style="color: transparent;"
+                width="16"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="w-full"
+        >
           <img
             alt="slide-image"
             data-nimg="1"
@@ -250,69 +262,73 @@ exports[`Carousel component Should be render match to snapshot 1`] = `
             loading="lazy"
             src="/_next/image?url=%2Fhero-cooler.png&w=828&q=75"
             srcset="/_next/image?url=%2Fhero-cooler.png&w=640&q=75 1x, /_next/image?url=%2Fhero-cooler.png&w=828&q=75 2x"
-            style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+            style="color: transparent; object-fit: contain; max-height: 100%; max-width: 100%;"
             width="400"
           />
         </div>
+      </div>
+      <div
+        class="flex-none w-full h-slide flex items-center justify-between"
+      >
         <div
-          class="flex-none w-full h-slide text-white flex items-center justify-between"
+          class="text-white z-10 px-10 md:px-20 w-full "
         >
           <div
-            class="text-white z-10 px-20 w-full"
+            class="flex gap-4 items-center mb-4"
           >
             <div
-              class="flex gap-7 items-center"
+              class="flex"
             >
-              <div
-                class="flex"
-              >
-                <img
-                  alt="PS5"
-                  data-nimg="1"
-                  decoding="async"
-                  height="49"
-                  loading="lazy"
-                  src="/logo-sony.svg"
-                  style="color: transparent; object-fit: contain;"
-                  width="49"
-                />
-              </div>
-              <p
-                class="text-base font-bold"
-              >
-                PS5
-              </p>
+              <img
+                alt="PS5"
+                data-nimg="1"
+                decoding="async"
+                height="49"
+                loading="lazy"
+                src="/logo-sony.svg"
+                style="color: transparent; object-fit: contain;"
+                width="49"
+              />
             </div>
             <p
-              class="text-5xl font-semibold mt-5"
+              class="text-base font-bold"
             >
-              Level Up with PS5 - Buy Now
+              PS5
             </p>
-            <div
-              class="flex gap-4 items-center mt-16"
+          </div>
+          <p
+            class="lg:text-5xl text-2xl font-semibold"
+          >
+            Level Up with PS5 - Buy Now
+          </p>
+          <div
+            class="flex gap-4 items-center mt-10"
+          >
+            <a
+              class="text-white lg:text-lg text-sm underline"
+              href="#"
             >
-              <a
-                class="text-white text-base underline"
-                href="#"
-              >
-                Shop Now
-              </a>
-              <div
-                class="flex"
-              >
-                <img
-                  alt="arrow icon"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="14"
-                  src="/arrow-white.svg"
-                  style="color: transparent;"
-                  width="16"
-                />
-              </div>
+              Shop Now
+            </a>
+            <div
+              class="flex"
+            >
+              <img
+                alt="arrow icon"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="14"
+                src="/arrow-white.svg"
+                style="color: transparent;"
+                width="16"
+              />
             </div>
           </div>
+        </div>
+        <div
+          class="w-full"
+        >
           <img
             alt="slide-image"
             data-nimg="1"
@@ -321,7 +337,7 @@ exports[`Carousel component Should be render match to snapshot 1`] = `
             loading="lazy"
             src="/_next/image?url=%2Fhero-ps5.png&w=828&q=75"
             srcset="/_next/image?url=%2Fhero-ps5.png&w=640&q=75 1x, /_next/image?url=%2Fhero-ps5.png&w=828&q=75 2x"
-            style="color: transparent; object-fit: contain; width: 100%; height: 100%;"
+            style="color: transparent; object-fit: contain; max-height: 100%; max-width: 100%;"
             width="400"
           />
         </div>

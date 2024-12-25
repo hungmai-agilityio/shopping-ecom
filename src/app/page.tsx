@@ -25,9 +25,10 @@ interface HomeProps {
 }
 const Home = async ({ searchParams }: HomeProps) => {
   const user = await getUserCookie();
+
   return (
     <div className={clsx('my-10 container lg:px-1 px-4', popping.className)}>
-      <div className="lg:block hidden">
+      <div className="md:block hidden">
         <Carousel items={slideHero} />
       </div>
       <FlashSale user={user} searchParams={searchParams} />

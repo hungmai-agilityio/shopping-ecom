@@ -15,7 +15,7 @@ export default function GlobalError({
 
   return (
     <div className="container mx-auto text-center my-28 mb-7.5">
-      <h2 className="text-red-600 font-medium md:text-[162px] text-heading">
+      <h2 className="text-red-600 font-medium md:text-[162px] text-5xl">
         Error
       </h2>
       <p className="text-sm text-dark-100 text-center mt-2">

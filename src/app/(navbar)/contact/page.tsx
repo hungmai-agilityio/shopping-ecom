@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { Metadata } from 'next';
 
 // Constants
 import { popping } from '@/constants';
@@ -8,7 +9,6 @@ import { CardContact, ContactSection } from '@/ui/sections';
 
 // Components
 import { Breadcrumb } from '@/ui/components';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact'

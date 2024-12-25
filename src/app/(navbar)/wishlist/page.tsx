@@ -29,7 +29,7 @@ const Wishlist = async () => {
   }
 
   return (
-    <section className="container">
+    <section className="container lg:px-0 px-4">
       <WishListSection products={products} user={user} />
       <div className="flex justify-between items-center my-20 container">
         <Tag label="Just For You" />

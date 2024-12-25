@@ -3,10 +3,10 @@ import { Heading } from '@/ui/components';
 
 const StorySection = () => {
   return (
-    <section className="container flex flex-wrap items-center justify-between gap-10 my-20">
-      <div className="w-card-about">
+    <section className="flex lg:flex-row flex-col-reverse items-center justify-between gap-14 my-20">
+      <div className="container md:w-card-about w-full">
         <Heading>Our Story</Heading>
-        <p className="text-base mt-16">
+        <p className="text-base md:mt-16 mt-7">
           Launced in 2015, Exclusive is South Asia's premier online shopping
           makterplace with an active presense in Bangladesh. Supported by wide
           range of tailored marketing, data and service solutions, Exclusive has
@@ -20,7 +20,7 @@ const StorySection = () => {
         </p>
       </div>
 
-      <Image src="/about.png" alt="about-image" width={705} height={609} />
+      <Image src="/about.png" alt="about-image" width={600} height={609} />
     </section>
   );
 };

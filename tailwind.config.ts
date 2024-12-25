@@ -36,7 +36,7 @@ const config: Config = {
       width: {
         'card-sm': '270px',
         'cart-md': '470px',
-        'card-about': '500px',
+        'card-about': '525px',
         'card-info': '370px',
         'card-detail': '500px',
         'avatar-sm': '40px',

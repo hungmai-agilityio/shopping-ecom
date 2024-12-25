@@ -25,7 +25,7 @@ const ProductListSelling = async ({ user, page = 0 }: ProductListProps) => {
 
   if (error) {
     return (
-      <div className="container my-10">
+      <div className="container">
         <p className="text-center text-primary">
           Error: Failed to fetch product data. Please try again later.
         </p>

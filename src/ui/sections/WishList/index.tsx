@@ -108,30 +108,32 @@ const WishListSection = ({ products, user }: WishlistProps) => {
           Move All To Bag
         </Button>
       </div>
-      <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2">
-        {wishlist.map((item) => {
-          const product = products.find((p) => p.id === item.productId);
+      <div className="flex justify-center">
+        <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2">
+          {wishlist.map((item) => {
+            const product = products.find((p) => p.id === item.productId);
 
-          if (!product) return null;
+            if (!product) return null;
 
-          return (
-            <CardWishList
-              key={item.id}
-              image={product.image}
-              name={product.name}
-              id={item.id}
-              productId={item.productId}
-              price={product.price}
-              ratings={product.ratings}
-              colors={product.colors || []}
-              sizes={product.sizes || []}
-              discount={product.discount}
-              isNewProduct={product.isNew}
-              originalPrice={product.originalPrice}
-              user={user}
-            />
-          );
-        })}
+            return (
+              <CardWishList
+                key={item.id}
+                image={product.image}
+                name={product.name}
+                id={item.id}
+                productId={item.productId}
+                price={product.price}
+                ratings={product.ratings}
+                colors={product.colors || []}
+                sizes={product.sizes || []}
+                discount={product.discount}
+                isNewProduct={product.isNew}
+                originalPrice={product.originalPrice}
+                user={user}
+              />
+            );
+          })}
+        </div>
       </div>
       {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>

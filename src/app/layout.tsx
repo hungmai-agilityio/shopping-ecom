@@ -12,7 +12,8 @@ import { getUserCookie } from '@/libs';
 export const metadata: Metadata = {
   title: 'Exclusive shop',
   description:
-    'Discover a wide range of products at great prices on our online shopping platform. Shop with ease and enjoy secure payments, fast delivery, and exceptional customer support'
+    'Discover a wide range of products at great prices on our online shopping platform. Shop with ease and enjoy secure payments, fast delivery, and exceptional customer support',
+  icons: '/favicon.png'
 };
 
 export default function RootLayout({

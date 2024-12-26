@@ -23,7 +23,7 @@ const Cart = async () => {
   }
 
   return (
-    <div className="container my-20">
+    <div className="container my-20 lg:px-0 px-4">
       <Breadcrumb />
       <CartSection products={products} user={user} />
     </div>

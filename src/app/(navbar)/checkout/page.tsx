@@ -31,7 +31,7 @@ const Checkout = async () => {
   }
 
   return (
-    <div className="container">
+    <div className="container lg:px-0 px-4">
       <section className="my-20">
         <Breadcrumb />
       </section>
@@ -44,7 +44,7 @@ const Checkout = async () => {
         </div>
       </section>
     </div>
-  );
+  );  
 };
 
 export default Checkout;

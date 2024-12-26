@@ -106,7 +106,7 @@ const CartTable = ({
   });
 
   return (
-    <div className="lg:h-table h-full overflow-y-auto scrollbar">
+    <div className="lg:h-table h-[500px] overflow-y-auto scrollbar">
       <Table>
         <Head>
           <Row styles="lg:flex hidden">

@@ -33,19 +33,27 @@ const Footer = () => {
               Save $3 with App New User Only
             </p>
             <div className="mt-4 flex space-x-4">
-              <Image src="/qr-code.webp" alt="qr code" width={76} height={76} />
+              <Image
+                src="/qr-code.webp"
+                alt="qr code"
+                width={76}
+                height={76}
+                priority
+              />
               <div className="flex flex-col gap-4">
                 <Image
                   src="/store.webp"
                   alt="Google Play"
                   width={110}
                   height={40}
+                  priority
                 />
                 <Image
                   src="/app-store.webp"
                   alt="App Store"
                   width={110}
                   height={40}
+                  priority
                 />
               </div>
             </div>

@@ -22,6 +22,7 @@ const CardInfo = ({ image, name, desc }: CardInfoProps) => {
           priority
           width={326}
           height={390}
+          loading="eager"
           style={{ objectFit: 'contain', width: '100%', height: '100%' }}
         />
         <div className="mt-8">

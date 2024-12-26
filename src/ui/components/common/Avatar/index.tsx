@@ -33,6 +33,7 @@ const Avatar = ({
         onClick={onClick}
         src={src || defaultAvatar}
         alt={alt}
+        loading="eager"
         fill
         className={clsx(
           'object-cover font-bold',

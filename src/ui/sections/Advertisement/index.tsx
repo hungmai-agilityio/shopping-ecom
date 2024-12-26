@@ -29,7 +29,13 @@ const Advertisement = () => {
           </Button>
         </div>
       </div>
-      <Image src="/ads-frame.png" alt="ads frame" width={568} height={330} />
+      <Image
+        src="/ads-frame.png"
+        alt="ads frame"
+        width={568}
+        height={330}
+        loading="eager"
+      />
     </div>
   );
 };

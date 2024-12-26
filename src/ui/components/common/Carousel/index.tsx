@@ -105,6 +105,7 @@ const Carousel = ({
               <Image
                 src={item.image}
                 alt={'slide-image'}
+                loading='eager'
                 width={400}
                 height={370}
                 style={{

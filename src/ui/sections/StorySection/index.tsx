@@ -20,7 +20,7 @@ const StorySection = () => {
         </p>
       </div>
 
-      <Image src="/about.png" alt="about-image" width={600} height={609} />
+      <Image src="/about.png" alt="about-image" width={600} height={609} loading='eager'/>
     </section>
   );
 };

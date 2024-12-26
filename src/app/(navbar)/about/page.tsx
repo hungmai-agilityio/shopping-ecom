@@ -10,7 +10,8 @@ import { CarouselStaff } from '@/ui/sections';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About'
+  title: 'About',
+  description: 'AAbout page briefly introduces the website and its operators'
 };
 
 const About = () => {

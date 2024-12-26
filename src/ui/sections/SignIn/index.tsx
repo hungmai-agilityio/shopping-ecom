@@ -88,7 +88,7 @@ const SignInSection = () => {
           </Button>
           <Link
             href={END_POINT.SIGN_UP}
-            className="font-medium text-base text-primary"
+            className="font-medium md:text-base text-sm text-primary"
           >
             Don't have an account?
           </Link>

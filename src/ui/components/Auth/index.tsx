@@ -11,7 +11,7 @@ interface AuthFormProps {
 const AuthForm = ({ title, subtitle, children }: AuthFormProps) => {
   return (
     <div className="flex my-10">
-      <div className="lg:w-1/2">
+      <div className="lg:w-1/2 lg:block hidden">
         <Image
           src="/image-form.webp"
           alt="img-form"
@@ -22,7 +22,7 @@ const AuthForm = ({ title, subtitle, children }: AuthFormProps) => {
       </div>
       <div className="lg:w-form w-full my-auto lg:mx-36 mx-14">
         <div className={`${popping.className}`}>
-          <h1 className={`text-4xl font-medium ${inter.className}`}>{title}</h1>
+          <h1 className={`lg:text-4xl text-2xl font-medium ${inter.className}`}>{title}</h1>
           <p className="text-base mt-5">{subtitle}</p>
           {children}
         </div>

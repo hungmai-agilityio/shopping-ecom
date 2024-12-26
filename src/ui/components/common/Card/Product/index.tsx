@@ -112,6 +112,7 @@ const CardProduct = memo(
             height={100}
             style={{ objectFit: 'contain' }}
             className="mx-auto"
+            loading="eager"
           />
           {isShowAction && (
             <div

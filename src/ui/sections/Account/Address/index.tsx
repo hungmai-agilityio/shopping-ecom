@@ -293,7 +293,7 @@ const AddressSection = ({ user }: AddressProps) => {
                 )}
               </div>
               <div className="flex md:flex-col justify-center items-center gap-5 md:my-0 my-5">
-                <div className="flex items-end">
+                <div className="flex items-center">
                   <Icon
                     src="/icon-edit.svg"
                     alt="icon edit"

@@ -9,7 +9,7 @@ import { SendEmail, List, Logo, Social } from '@/ui/components';
 const Footer = () => {
   return (
     <footer
-      className={`${popping.className} mt-20 bg-black text-white py-12 text-base`}
+      className={`${popping.className} mt-20 bg-black text-white py-12 text-base lg:px-0 px-4`}
     >
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">

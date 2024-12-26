@@ -212,7 +212,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
           <InputController
             name="password"
             placeholder="Password"
-            label="Password Changes"
+            label="Current Password"
             type={showPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
             isRequired
             control={control}

@@ -4,7 +4,8 @@ import { CartSection } from '@/ui/sections';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cart'
+  title: 'Cart',
+  description: 'View and manage items in your shopping cart before checkout'
 };
 
 const Cart = async () => {

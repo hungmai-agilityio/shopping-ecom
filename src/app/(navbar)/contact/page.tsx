@@ -11,7 +11,8 @@ import { CardContact, ContactSection } from '@/ui/sections';
 import { Breadcrumb } from '@/ui/components';
 
 export const metadata: Metadata = {
-  title: 'Contact'
+  title: 'Contact',
+  description: 'Get in touch with us for support, inquiries, or feedback'
 };
 
 const Contact = () => {

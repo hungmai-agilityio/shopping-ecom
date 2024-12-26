@@ -11,7 +11,8 @@ import { SkeletonProductList, Tag } from '@/ui/components';
 import { ProductListSelling, WishListSection } from '@/ui/sections';
 
 export const metadata: Metadata = {
-  title: 'Wishlist'
+  title: 'Wishlist',
+  description: 'Save and manage your favorite products for future purchases'
 };
 const Wishlist = async () => {
   const user = await getUserCookie();

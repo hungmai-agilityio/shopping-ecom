@@ -14,7 +14,9 @@ import { Breadcrumb } from '@/ui/components';
 import { AccountSection } from '@/ui/sections';
 
 export const metadata: Metadata = {
-  title: 'Account'
+  title: 'Account',
+  description:
+    'This page allows users to make edits and changes to their profile'
 };
 
 const Account = async () => {

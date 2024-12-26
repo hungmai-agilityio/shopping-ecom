@@ -10,7 +10,9 @@ import { Breadcrumb } from '@/ui/components';
 import { CartOrder, BillingMenu } from '@/ui/sections';
 
 export const metadata: Metadata = {
-  title: 'Checkout'
+  title: 'Checkout',
+  description:
+    'Review your shipping details, order summary, and total amount before completing your purchase'
 };
 
 const Checkout = async () => {

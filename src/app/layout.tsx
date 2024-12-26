@@ -10,7 +10,9 @@ import { QueryProvider } from '@/Provider';
 import { getUserCookie } from '@/libs';
 
 export const metadata: Metadata = {
-  title: 'Exclusive shop'
+  title: 'Exclusive shop',
+  description:
+    'Discover a wide range of products at great prices on our online shopping platform. Shop with ease and enjoy secure payments, fast delivery, and exceptional customer support'
 };
 
 export default function RootLayout({

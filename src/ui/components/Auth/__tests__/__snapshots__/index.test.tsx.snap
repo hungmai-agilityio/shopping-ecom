@@ -6,7 +6,7 @@ exports[`AuthForm component Should be render match to snapshot 1`] = `
     class="flex my-10"
   >
     <div
-      class="lg:w-1/2"
+      class="lg:w-1/2 lg:block hidden"
     >
       <img
         alt="img-form"
@@ -28,7 +28,7 @@ exports[`AuthForm component Should be render match to snapshot 1`] = `
         class="className"
       >
         <h1
-          class="text-4xl font-medium className"
+          class="lg:text-4xl text-2xl font-medium className"
         >
           Enter some text
         </h1>

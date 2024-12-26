@@ -42,8 +42,9 @@ const CarouselStaff = ({ slides }: CarouselStaffProps) => {
         {Array.from({ length: totalSlides }).map((_, index) => (
           <button
             key={index}
+            aria-label={`${index}-picker`}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-5 h-5 rounded-full ${
               index === currentIndex ? 'bg-gray-800' : 'bg-gray-300'
             }`}
           ></button>

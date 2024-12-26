@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'AAbout page briefly introduces the website and its operators'
+  description: 'About page briefly introduces the website and its operators'
 };
 
 const About = () => {

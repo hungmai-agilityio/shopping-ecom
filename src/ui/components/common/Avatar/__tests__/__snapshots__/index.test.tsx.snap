@@ -11,7 +11,7 @@ exports[`Avatar component Should be render match to snapshot 1`] = `
       data-nimg="fill"
       data-testid="avatar"
       decoding="async"
-      loading="lazy"
+      loading="eager"
       src="/user.svg"
       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
     />

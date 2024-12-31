@@ -11,7 +11,8 @@ import { MESSAGE_API, QUERY, STATUS, TYPE, popping } from '@/constants';
 import { IProduct, IUser, IWishlist, ICart } from '@/interface';
 
 // Libs
-import { getUserCart, getUserWishList, updateCart } from '@/libs';
+import { getUserCart, getUserWishList } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Components
 import { Button, CardWishList, ToastMessage } from '@/ui/components';
@@ -24,18 +25,19 @@ import {
 } from '@/hooks';
 
 interface WishlistProps {
-  user: IUser;
   products: IProduct[];
 }
 
-const WishListSection = ({ products, user }: WishlistProps) => {
+const WishListSection = ({ products }: WishlistProps) => {
+  const { userId } = useUserStore();
+
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
   } | null>(null);
   const { data: wishlist = [], error: wishlistError } = useQuery<IWishlist[]>({
     queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(user.id)
+    queryFn: () => getUserWishList(userId!)
   });
 
   const addToCart = useAddDataToCart();
@@ -58,7 +60,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
       const product = products.find((p) => p.id === item.productId);
       if (!product) return;
 
-      return getUserCart(user.id).then((cartItems) => {
+      return getUserCart(userId!).then((cartItems) => {
         const existingItem = cartItems.find(
           (cartItem: ICart) =>
             cartItem.productId === product.id &&
@@ -76,7 +78,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
 
         const cartData: ICart = {
           id: uuidv4(),
-          userId: user.id,
+          userId: userId!,
           productId: product.id,
           color: product.colors?.[0] || '',
           size: product.sizes?.[0] || '',
@@ -94,7 +96,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
     Promise.all(dataWishlist).then(() => {
       clearWishlist.mutate();
     });
-  }, [wishlist, products, addToCart, user.id]);
+  }, [wishlist, products, addToCart, userId!]);
 
   return (
     <section className={`${popping.className}`}>
@@ -129,7 +131,7 @@ const WishListSection = ({ products, user }: WishlistProps) => {
                 discount={product.discount}
                 isNewProduct={product.isNew}
                 originalPrice={product.originalPrice}
-                user={user}
+                userId={userId!}
               />
             );
           })}

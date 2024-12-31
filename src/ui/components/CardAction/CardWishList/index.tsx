@@ -35,7 +35,7 @@ interface CardWishListProps {
   originalPrice?: number;
   price: number;
   ratings: number;
-  user: IUser;
+  userId: string;
 }
 
 const CardWishList = memo(
@@ -51,7 +51,7 @@ const CardWishList = memo(
     originalPrice,
     price,
     ratings,
-    user
+    userId
   }: CardWishListProps) => {
     const [toast, setToast] = useState<{
       status: STATUS;
@@ -71,11 +71,11 @@ const CardWishList = memo(
      */
     const handleAddToCart = useCallback(
       async (productId: string) => {
-        const cartItems = await getUserCart(user!.id);
+        const cartItems = await getUserCart(userId);
 
         const existingItem = cartItems.find(
           (cartItem: ICart) =>
-            cartItem.productId === productId && cartItem.userId === user?.id
+            cartItem.productId === productId && cartItem.userId === userId
         );
 
         if (existingItem) {
@@ -92,7 +92,7 @@ const CardWishList = memo(
         if (!existingItem) {
           const newItem: ICart = {
             id: uuidv4(),
-            userId: user!.id,
+            userId: userId,
             productId: productId,
             color: colors[0],
             size: sizes[0],
@@ -105,7 +105,7 @@ const CardWishList = memo(
           });
         }
       },
-      [user]
+      [userId]
     );
 
     /**

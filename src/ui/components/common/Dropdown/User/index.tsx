@@ -21,6 +21,8 @@ import Link from 'next/link';
 // Hooks
 import { useModal } from '@/hooks/useModal';
 
+import { useUserStore } from '@/stores';
+
 interface UserDropdownProps {
   wishlistLength?: number;
   cartLength?: number;
@@ -31,7 +33,7 @@ const UserDropdown = ({
 }: UserDropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const modal = useModal();
-
+  const { removeUserId } = useUserStore();
   const router = useRouter();
   const menuButton = <UserIcon />;
 
@@ -41,6 +43,7 @@ const UserDropdown = ({
 
   const handleSignOut = async () => {
     await fetch('/api/logout', { method: 'POST' });
+    removeUserId();
     router.push(END_POINT.SIGN_IN);
     router.refresh();
   };

@@ -21,8 +21,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = getUserCookie();
-
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
@@ -31,7 +29,7 @@ export default function RootLayout({
           url="https://monitoring.react-scan.com/api/v1/ingest"
         />
         <QueryProvider>
-          <Header user={user} />
+          <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
         </QueryProvider>

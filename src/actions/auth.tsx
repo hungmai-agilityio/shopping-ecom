@@ -44,7 +44,11 @@ export const createUser = async (data: IUser) => {
     maxAge: TIME_STATUS.COOKIE_TIME
   });
 
-  return { success: true, message: MESSAGE_API.SIGN_UP_SUCCESS };
+  return {
+    success: true,
+    message: MESSAGE_API.SIGN_UP_SUCCESS,
+    userId: newUser.id
+  };
 };
 
 export const handleSignIn = async (email: string, password: string) => {
@@ -66,7 +70,11 @@ export const handleSignIn = async (email: string, password: string) => {
       maxAge: TIME_STATUS.COOKIE_TIME
     });
 
-    return { success: true, message: MESSAGE_API.SIGN_IN_SUCCESS };
+    return {
+      success: true,
+      message: MESSAGE_API.SIGN_IN_SUCCESS,
+      userId: user.id
+    };
   } catch (error) {
     return { success: false, message: MESSAGE_API.SIGN_IN_ERROR };
   }

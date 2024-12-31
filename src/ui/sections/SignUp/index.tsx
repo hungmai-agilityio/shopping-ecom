@@ -24,9 +24,11 @@ import { IUser } from '@/interface';
 // Libs
 import { signUpSchema } from '@/libs';
 import { createUser } from '@/actions';
+import { useUserStore } from '@/stores';
 
 const SignUpSection = () => {
   const router = useRouter();
+  const { setUserId } = useUserStore();
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
@@ -50,6 +52,7 @@ const SignUpSection = () => {
     });
 
     if (response.success) {
+      setUserId(response.userId!);
       router.push(END_POINT.HOME);
     }
   };

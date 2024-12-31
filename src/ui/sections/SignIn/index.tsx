@@ -9,6 +9,7 @@ import { useState } from 'react';
 // Libs
 import { signInSchema } from '@/libs';
 import { handleSignIn } from '@/actions';
+import { useUserStore } from '@/stores';
 
 // Constants
 import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
@@ -23,6 +24,7 @@ import {
 
 const SignInSection = () => {
   const router = useRouter();
+  const { setUserId } = useUserStore();
 
   const [showPass, setShowPass] = useState<boolean>(false);
   const [toast, setToast] = useState<{
@@ -44,11 +46,13 @@ const SignInSection = () => {
   // Toggle password visibility
   const toggleShowPassword = () => setShowPass(!showPass);
 
-  // Handle submit data for loginlogin
+  // Handle submit data for login
   const onSubmit = async (data: { email: string; password: string }) => {
     const response = await handleSignIn(data.email, data.password);
 
     if (response.success) {
+      setUserId(response.userId!);
+
       router.push(END_POINT.HOME);
     } else {
       setToast({

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MESSAGE_API, QUERY, STATUS, TYPE, popping } from '@/constants';
 
 // Interfaces
-import { IProduct, IUser, IWishlist, ICart } from '@/interface';
+import { IProduct, IWishlist, ICart } from '@/interface';
 
 // Libs
 import { getUserCart, getUserWishList } from '@/libs';

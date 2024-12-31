@@ -5,15 +5,16 @@ import { ISearchParams } from '@/interface/util';
 import { Heading, PaginationProduct, Tag } from '@/ui/components';
 import OurProductList from '@/ui/sections/Products/OurProducts/List';
 
-// Sections
-import { IUser } from '@/interface';
+// Libs
+import { getUserCookie } from '@/libs';
 
 interface OurProductProps {
   searchParams: ISearchParams;
-  user: IUser;
 }
 
-const OurProductSection = async ({ searchParams, user }: OurProductProps) => {
+const OurProductSection = async ({ searchParams }: OurProductProps) => {
+  const user = await getUserCookie();
+
   const start = parseInt(searchParams['category'] || '0', 10);
 
   const query = searchParams?.['product-query'] ?? '';

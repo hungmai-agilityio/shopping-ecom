@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const Checkout = async () => {
   const userCookie = await getUserCookie();
-  const user = await getUserId(userCookie.id);
+  const user = await getUserId(userCookie);
   const { data, error } = await getProducts();
 
   if (error) {
@@ -40,11 +40,11 @@ const Checkout = async () => {
           <BillingMenu user={user} />
         </div>
         <div className="flex-1">
-          <CartOrder products={data} user={user} />
+          <CartOrder products={data} userId={userCookie} />
         </div>
       </section>
     </div>
-  );  
+  );
 };
 
 export default Checkout;

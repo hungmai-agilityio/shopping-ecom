@@ -14,11 +14,10 @@ import { ProductListFlashSale } from '@/ui/sections';
 import { ISearchParams, IUser } from '@/interface';
 
 interface FlashSaleProps {
-  user: IUser;
   searchParams: ISearchParams;
 }
 
-const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
+const FlashSale = ({ searchParams }: FlashSaleProps) => {
   const start = parseInt(searchParams['flash-sale-page'] || '0', 10);
 
   return (
@@ -32,7 +31,7 @@ const FlashSale = ({ user, searchParams }: FlashSaleProps) => {
         <PaginationProduct queryPage="flash-sale-page" start={start} />
       </div>
       <Suspense key={start} fallback={<SkeletonProductList />}>
-        <ProductListFlashSale user={user} page={start} />
+        <ProductListFlashSale page={start} />
       </Suspense>
     </section>
   );

@@ -31,13 +31,13 @@ const Home = async ({ searchParams }: HomeProps) => {
       <div className="md:block hidden">
         <Carousel items={slideHero} />
       </div>
-      <FlashSale user={user} searchParams={searchParams} />
-      <BestSellingSection user={user} searchParams={searchParams} />
+      <FlashSale searchParams={searchParams} />
+      <BestSellingSection searchParams={searchParams} />
       <section className="my-20">
         <Advertisement />
       </section>
       <section className="my-20">
-        <OurProductSection searchParams={searchParams} user={user} />
+        <OurProductSection searchParams={searchParams} />
       </section>
       <section className="my-20">
         <Arrival />

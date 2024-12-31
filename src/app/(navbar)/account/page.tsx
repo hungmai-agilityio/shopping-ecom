@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const Account = async () => {
   const user = await getUserCookie();
-  const data = await getUserId(user.id);
+  const data = await getUserId(user);
 
   const fullName = `${data.firstName} ${data.lastName}`;
   return (

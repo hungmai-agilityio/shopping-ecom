@@ -26,7 +26,7 @@ describe('ProductDetail section', () => {
   };
   const defaultProps = {
     product: mockProduct,
-    user: mockUser
+    userId: mockUser.id
   };
   test('Should render section with default props', () => {
     renderWithQueryClient(<ProductDetail {...defaultProps} />);

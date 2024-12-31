@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 import { WishListSection } from '@/ui/sections';
 import { useAddDataToCart, useClearWishlist } from '@/hooks';
-import { mockProducts, mockUser, mockWishlist } from '@/mock';
+import { mockProducts, mockWishlist } from '@/mock';
 
 jest.mock('@tanstack/react-query');
 
@@ -29,7 +29,7 @@ describe('WishListSection Component', () => {
   });
 
   test('renders wishlist products correctly', () => {
-    render(<WishListSection products={mockProducts} user={mockUser} />);
+    render(<WishListSection products={mockProducts} />);
 
     expect(screen.getByText('Wishlist (2)')).toBeInTheDocument();
   });
@@ -40,7 +40,7 @@ describe('WishListSection Component', () => {
       error: new Error('Failed to fetch wishlist')
     });
 
-    render(<WishListSection products={mockProducts} user={mockUser} />);
+    render(<WishListSection products={mockProducts} />);
 
     expect(
       screen.getByText(
@@ -50,7 +50,7 @@ describe('WishListSection Component', () => {
   });
 
   test('handles adding all products to cart and clears wishlist', async () => {
-    render(<WishListSection products={mockProducts} user={mockUser} />);
+    render(<WishListSection products={mockProducts} />);
 
     const moveAllButton = screen.getByText('Move All To Bag');
     fireEvent.click(moveAllButton);
@@ -66,7 +66,7 @@ describe('WishListSection Component', () => {
       error: null
     });
 
-    render(<WishListSection products={mockProducts} user={mockUser} />);
+    render(<WishListSection products={mockProducts} />);
 
     const moveAllButton = screen.getByText('Move All To Bag');
     expect(moveAllButton).toBeDisabled();

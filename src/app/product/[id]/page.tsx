@@ -42,7 +42,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
     <div className={`${popping.className} mt-10 lg:px-0 px-4`}>
       <section className="container">
         <Breadcrumb customLastName={product.name} />
-        <ProductDetail user={user} product={product} />
+        <ProductDetail userId={user} product={product} />
       </section>
       <section className="my-20 container">
         <Tag label="Related Item" />

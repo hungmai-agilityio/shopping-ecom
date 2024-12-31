@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Metadata } from 'next';
 
 // Libs
-import { getProducts, getUserCookie } from '@/libs';
+import { getProducts } from '@/libs';
 
 // Components
 import { SkeletonProductList, Tag } from '@/ui/components';
@@ -15,8 +15,6 @@ export const metadata: Metadata = {
   description: 'Save and manage your favorite products for future purchases'
 };
 const Wishlist = async () => {
-  const user = await getUserCookie();
-
   const { data: products, error: errorProduct } = await getProducts();
 
   if (errorProduct) {
@@ -36,7 +34,7 @@ const Wishlist = async () => {
         <Tag label="Just For You" />
       </div>
       <Suspense fallback={<SkeletonProductList />}>
-        <ProductListSelling user={user} />
+        <ProductListSelling />
       </Suspense>
     </section>
   );

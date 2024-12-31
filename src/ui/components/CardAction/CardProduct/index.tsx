@@ -1,6 +1,6 @@
 'use client';
 
-import { ICart, IUser, IWishlist } from '@/interface';
+import { ICart, IWishlist } from '@/interface';
 import { memo, useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
@@ -36,7 +36,7 @@ interface CardProductActionProps {
   originalPrice?: number;
   price: number;
   ratings: number;
-  user: IUser;
+  userId: string;
 }
 
 const CardProductAction = memo(
@@ -53,7 +53,7 @@ const CardProductAction = memo(
     originalPrice,
     price,
     ratings,
-    user
+    userId
   }: CardProductActionProps) => {
     const [toast, setToast] = useState<{
       status: STATUS;
@@ -68,8 +68,8 @@ const CardProductAction = memo(
 
     const { data: wishlist = [] } = useQuery<IWishlist[]>({
       queryKey: [QUERY.WISHLIST],
-      queryFn: () => getUserWishList(user.id),
-      enabled: !!user
+      queryFn: () => getUserWishList(userId),
+      enabled: !!userId
     });
 
     const isProductInWishlist = (productId: string) =>
@@ -87,12 +87,12 @@ const CardProductAction = memo(
 
       const newItem: IWishlist = {
         id: uuidv4(),
-        userId: user.id,
+        userId: userId,
         productId: id
       };
 
       addToWishlist.mutate(newItem);
-    }, [id, user, wishlist, removeFromWishlist, addToWishlist]);
+    }, [id, userId, wishlist, removeFromWishlist, addToWishlist]);
 
     /**
      * Handle adding a product to the cart.
@@ -102,11 +102,11 @@ const CardProductAction = memo(
      */
     const handleAddToCart = useCallback(
       async (productId: string) => {
-        const cartItems = await getUserCart(user!.id);
+        const cartItems = await getUserCart(userId);
 
         const existingItem = cartItems.find(
           (cartItem: ICart) =>
-            cartItem.productId === productId && cartItem.userId === user?.id
+            cartItem.productId === productId && cartItem.userId === userId
         );
 
         if (existingItem) {
@@ -123,7 +123,7 @@ const CardProductAction = memo(
         if (!existingItem) {
           const newItem: ICart = {
             id: uuidv4(),
-            userId: user.id,
+            userId: userId,
             productId: productId,
             color: colors[0],
             size: sizes[0],
@@ -136,7 +136,7 @@ const CardProductAction = memo(
           });
         }
       },
-      [user]
+      [userId]
     );
 
     const handleRedirectPreview = (id: string) => {
@@ -152,7 +152,7 @@ const CardProductAction = memo(
           icon={isProductInWishlist(id) ? '/heart-red.svg' : '/heart.svg'}
           id={id}
           isNewProduct={isNewProduct ? isNew : undefined}
-          isShowAction={!!user}
+          isShowAction={!!userId}
           key={id}
           name={name}
           oldPrice={originalPrice}

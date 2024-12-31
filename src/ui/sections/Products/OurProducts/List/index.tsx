@@ -16,11 +16,10 @@ import {
 
 // Sections
 import { CategorySection, ProductListCategory } from '@/ui/sections';
-import { IUser } from '@/interface';
 
 interface OurProductProps {
   page: number;
-  user: IUser;
+  user: string;
   queryCategory: string;
 }
 

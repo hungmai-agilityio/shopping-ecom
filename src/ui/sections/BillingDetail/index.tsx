@@ -14,7 +14,7 @@ import { InputController, ToastMessage } from '@/ui/components';
 import { MESSAGE_API, STATUS, TYPE } from '@/constants';
 
 // Libs
-import { setCookieUser, updateUser } from '@/libs';
+import { updateUser } from '@/libs';
 
 interface BillingDetailsProps {
   user: IUser;
@@ -75,7 +75,6 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
     };
 
     setCurrentUser(addressUpdate);
-    setCookieUser(addressUpdate);
 
     const response = await updateUser(user.id, addressUpdate);
     setToast({
@@ -102,6 +101,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
             control={control}
             isRequired
             variant={TYPE.THIRD}
+            isDisabled
           />
         </div>
         <div className="my-10">
@@ -154,6 +154,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
             isRequired
             control={control}
             variant={TYPE.THIRD}
+            isDisabled
           />
         </div>
 

@@ -13,11 +13,10 @@ import {
 import { ProductListSelling } from '@/ui/sections';
 
 interface SellingProp {
-  user: IUser;
   searchParams: ISearchParams;
 }
 
-const BestSellingSection = async ({ user, searchParams }: SellingProp) => {
+const BestSellingSection = async ({ searchParams }: SellingProp) => {
   const start = parseInt(searchParams['best-selling-page'] || '0', 10);
   return (
     <section className="my-20">
@@ -28,7 +27,7 @@ const BestSellingSection = async ({ user, searchParams }: SellingProp) => {
         <PaginationProduct queryPage="best-selling-page" start={start} />
       </div>
       <Suspense key={start} fallback={<SkeletonProductList />}>
-        <ProductListSelling user={user} page={start} />
+        <ProductListSelling page={start} />
       </Suspense>
     </section>
   );

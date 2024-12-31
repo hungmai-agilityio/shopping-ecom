@@ -19,7 +19,7 @@ describe('CartOrder Component', () => {
       isLoading: true
     });
 
-    render(<CartOrder user={mockUser} products={mockProducts} />);
+    render(<CartOrder userId={mockUser.id} products={mockProducts} />);
 
     expect(screen.getByText('Loading your cart...')).toBeInTheDocument();
   });
@@ -30,7 +30,7 @@ describe('CartOrder Component', () => {
       isLoading: false
     });
 
-    render(<CartOrder user={mockUser} products={mockProducts} />);
+    render(<CartOrder userId={mockUser.id} products={mockProducts} />);
 
     expect(screen.getByText('Your cart is empty')).toBeInTheDocument();
     expect(screen.getByAltText('cart empty')).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe('CartOrder Component', () => {
       isLoading: false
     });
 
-    render(<CartOrder user={mockUser} products={mockProducts} />);
+    render(<CartOrder userId={mockUser.id} products={mockProducts} />);
 
     const button = screen.getByText('Place Order');
     fireEvent.click(button);

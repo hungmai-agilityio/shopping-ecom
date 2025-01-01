@@ -23,7 +23,7 @@ import {
 import { useModal } from '@/hooks/useModal';
 
 // Libs
-import { setCookieUser, updateUser } from '@/libs';
+import { updateUser } from '@/libs';
 
 interface AddressProps {
   user: IUser;
@@ -118,7 +118,6 @@ const AddressSection = ({ user }: AddressProps) => {
 
     if (response.data) {
       setCurrentUser(updatedUser);
-      setCookieUser(updatedUser);
 
       setToast({
         status: STATUS.SUCCESS,
@@ -152,7 +151,6 @@ const AddressSection = ({ user }: AddressProps) => {
 
     if (response.data) {
       setCurrentUser(updatedUser);
-      setCookieUser(updatedUser);
 
       setToast({
         status: STATUS.SUCCESS,
@@ -188,7 +186,6 @@ const AddressSection = ({ user }: AddressProps) => {
 
       if (response.data) {
         setCurrentUser(updatedUser);
-        setCookieUser(updatedUser);
       }
     },
     [currentUser]
@@ -209,7 +206,6 @@ const AddressSection = ({ user }: AddressProps) => {
 
     if (response.data) {
       setCurrentUser(updatedUser);
-      setCookieUser(updatedUser);
       deleteModal.closeModal();
 
       setToast({

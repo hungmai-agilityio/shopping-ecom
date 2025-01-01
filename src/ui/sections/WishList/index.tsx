@@ -30,14 +30,14 @@ interface WishlistProps {
 
 const WishListSection = ({ products }: WishlistProps) => {
   const { userId } = useUserStore();
-
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
   } | null>(null);
   const { data: wishlist = [], error: wishlistError } = useQuery<IWishlist[]>({
     queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(userId!)
+    queryFn: () => getUserWishList(userId!),
+    enabled: !!userId
   });
 
   const addToCart = useAddDataToCart();
@@ -65,7 +65,8 @@ const WishListSection = ({ products }: WishlistProps) => {
           (cartItem: ICart) =>
             cartItem.productId === product.id &&
             cartItem.color === (product.colors?.[0] || '') &&
-            cartItem.size === (product.sizes?.[0] || '')
+            cartItem.size === (product.sizes?.[0] || '') &&
+            cartItem.userId === userId
         );
 
         if (existingItem) {

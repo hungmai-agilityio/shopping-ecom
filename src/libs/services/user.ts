@@ -55,21 +55,6 @@ export const updateUser = async (id: string, data: IUser) => {
   });
 };
 
-export const setCookieUser = async (user: any) => {
-  try {
-    const response = await fetch('/api/set-cookie', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user })
-    });
-
-    const data = await response.json();
-    if (response.ok) console.log('Cookie set successfully:', data.message);
-  } catch (error) {
-    console.error('Error setting cookie:', error);
-  }
-};
-
 export const getUserCookie = () => {
   const cookies = require('next/headers').cookies;
 

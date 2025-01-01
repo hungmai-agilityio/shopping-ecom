@@ -30,7 +30,6 @@ import {
   checkPassword,
   postAvatar,
   profileSchema,
-  setCookieUser,
   updateUser
 } from '@/libs';
 
@@ -120,9 +119,6 @@ const ProfileSection = ({ user }: ProfileProps) => {
     };
 
     const response = await updateUser(user.id, updatedUser);
-
-    setCookieUser(updatedUser);
-
     setToast({
       status: response.data ? STATUS.SUCCESS : STATUS.ERROR,
       message: response.data

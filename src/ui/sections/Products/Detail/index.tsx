@@ -113,7 +113,8 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
       (cartItem: ICart) =>
         cartItem.productId === product.id &&
         cartItem.color === color &&
-        cartItem.size === size
+        cartItem.size === size &&
+        cartItem.userId === userId
     );
 
     if (existingItem) {

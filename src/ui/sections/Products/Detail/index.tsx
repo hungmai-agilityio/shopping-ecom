@@ -10,7 +10,7 @@ import { clsx } from 'clsx';
 import { inter, MESSAGE_API, popping, QUERY, SIZE, STATUS } from '@/constants';
 
 // Interfaces
-import { ICart, IProduct, IUser, IWishlist } from '@/interface';
+import { ICart, IProduct, IWishlist } from '@/interface';
 
 // Components
 import {
@@ -35,10 +35,10 @@ import {
 
 interface DetailProps {
   product: IProduct;
-  user: IUser;
+  userId: string;
 }
 
-const ProductDetail = ({ product, user }: DetailProps) => {
+const ProductDetail = ({ product, userId }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors?.[0] || '');
   const [size, setSize] = useState<string>(product.sizes?.[0] || '');
@@ -53,13 +53,13 @@ const ProductDetail = ({ product, user }: DetailProps) => {
   // Fetch cart items
   const { data: cartItems = [] } = useQuery<ICart[]>({
     queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(user.id)
+    queryFn: () => getUserCart(userId)
   });
 
   const { data: wishlist = [] } = useQuery<IWishlist[]>({
     queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(user.id),
-    enabled: !!user
+    queryFn: () => getUserWishList(userId),
+    enabled: !!userId
   });
 
   // Handle set quantity
@@ -98,7 +98,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
 
       const newItem: IWishlist = {
         id: uuidv4(),
-        userId: user.id,
+        userId: userId,
         productId: product.id
       };
 
@@ -113,7 +113,8 @@ const ProductDetail = ({ product, user }: DetailProps) => {
       (cartItem: ICart) =>
         cartItem.productId === product.id &&
         cartItem.color === color &&
-        cartItem.size === size
+        cartItem.size === size &&
+        cartItem.userId === userId
     );
 
     if (existingItem) {
@@ -130,7 +131,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
     if (!existingItem) {
       const cartData: ICart = {
         id: uuidv4(),
-        userId: user.id,
+        userId: userId,
         productId: product.id,
         color: color || product.colors?.[0] || '',
         size: size || product.sizes?.[0] || '',
@@ -209,22 +210,24 @@ const ProductDetail = ({ product, user }: DetailProps) => {
           <p className="my-5 text-sm">{product.description}</p>
         </div>
         <div className="my-6">
-          <div className="flex gap-7 items-center">
-            <p
-              className={clsx(
-                'lg:text-2xl text-base text-dark',
-                inter.className
-              )}
-            >
-              Colours:
-            </p>
+          {product.colors && (
+            <div className="flex gap-7 items-center">
+              <p
+                className={clsx(
+                  'lg:text-2xl text-base text-dark',
+                  inter.className
+                )}
+              >
+                Colours:
+              </p>
 
-            <ColorPicker
-              colors={product.colors!}
-              onClick={handleColorChange}
-              selectedColor={color}
-            />
-          </div>
+              <ColorPicker
+                colors={product.colors!}
+                onClick={handleColorChange}
+                selectedColor={color}
+              />
+            </div>
+          )}
           {product.sizes && (
             <div className="flex gap-7 items-center">
               <p
@@ -251,7 +254,7 @@ const ProductDetail = ({ product, user }: DetailProps) => {
               onChange={handleQuantityChange}
               max={product.stock}
             />
-            {user && (
+            {userId && (
               <>
                 <Button size={SIZE.SMALL} onClick={handleAddToCart}>
                   Buy Now

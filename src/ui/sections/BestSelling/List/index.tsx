@@ -1,8 +1,5 @@
 // Libs
-import { getProductLimit } from '@/libs';
-
-// Interfaces
-import { IUser } from '@/interface';
+import { getProductLimit, getUserCookie } from '@/libs';
 
 // Sections
 import { ProductList } from '@/ui/sections';
@@ -11,11 +8,12 @@ import { ProductList } from '@/ui/sections';
 import { ButtonShowMore } from '@/ui/components';
 
 interface ProductListProps {
-  user: IUser;
   page?: number;
 }
 
-const ProductListSelling = async ({ user, page = 0 }: ProductListProps) => {
+const ProductListSelling = async ({ page = 0 }: ProductListProps) => {
+  const user = await getUserCookie();
+
   const limit = 4;
   const { data, error } = await getProductLimit(
     'bestSelling=true',
@@ -35,10 +33,10 @@ const ProductListSelling = async ({ user, page = 0 }: ProductListProps) => {
 
   return (
     <>
-      <ProductList user={user} products={data} />
+      <ProductList userId={user} products={data} />
       <ButtonShowMore
         queryKey="bestSelling=true"
-        user={user}
+        userId={user}
         startQuery={limit}
       />
     </>

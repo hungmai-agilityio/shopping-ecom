@@ -1,4 +1,4 @@
-import { getProducts, getUserCookie } from '@/libs';
+import { getProducts } from '@/libs';
 import { Breadcrumb } from '@/ui/components';
 import { CartSection } from '@/ui/sections';
 import { Metadata } from 'next';
@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 
 const Cart = async () => {
   const { data: products, error: errorProduct } = await getProducts();
-  const user = await getUserCookie();
 
   if (errorProduct) {
     return (
@@ -25,7 +24,7 @@ const Cart = async () => {
   return (
     <div className="container my-20 lg:px-0 px-4">
       <Breadcrumb />
-      <CartSection products={products} user={user} />
+      <CartSection products={products} />
     </div>
   );
 };

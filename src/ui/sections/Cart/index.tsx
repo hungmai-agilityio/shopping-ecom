@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 // Interfaces
-import { IProduct, IUser, ICart } from '@/interface';
+import { IProduct, ICart } from '@/interface';
 
 // Components
 import { CartTotal } from '@/ui/components';
@@ -13,6 +13,7 @@ import { CartTable } from '@/ui/sections';
 
 // libs
 import { getUserCart } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Constants
 import { END_POINT, QUERY } from '@/constants';
@@ -22,17 +23,18 @@ import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
 
 interface CartSectionProps {
   products: IProduct[];
-  user: IUser;
 }
 
-const CartSection = ({ products, user }: CartSectionProps) => {
+const CartSection = ({ products }: CartSectionProps) => {
   const [subtotal, setSubtotal] = useState<number>(0);
   const router = useRouter();
 
+  const { userId } = useUserStore();
+
   const { data: cart = [], error: cartError } = useQuery<ICart[]>({
-    queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(user.id),
-    enabled: !!user
+    queryKey: [QUERY.CART, userId],
+    queryFn: () => getUserCart(userId!),
+    enabled: !!userId
   });
 
   const updateQuantity = useUpdateQuantity();

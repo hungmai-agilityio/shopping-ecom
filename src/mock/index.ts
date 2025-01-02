@@ -108,7 +108,7 @@ export const mockProduct = {
   ratings: 4,
   colors: ['red', 'blue'],
   image: '/test-image.jpg',
-  user: mockUser,
+  userId: mockUser.id,
   isNew: true,
   discount: 10,
   originalPrice: 120,

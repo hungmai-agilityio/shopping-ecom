@@ -21,15 +21,15 @@ import { getUserCart } from '@/libs';
 import { useClearUserCart } from '@/hooks';
 
 interface CartOrderProps {
-  user: IUser;
+  userId: string;
   products: IProduct[];
 }
 
-const CartOrder = memo(({ products, user }: CartOrderProps) => {
+const CartOrder = memo(({ products, userId }: CartOrderProps) => {
   const { data: cartData = [], isLoading } = useQuery<ICart[]>({
     queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(user.id),
-    enabled: !!user
+    queryFn: () => getUserCart(userId),
+    enabled: !!userId
   });
 
   const [subtotal, setSubtotal] = useState<number>(0);

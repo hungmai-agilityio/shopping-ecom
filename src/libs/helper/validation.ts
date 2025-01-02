@@ -56,3 +56,7 @@ export const addressSchema = z.object({
     .min(10, { message: 'Phone number must have at least 10 digits.' })
     .max(10, { message: 'Phone number must have no more than 10 digits.' })
 });
+
+export const billingSchema = z.object({
+  address: addressSchema
+});

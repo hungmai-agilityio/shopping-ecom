@@ -1,14 +1,12 @@
-
 import { getUserId, getUserCart, getUserWishList, getUserEmail } from '@/libs';
 
-import { END_POINT, KEY } from "@/constants";
-import { addUser, getUserCookie, setCookieUser, updateUser } from "@/libs/services/user";
-import { mockUser, mockUserAddress } from "@/mock";
+import { END_POINT, KEY } from '@/constants';
+import { getUserCookie } from '@/libs/services/user';
+import { mockUser } from '@/mock';
 
 (global.fetch as jest.Mock) = jest.fn();
 
 describe('API Service Tests', () => {
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -20,7 +18,10 @@ describe('API Service Tests', () => {
   };
 
   test('Should fetch user by ID', async () => {
-    const mockUserData = { id: '34639f802f-43fh56021flu-3314656j', name: 'Test User' };
+    const mockUserData = {
+      id: '34639f802f-43fh56021flu-3314656j',
+      name: 'Test User'
+    };
     (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockUserData
@@ -71,7 +72,9 @@ describe('API Service Tests', () => {
   });
 
   test('Should fetch user by email', async () => {
-    const mockUserEmailData = [{ id: '34639f802f-43fh56021flu-3314656j', email: 'test@example.com' }];
+    const mockUserEmailData = [
+      { id: '34639f802f-43fh56021flu-3314656j', email: 'test@example.com' }
+    ];
     (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockUserEmailData
@@ -82,24 +85,11 @@ describe('API Service Tests', () => {
     expect(fetch).toHaveBeenCalledWith(
       `${process.env.NEXT_PUBLIC_URL}${END_POINT.USERS}?email=test@example.com`
     );
-    expect(result).toEqual(
-      { data: [{ email: 'test@example.com', id: '34639f802f-43fh56021flu-3314656j' }], error: null }
-    );
-  });
-
-  test('Should set user cookie', async () => {
-
-    (fetch as jest.Mock).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockResponse
-    });
-
-    await setCookieUser(mockUser);
-
-    expect(fetch).toHaveBeenCalledWith('/api/set-cookie', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user: mockUser })
+    expect(result).toEqual({
+      data: [
+        { email: 'test@example.com', id: '34639f802f-43fh56021flu-3314656j' }
+      ],
+      error: null
     });
   });
 
@@ -118,4 +108,3 @@ describe('API Service Tests', () => {
     expect(result).toEqual(mockUser);
   });
 });
-

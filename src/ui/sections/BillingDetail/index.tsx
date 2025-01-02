@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 // Interfaces
 import { IUser, Address } from '@/interface';
@@ -14,7 +15,7 @@ import { InputController, ToastMessage } from '@/ui/components';
 import { MESSAGE_API, STATUS, TYPE } from '@/constants';
 
 // Libs
-import { setCookieUser, updateUser } from '@/libs';
+import { updateUser, billingSchema } from '@/libs';
 
 interface BillingDetailsProps {
   user: IUser;
@@ -37,6 +38,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
     handleSubmit,
     formState: { isDirty }
   } = useForm({
+    resolver: zodResolver(billingSchema),
     defaultValues: {
       ...currentUser,
       address: defaultAddress
@@ -75,7 +77,6 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
     };
 
     setCurrentUser(addressUpdate);
-    setCookieUser(addressUpdate);
 
     const response = await updateUser(user.id, addressUpdate);
     setToast({
@@ -102,6 +103,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
             control={control}
             isRequired
             variant={TYPE.THIRD}
+            isDisabled
           />
         </div>
         <div className="my-10">
@@ -154,6 +156,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
             isRequired
             control={control}
             variant={TYPE.THIRD}
+            isDisabled
           />
         </div>
 

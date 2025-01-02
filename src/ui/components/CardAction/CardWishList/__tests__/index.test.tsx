@@ -38,7 +38,7 @@ describe('CardWishList Component', () => {
     originalPrice: 100,
     price: 90,
     ratings: 4.5,
-    user: mockUser
+    userId: mockUser.id
   };
 
   test('renders product information correctly', () => {

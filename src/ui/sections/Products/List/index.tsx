@@ -1,12 +1,12 @@
-import { IProduct, IUser } from '@/interface';
+import { IProduct } from '@/interface';
 import { CardProductAction } from '@/ui/components';
 
 interface ProductListProps {
-  user: IUser;
+  userId: string;
   products: IProduct[];
 }
 
-const ProductList = async ({ user, products }: ProductListProps) => {
+const ProductList = async ({ userId, products }: ProductListProps) => {
   return (
     <div className="flex justify-center">
       <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2">
@@ -23,7 +23,7 @@ const ProductList = async ({ user, products }: ProductListProps) => {
             isDiscount={product.discount !== undefined}
             discount={product.discount}
             isNew={product.isNew}
-            user={user}
+            userId={userId}
             originalPrice={product.originalPrice}
             isNewProduct={product.isNew}
           />

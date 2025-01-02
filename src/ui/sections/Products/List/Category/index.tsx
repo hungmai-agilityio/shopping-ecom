@@ -11,7 +11,7 @@ import { ProductList } from '@/ui/sections';
 import { ButtonShowMore } from '@/ui/components';
 
 interface ProductListProps {
-  user: IUser;
+  user: string;
   query?: string;
 }
 
@@ -31,8 +31,8 @@ const ProductListCategory = async ({ user, query }: ProductListProps) => {
 
   return (
     <>
-      <ProductList user={user} products={data} />
-      <ButtonShowMore user={user} queryKey={query} startQuery={limit} />
+      <ProductList userId={user} products={data} />
+      <ButtonShowMore userId={user} queryKey={query} startQuery={limit} />
     </>
   );
 };

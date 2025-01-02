@@ -1,9 +1,6 @@
 import { clsx } from 'clsx';
 import { popping, slideHero } from '@/constants';
 
-// Libs
-import { getUserCookie } from '@/libs';
-
 // Sections
 import {
   Arrival,
@@ -24,20 +21,18 @@ interface HomeProps {
   searchParams: ISearchParams;
 }
 const Home = async ({ searchParams }: HomeProps) => {
-  const user = await getUserCookie();
-
   return (
     <div className={clsx('my-10 container lg:px-1 px-4', popping.className)}>
       <div className="md:block hidden">
         <Carousel items={slideHero} />
       </div>
-      <FlashSale user={user} searchParams={searchParams} />
-      <BestSellingSection user={user} searchParams={searchParams} />
+      <FlashSale searchParams={searchParams} />
+      <BestSellingSection searchParams={searchParams} />
       <section className="my-20">
         <Advertisement />
       </section>
       <section className="my-20">
-        <OurProductSection searchParams={searchParams} user={user} />
+        <OurProductSection searchParams={searchParams} />
       </section>
       <section className="my-20">
         <Arrival />

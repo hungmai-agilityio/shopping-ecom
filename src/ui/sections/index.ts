@@ -13,6 +13,7 @@ export { default as ContactSection } from '@/ui/sections/Contact';
 export { default as FlashSale } from '@/ui/sections/FlashSale';
 export { default as Footer } from '@/ui/sections/Footer';
 export { default as Header } from '@/ui/sections/Header';
+export { default as UserMenu } from '@/ui/sections/Header/Menu';
 export { default as OurProductSection } from '@/ui/sections/Products/OurProducts';
 export { default as ProductDetail } from '@/ui/sections/Products/Detail';
 export { default as ProductList } from '@/ui/sections/Products/List';

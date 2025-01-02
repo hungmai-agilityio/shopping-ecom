@@ -1,9 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
 import { useRouter } from 'next/navigation';
 import { CartSection } from '@/ui/sections';
-import { mockCart, mockProducts, mockUser } from '@/mock';
+import { mockCart, mockProducts } from '@/mock';
 
 jest.mock('@tanstack/react-query');
 jest.mock('@/hooks');
@@ -27,7 +27,7 @@ describe('CartSection Component', () => {
       isLoading: false
     });
 
-    render(<CartSection products={mockProducts} user={mockUser} />);
+    render(<CartSection products={mockProducts} />);
 
     expect(
       screen.getByText(
@@ -42,7 +42,7 @@ describe('CartSection Component', () => {
       error: null
     });
 
-    render(<CartSection products={mockProducts} user={mockUser} />);
+    render(<CartSection products={mockProducts} />);
 
     expect(screen.getByText('Product')).toBeInTheDocument();
     expect(screen.getByText('Attributes')).toBeInTheDocument();

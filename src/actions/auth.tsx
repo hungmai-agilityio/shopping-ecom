@@ -39,12 +39,15 @@ export const createUser = async (data: IUser) => {
     return { success: false, message: MESSAGE_API.SIGN_UP_ERROR };
   }
 
-  const cookieData = { id: newUser.id, firstName, email };
-  cookies().set(KEY.USER, JSON.stringify(cookieData), {
+  cookies().set(KEY.USER, JSON.stringify(newUser.id), {
     maxAge: TIME_STATUS.COOKIE_TIME
   });
 
-  return { success: true, message: MESSAGE_API.SIGN_UP_SUCCESS };
+  return {
+    success: true,
+    message: MESSAGE_API.SIGN_UP_SUCCESS,
+    userId: newUser.id
+  };
 };
 
 export const handleSignIn = async (email: string, password: string) => {
@@ -62,11 +65,15 @@ export const handleSignIn = async (email: string, password: string) => {
       return { success: false, message: 'Invalid password' };
     }
 
-    cookies().set(KEY.USER, JSON.stringify(user), {
+    cookies().set(KEY.USER, JSON.stringify(user.id), {
       maxAge: TIME_STATUS.COOKIE_TIME
     });
 
-    return { success: true, message: MESSAGE_API.SIGN_IN_SUCCESS };
+    return {
+      success: true,
+      message: MESSAGE_API.SIGN_IN_SUCCESS,
+      userId: user.id
+    };
   } catch (error) {
     return { success: false, message: MESSAGE_API.SIGN_IN_ERROR };
   }

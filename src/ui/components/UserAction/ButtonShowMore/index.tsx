@@ -10,19 +10,19 @@ import {
 } from '@/ui/components';
 
 // Interfaces
-import { IProduct, IUser } from '@/interface';
+import { IProduct } from '@/interface';
 
 // Libs
 import { getProductLimit } from '@/libs';
 
 interface ButtonShowMoreProps {
   queryKey?: string;
-  user: IUser;
+  userId: string;
   startQuery: number;
 }
 
 const ButtonShowMore = memo(
-  ({ queryKey = '', user, startQuery }: ButtonShowMoreProps) => {
+  ({ queryKey = '', userId, startQuery }: ButtonShowMoreProps) => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [hasMoreData, setHasMoreData] = useState<boolean>(true);
@@ -71,7 +71,7 @@ const ButtonShowMore = memo(
                 isDiscount={product.discount !== undefined}
                 discount={product.discount}
                 isNew={product.isNew}
-                user={user}
+                userId={userId}
                 originalPrice={product.originalPrice}
                 isNewProduct={product.isNew}
               />

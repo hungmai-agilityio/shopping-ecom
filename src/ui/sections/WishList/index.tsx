@@ -63,7 +63,14 @@ const WishListSection = ({ products }: WishlistProps) => {
       return getUserCart(userId!).then((cartItems) => {
         const existingItem = cartItems.find(
           (cartItem: ICart) =>
+<<<<<<< HEAD
             cartItem.productId === product.id && cartItem.userId === userId
+=======
+            cartItem.productId === product.id &&
+            cartItem.color === (product.colors?.[0] || '') &&
+            cartItem.size === (product.sizes?.[0] || '') &&
+            cartItem.userId === userId
+>>>>>>> 19ac6a7cb6e44eabf5e37f3ccfab2244c996733d
         );
 
         if (existingItem) {

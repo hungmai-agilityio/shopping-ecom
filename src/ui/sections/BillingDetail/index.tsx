@@ -15,7 +15,11 @@ import { InputController, ToastMessage } from '@/ui/components';
 import { MESSAGE_API, STATUS, TYPE } from '@/constants';
 
 // Libs
+<<<<<<< HEAD
 import { updateUser, billingSchema } from '@/libs';
+=======
+import { updateUser } from '@/libs';
+>>>>>>> 19ac6a7cb6e44eabf5e37f3ccfab2244c996733d
 
 interface BillingDetailsProps {
   user: IUser;

@@ -15,22 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: 'https://shopping-ecom-gi32.vercel.app/wishlist',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://shopping-ecom-gi32.vercel.app/cart',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://shopping-ecom-gi32.vercel.app/account',
-      lastModified: new Date(),
-    },
-    {
-      url: 'https://shopping-ecom-gi32.vercel.app/checkout',
-      lastModified: new Date(),
-    },
-    {
       url: 'https://shopping-ecom-gi32.vercel.app/sign-in',
       lastModified: new Date(),
     },

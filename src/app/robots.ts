@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/account', '/wishlist', '/cart', '/checkout']
     },
     sitemap: 'https://shopping-ecom-gi32.vercel.app/sitemap.xml',
   };

@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Services
-import { addCartData, deleteCart, updateCart } from '@/libs';
+import { addCartData, deleteCart, getUserCart, updateCart } from '@/libs';
 
 // Constants
 import { QUERY } from '@/constants';
@@ -12,6 +12,17 @@ import { ICart } from '@/interface';
 interface UseCartActionsProps {
   cartData: ICart[];
 }
+
+export const useCartData = (user: string) => {
+  const { data = [], error, isLoading } = useQuery<ICart[]>({
+    queryKey: [QUERY.CART],
+    queryFn: () => getUserCart(user),
+    enabled: !!user,
+    retry: 1,
+  });
+
+  return { data, error, isLoading };
+};
 
 export const useAddDataToCart = () => {
   const queryClient = useQueryClient();

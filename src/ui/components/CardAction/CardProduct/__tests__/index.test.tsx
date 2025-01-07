@@ -7,7 +7,8 @@ import {
   useAddDataToCart,
   useAddToWishlist,
   useRemoveFromWishlist,
-  useUpdateDataToCart
+  useUpdateDataToCart,
+  useWishlistData
 } from '@/hooks';
 
 // Libs
@@ -23,11 +24,11 @@ jest.mock('@/hooks');
 jest.mock('@/libs');
 jest.mock('next/navigation');
 
-describe('CardProductAction Component', () => {
-  const mockWishlist = [
-    { id: 'wishlist1', productId: 'product1', userId: 'user1' }
-  ];
+const mockWishlist = [
+  { id: 'wishlist1', productId: 'product1', userId: 'user1' }
+];
 
+describe('CardProductAction Component', () => {
   const setupMocks = () => {
     (useAddDataToCart as jest.Mock).mockReturnValue({ mutate: jest.fn() });
     (useAddToWishlist as jest.Mock).mockReturnValue({ mutate: jest.fn() });
@@ -36,6 +37,7 @@ describe('CardProductAction Component', () => {
     (getUserCart as jest.Mock).mockResolvedValue([]);
     (getUserWishList as jest.Mock).mockResolvedValue(mockWishlist);
     (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
+    (useWishlistData as jest.Mock).mockReturnValue({ data: mockWishlist });
   };
 
   const renderWithQueryClient = (ui: React.ReactElement) => {

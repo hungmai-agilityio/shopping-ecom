@@ -1,25 +1,23 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 // Interfaces
-import { IProduct, ICart } from '@/interface';
+import { IProduct } from '@/interface';
 
 // Components
 import { CartTotal } from '@/ui/components';
 import { CartTable } from '@/ui/sections';
 
 // libs
-import { getUserCart } from '@/libs';
 import { useUserStore } from '@/stores';
 
 // Constants
-import { END_POINT, QUERY } from '@/constants';
+import { END_POINT } from '@/constants';
 
 // Hooks
-import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
+import { useUpdateQuantity, useRemoveFromCart, useCartData } from '@/hooks';
 
 interface CartSectionProps {
   products: IProduct[];
@@ -31,11 +29,7 @@ const CartSection = ({ products }: CartSectionProps) => {
 
   const { userId } = useUserStore();
 
-  const { data: cart = [], error: cartError } = useQuery<ICart[]>({
-    queryKey: [QUERY.CART, userId],
-    queryFn: () => getUserCart(userId!),
-    enabled: !!userId
-  });
+  const { data: cart, error: cartError } = useCartData(userId!);
 
   const updateQuantity = useUpdateQuantity();
   const removeProduct = useRemoveFromCart();

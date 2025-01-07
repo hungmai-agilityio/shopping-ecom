@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { useQuery } from '@tanstack/react-query';
 import { WishListSection } from '@/ui/sections';
-import { useAddDataToCart, useClearWishlist } from '@/hooks';
+import { useAddDataToCart, useClearWishlist, useWishlistData } from '@/hooks';
 import { mockProducts, mockWishlist } from '@/mock';
 
 jest.mock('@tanstack/react-query');
@@ -14,18 +13,13 @@ describe('WishListSection Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockWishlist,
-      error: null
-    });
-
     (useAddDataToCart as jest.Mock).mockReturnValue({
       mutate: mockAddToCartMutate
     });
-
     (useClearWishlist as jest.Mock).mockReturnValue({
       mutate: mockClearWishlistMutate
     });
+    (useWishlistData as jest.Mock).mockReturnValue({ data: mockWishlist });
   });
 
   test('renders wishlist products correctly', () => {
@@ -35,7 +29,7 @@ describe('WishListSection Component', () => {
   });
 
   test('shows error message when wishlist fetch fails', () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    (useWishlistData as jest.Mock).mockReturnValue({
       data: [],
       error: new Error('Failed to fetch wishlist')
     });
@@ -61,9 +55,8 @@ describe('WishListSection Component', () => {
   });
 
   test('disables "Move All To Bag" button when wishlist is empty', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: [],
-      error: null
+    (useWishlistData as jest.Mock).mockReturnValue({
+      data: []
     });
 
     render(<WishListSection products={mockProducts} />);

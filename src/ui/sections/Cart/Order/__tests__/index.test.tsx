@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
-import { useClearUserCart } from '@/hooks';
+import { useCartData, useClearUserCart } from '@/hooks';
 
 // Sections
 import { CartOrder } from '@/ui/sections';
@@ -13,11 +13,12 @@ jest.mock('@tanstack/react-query');
 jest.mock('@/hooks');
 
 describe('CartOrder Component', () => {
+  beforeEach(() => {
+    (useCartData as jest.Mock).mockReturnValue({ data: mockCart });
+  });
+
   test('Should renders loading state when cart data is loading', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: [],
-      isLoading: true
-    });
+    (useCartData as jest.Mock).mockReturnValue({ data: [], isLoading: true });
 
     render(<CartOrder userId={mockUser.id} products={mockProducts} />);
 
@@ -25,10 +26,7 @@ describe('CartOrder Component', () => {
   });
 
   test('Should renders empty cart state when cart is empty', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: [],
-      isLoading: false
-    });
+    (useCartData as jest.Mock).mockReturnValue({ data: [] });
 
     render(<CartOrder userId={mockUser.id} products={mockProducts} />);
 
@@ -40,11 +38,6 @@ describe('CartOrder Component', () => {
     const mockMutate = jest.fn();
     (useClearUserCart as jest.Mock).mockReturnValue({
       mutate: mockMutate
-    });
-
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockCart,
-      isLoading: false
     });
 
     render(<CartOrder userId={mockUser.id} products={mockProducts} />);

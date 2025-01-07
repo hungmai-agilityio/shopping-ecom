@@ -21,7 +21,8 @@ import { Button, CardWishList, ToastMessage } from '@/ui/components';
 import {
   useAddDataToCart,
   useClearWishlist,
-  useUpdateDataToCart
+  useUpdateDataToCart,
+  useWishlistData
 } from '@/hooks';
 
 interface WishlistProps {
@@ -34,12 +35,8 @@ const WishListSection = ({ products }: WishlistProps) => {
     status: STATUS;
     message: string;
   } | null>(null);
-  const { data: wishlist = [], error: wishlistError } = useQuery<IWishlist[]>({
-    queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(userId!),
-    enabled: !!userId
-  });
 
+  const { data: wishlist, error: wishlistError } = useWishlistData(userId!);
   const addToCart = useAddDataToCart();
   const updateDataToCart = useUpdateDataToCart();
   const clearWishlist = useClearWishlist({ wishlist });

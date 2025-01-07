@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Constants
 import { QUERY } from '@/constants';
@@ -7,11 +7,22 @@ import { QUERY } from '@/constants';
 import { IWishlist } from '@/interface';
 
 // Libs
-import { addWishList, deleteWishList } from '@/libs';
+import { addWishList, deleteWishList, getUserWishList } from '@/libs';
 
 interface UseWishlistProps {
   wishlist: IWishlist[];
 }
+
+export const useWishlistData = (user: string) => {
+  const { data = [], error, isLoading } = useQuery<IWishlist[]>({
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList(user),
+    enabled: !!user,
+    retry: 1,
+  });
+
+  return { data, error, isLoading };
+};
 
 export const useAddToWishlist = () => {
   const queryClient = useQueryClient();

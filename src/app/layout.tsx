@@ -5,7 +5,7 @@ import './globals.css';
 import { Footer, Header } from '@/ui/sections';
 
 // Provider
-import { QueryProvider } from '@/Provider';
+import { QueryProvider } from '@/providers/QueryClientProvider';
 
 export const metadata: Metadata = {
   title: 'Exclusive shop',

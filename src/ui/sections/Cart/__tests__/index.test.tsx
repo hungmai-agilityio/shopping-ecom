@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { useQuery } from '@tanstack/react-query';
-import { useUpdateQuantity, useRemoveFromCart } from '@/hooks';
+import { useUpdateQuantity, useRemoveFromCart, useCartData } from '@/hooks';
 import { useRouter } from 'next/navigation';
 import { CartSection } from '@/ui/sections';
 import { mockCart, mockProducts } from '@/mock';
@@ -18,13 +17,13 @@ describe('CartSection Component', () => {
     (useUpdateQuantity as jest.Mock).mockReturnValue(mockUpdateQuantity);
     (useRemoveFromCart as jest.Mock).mockReturnValue(mockRemoveProduct);
     (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush });
+    (useCartData as jest.Mock).mockReturnValue({ data: mockCart });
   });
 
   test('Should displays error message when cart fetch fails', () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    (useCartData as jest.Mock).mockReturnValue({
       data: [],
-      error: new Error('Failed to fetch'),
-      isLoading: false
+      error: new Error('Failed to fetch')
     });
 
     render(<CartSection products={mockProducts} />);
@@ -37,11 +36,6 @@ describe('CartSection Component', () => {
   });
 
   test('Should renders cart items and calculates subtotal correctly', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockCart,
-      error: null
-    });
-
     render(<CartSection products={mockProducts} />);
 
     expect(screen.getByText('Product')).toBeInTheDocument();

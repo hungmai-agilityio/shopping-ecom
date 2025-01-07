@@ -2,12 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import { clsx } from 'clsx';
 
 // Constants
-import { inter, MESSAGE_API, popping, QUERY, SIZE, STATUS } from '@/constants';
+import { inter, MESSAGE_API, popping, SIZE, STATUS } from '@/constants';
 
 // Interfaces
 import { ICart, IProduct, IWishlist } from '@/interface';
@@ -24,13 +23,15 @@ import {
 } from '@/ui/components';
 
 // Libs
-import { getUserCart, getUserWishList, updateCart } from '@/libs';
+import { updateCart } from '@/libs';
 
 // Hooks
 import {
   useAddDataToCart,
   useAddToWishlist,
-  useRemoveFromWishlist
+  useCartData,
+  useRemoveFromWishlist,
+  useWishlistData
 } from '@/hooks';
 
 interface DetailProps {
@@ -51,16 +52,8 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
   const removeFromWishlist = useRemoveFromWishlist();
 
   // Fetch cart items
-  const { data: cartItems = [] } = useQuery<ICart[]>({
-    queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(userId)
-  });
-
-  const { data: wishlist = [] } = useQuery<IWishlist[]>({
-    queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(userId),
-    enabled: !!userId
-  });
+  const { data: cartItems } = useCartData(userId);
+  const { data: wishlist } = useWishlistData(userId);
 
   // Handle set quantity
   const handleQuantityChange = useCallback((newQuantity: number) => {

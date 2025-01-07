@@ -4,13 +4,7 @@ const CardContact = () => {
   return (
     <div className="w-96 bg-white shadow-contact py-10 px-9 mb-10">
       <div className="flex items-center gap-5">
-        <Icon
-          src="/icons-phone.svg"
-          alt="icon phone"
-          width={40}
-          height={40}
-          priority
-        />
+        <Icon src="/icons-phone.svg" alt="icon phone" width={40} height={40} />
         <p className="text-base font-medium">Call To Us</p>
       </div>
       <p className="my-6 text-sm">We are available 24/7, 7 days a week.</p>
@@ -19,13 +13,7 @@ const CardContact = () => {
       </p>
       <span className="w-full h-px bg-gray-300 block"></span>
       <div className="flex items-center gap-5 my-6">
-        <Icon
-          src="/icons-mail.svg"
-          alt="icon mail"
-          width={40}
-          height={40}
-          priority
-        />
+        <Icon src="/icons-mail.svg" alt="icon mail" width={40} height={40} />
         <p className="text-base font-medium">Write To US</p>
       </div>
       <p className="my-6 text-sm">

@@ -10,18 +10,18 @@ import {
   useAddDataToCart,
   useAddToWishlist,
   useRemoveFromWishlist,
-  useUpdateDataToCart
+  useUpdateDataToCart,
+  useWishlistData
 } from '@/hooks';
 
 // Components
 import { CardProduct, ToastMessage } from '@/ui/components';
 
 // Libs
-import { getUserCart, getUserWishList } from '@/libs';
+import { getUserCart } from '@/libs';
 
 // Constants
-import { END_POINT, MESSAGE_API, QUERY, STATUS } from '@/constants';
-import { useQuery } from '@tanstack/react-query';
+import { END_POINT, MESSAGE_API, STATUS } from '@/constants';
 
 interface CardProductActionProps {
   colors: string[];
@@ -66,11 +66,7 @@ const CardProductAction = memo(
     const addToCart = useAddDataToCart();
     const router = useRouter();
 
-    const { data: wishlist = [] } = useQuery<IWishlist[]>({
-      queryKey: [QUERY.WISHLIST],
-      queryFn: () => getUserWishList(userId),
-      enabled: !!userId
-    });
+    const { data: wishlist } = useWishlistData(userId);
 
     const isProductInWishlist = (productId: string) =>
       wishlist.some((item) => item.productId === productId);

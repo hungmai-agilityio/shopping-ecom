@@ -2,36 +2,22 @@
 
 import Link from 'next/link';
 
-import { useQuery } from '@tanstack/react-query';
-
 // Constants
-import { END_POINT, QUERY } from '@/constants';
+import { END_POINT } from '@/constants';
 
 // Components
 import { Badge, Icon, UserDropdown } from '@/ui/components';
 
-// Interfaces
-import { ICart, IWishlist } from '@/interface';
-
-// Libs
-import { getUserCart, getUserWishList } from '@/libs';
+// Hooks
+import { useCartData, useWishlistData } from '@/hooks';
 
 interface UserActionProps {
   user: string;
 }
 
 const UserAction = ({ user }: UserActionProps) => {
-  const { data: cart = [] } = useQuery<ICart[]>({
-    queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(user),
-    enabled: !!user
-  });
-
-  const { data: wishlist = [] } = useQuery<IWishlist[]>({
-    queryKey: [QUERY.WISHLIST],
-    queryFn: () => getUserWishList(user),
-    enabled: !!user
-  });
+  const { data: cart } = useCartData(user);
+  const { data: wishlist } = useWishlistData(user);
 
   return (
     <div className="flex gap-8 items-center">

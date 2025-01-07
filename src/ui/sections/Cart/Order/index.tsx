@@ -3,22 +3,18 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 // Interfaces
-import { ICart, IProduct, IUser } from '@/interface';
+import { IProduct } from '@/interface';
 
 // Constants
-import { popping, QUERY } from '@/constants';
+import { popping } from '@/constants';
 
 // Components
 import { Button, FieldLabel } from '@/ui/components';
 
-// Libs
-import { getUserCart } from '@/libs';
-
 // Hooks
-import { useClearUserCart } from '@/hooks';
+import { useClearUserCart, useCartData } from '@/hooks';
 
 interface CartOrderProps {
   userId: string;
@@ -26,22 +22,18 @@ interface CartOrderProps {
 }
 
 const CartOrder = memo(({ products, userId }: CartOrderProps) => {
-  const { data: cartData = [], isLoading } = useQuery<ICart[]>({
-    queryKey: [QUERY.CART],
-    queryFn: () => getUserCart(userId),
-    enabled: !!userId
-  });
+  const { data: cart, isLoading } = useCartData(userId);
 
   const [subtotal, setSubtotal] = useState<number>(0);
-  const clearUserCart = useClearUserCart({ cartData });
+  const clearUserCart = useClearUserCart({ cartData: cart });
 
   useEffect(() => {
-    const total = cartData.reduce((sum, item) => {
+    const total = cart.reduce((sum, item) => {
       const product = products.find((p) => p.id === item.productId);
       return product ? sum + item.quantity * product.price : sum;
     }, 0);
     setSubtotal(total);
-  }, [cartData, products]);
+  }, [cart, products]);
 
   // Handle order product
   const handleOrderProduct = useCallback(() => {
@@ -52,7 +44,7 @@ const CartOrder = memo(({ products, userId }: CartOrderProps) => {
     return <p className="text-center mt-10">Loading your cart...</p>;
   }
 
-  if (!cartData.length) {
+  if (!cart.length) {
     return (
       <div className="flex flex-col justify-center items-center h-full">
         <Image
@@ -72,7 +64,7 @@ const CartOrder = memo(({ products, userId }: CartOrderProps) => {
   return (
     <section className={clsx('w-full', popping.className)}>
       <div className="lg:h-cart-md h-full max-h-card-md overflow-y-auto scrollbar">
-        {cartData.map((item) => {
+        {cart.map((item) => {
           const product = products.find((p) => p.id === item.productId);
           if (!product) return null;
 

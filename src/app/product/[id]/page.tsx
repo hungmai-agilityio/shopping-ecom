@@ -20,11 +20,23 @@ interface Params {
 export async function generateStaticParams() {
   const products = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/${END_POINT.PRODUCTS}`
-  ).then((res) => res.json());
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Failed to fetch products: ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.error('Error fetching products:', error);
+      return [];
+    });
 
   if (!Array.isArray(products)) {
-    return [];
+    console.error('API response is not an array:', products);
+    throw new Error('API response is not an array');
   }
+
   return products.map((product: { id: string }) => ({
     id: product.id
   }));

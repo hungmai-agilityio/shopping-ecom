@@ -22,6 +22,9 @@ export async function generateStaticParams() {
     `${process.env.NEXT_PUBLIC_URL}/${END_POINT.PRODUCTS}`
   ).then((res) => res.json());
 
+  if (!Array.isArray(products)) {
+    return [];
+  }
   return products.map((product: { id: string }) => ({
     id: product.id
   }));

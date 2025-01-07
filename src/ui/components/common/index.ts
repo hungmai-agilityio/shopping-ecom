@@ -22,6 +22,7 @@ export { default as Menu } from '@/ui/components/common/Menu';
 export { default as MenuItem } from '@/ui/components/common/Menu/Item';
 export { default as Modal } from '@/ui/components/common/Modal';
 export { default as ModalAddress } from '@/ui/components/common/Modal/Address';
+export { default as ModalPassword } from '@/ui/components/common/Modal/Password';
 export { default as Navbar } from '@/ui/components/common/Navbar';
 export { default as QuantityHorizontal } from '@/ui/components/common/Quantity/Horizontal';
 export { default as QuantityVertical } from '@/ui/components/common/Quantity/Vertical';

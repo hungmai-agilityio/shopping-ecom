@@ -17,6 +17,5 @@ describe('Profile section', () => {
     expect(screen.getByText('First Name')).toBeInTheDocument();
     expect(screen.getByText('Last Name')).toBeInTheDocument();
     expect(screen.getByText('Email')).toBeInTheDocument();
-    expect(screen.getByText('Current Password')).toBeInTheDocument();
   });
 });

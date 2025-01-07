@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalPassword component Should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="fixed inset-0 flex items-center justify-center z-50"
+  >
+    <div
+      class="fixed inset-0 bg-black opacity-50"
+    />
+    <div
+      class="bg-white rounded-lg shadow-lg z-10 w-96 fixed top-0 left-0 w-full h-full overflow-y-auto md:relative md:max-w-3xl md:h-auto md:overflow-visible"
+    >
+      <div
+        class="p-4 border-b"
+      >
+        <h2
+          class="text-lg font-bold"
+        >
+          Change Password
+        </h2>
+      </div>
+      <div
+        class="p-4"
+      >
+        <div
+          class="flex flex-col gap-8"
+        >
+          <div
+            class="flex flex-col gap-2"
+          >
+            <label
+              class="text-sm font-medium text-gray-600 capitalize"
+            >
+              Current Password
+              <span
+                class="text-primary ml-1"
+              >
+                *
+              </span>
+            </label>
+            <div
+              class="relative"
+            >
+              <input
+                class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14 pr-10"
+                name="password"
+                required=""
+                type="password"
+                value=""
+              />
+              <img
+                alt="icon"
+                class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/eye-hide.svg"
+                style="color: transparent;"
+                width="20"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-2"
+          >
+            <label
+              class="text-sm font-medium text-gray-600 capitalize"
+            >
+              New Password
+              <span
+                class="text-primary ml-1"
+              >
+                *
+              </span>
+            </label>
+            <div
+              class="relative"
+            >
+              <input
+                class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14 pr-10"
+                name="newPassword"
+                required=""
+                type="password"
+                value=""
+              />
+              <img
+                alt="icon"
+                class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/eye-hide.svg"
+                style="color: transparent;"
+                width="20"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-2"
+          >
+            <label
+              class="text-sm font-medium text-gray-600 capitalize"
+            >
+              Confirm New Password
+              <span
+                class="text-primary ml-1"
+              >
+                *
+              </span>
+            </label>
+            <div
+              class="relative"
+            >
+              <input
+                class="w-full p-2 text-gray-700 outline-none border border-dark rounded-md focus:ring-1 focus:ring-dark h-14 pr-10"
+                name="confirm"
+                required=""
+                type="password"
+                value=""
+              />
+              <img
+                alt="icon"
+                class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/eye-hide.svg"
+                style="color: transparent;"
+                width="20"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="p-4 border-t flex justify-between"
+      >
+        <button
+          class="rounded font-medium md:text-base text-xs className w-btn-sm h-[45px] bg-transparent text-primary hover:underline disabled:hover:no-underline"
+        >
+          Close
+        </button>
+        <button
+          class="rounded font-medium md:text-base text-xs className w-btn-sm h-[45px] h-14 bg-primary text-white"
+        >
+          Change
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

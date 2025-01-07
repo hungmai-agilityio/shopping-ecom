@@ -4,34 +4,28 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import bcrypt from 'bcryptjs';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 // Constants
-import {
-  INPUT_TYPE,
-  MESSAGE_API,
-  MESSAGE_VALID,
-  SIZE,
-  STATUS,
-  TYPE
-} from '@/constants';
+import { MESSAGE_API, SIZE, STATUS, TYPE } from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interface';
 
 // Components
-import { Avatar, Button, InputController, ToastMessage } from '@/ui/components';
+import {
+  Avatar,
+  Button,
+  InputController,
+  ModalPassword,
+  ToastMessage
+} from '@/ui/components';
 
 // Libs
-import {
-  checkPassword,
-  postAvatar,
-  profileSchema,
-  updateUser
-} from '@/libs';
+import { postAvatar, profileSchema, updateUser } from '@/libs';
+import { useModal } from '@/hooks/useModal';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 
@@ -40,20 +34,17 @@ interface ProfileProps {
 }
 
 const ProfileSection = ({ user }: ProfileProps) => {
-  const [showPass, setShowPass] = useState<boolean>(false);
-  const [showNewPass, setShowNewPass] = useState<boolean>(false);
-  const [showConfirm, setShowConfirm] = useState<boolean>(false);
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
   const [avatar, setAvatar] = useState<string | StaticImport>(
     user.avatar || ''
   );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
 
   const router = useRouter();
-
+  const passModal = useModal();
   const {
     control,
     handleSubmit,
@@ -64,13 +55,10 @@ const ProfileSection = ({ user }: ProfileProps) => {
     defaultValues: {
       firstName: user.firstName,
       lastName: user.lastName,
-      email: user.email,
-      newPassword: '',
-      confirm: ''
+      email: user.email
     }
   });
 
-  // Handle change avatar upload
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -80,41 +68,15 @@ const ProfileSection = ({ user }: ProfileProps) => {
     }
   };
 
-  // Submit input value and avatar and save on server
   const onSubmit = async (data: ProfileForm) => {
-    const { password, newPassword, confirm, ...rest } = data;
-    let hashedPassword = user.password;
-    const isPasswordCorrect = await checkPassword(password, user.password);
-
-    if (!isPasswordCorrect) {
-      setToast({
-        status: STATUS.ERROR,
-        message: MESSAGE_VALID.CONFIRM_ERROR
-      });
-      return;
-    }
-
-    if (newPassword) {
-      if (await checkPassword(newPassword, user.password)) {
-        setToast({
-          status: STATUS.ERROR,
-          message: MESSAGE_VALID.NEW_PASS_ERROR
-        });
-        return;
-      }
-
-      hashedPassword = await bcrypt.hash(newPassword, 10);
-    }
-
     const imageUrl = selectedFile
       ? await postAvatar(selectedFile)
       : user.avatar;
 
     const updatedUser: IUser = {
       ...user,
-      ...rest,
+      ...data,
       avatar: imageUrl,
-      password: hashedPassword,
       updated_at: new Date().toISOString()
     };
 
@@ -128,11 +90,6 @@ const ProfileSection = ({ user }: ProfileProps) => {
 
     if (response.data) router.refresh();
   };
-
-  // Toggle password visibility
-  const toggleShowPassword = () => setShowPass(!showPass);
-  const toggleShowNewPassword = () => setShowNewPass(!showNewPass);
-  const toggleShowConfirm = () => setShowConfirm(!showConfirm);
 
   const handleResetForm = () => {
     reset();
@@ -204,57 +161,36 @@ const ProfileSection = ({ user }: ProfileProps) => {
             variant={TYPE.THIRD}
           />
         </div>
-        <div className="my-5">
-          <InputController
-            name="password"
-            placeholder="Password"
-            label="Current Password"
-            type={showPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-            isRequired
-            control={control}
-            variant={TYPE.THIRD}
-            showIcon={showPass ? '/eye.svg' : '/eye-hide.svg'}
-            toggleShow={toggleShowPassword}
-          />
-        </div>
-        <div className="my-5">
-          <InputController
-            name="newPassword"
-            placeholder="New Password"
-            type={showNewPass ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-            control={control}
-            variant={TYPE.THIRD}
-            showIcon={showNewPass ? '/eye.svg' : '/eye-hide.svg'}
-            toggleShow={toggleShowNewPassword}
-          />
-          <div className="my-5">
-            <InputController
-              name="confirm"
-              placeholder="Confirm New Password"
-              type={showConfirm ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-              control={control}
-              variant={TYPE.THIRD}
-              showIcon={showConfirm ? '/eye.svg' : '/eye-hide.svg'}
-              toggleShow={toggleShowConfirm}
-            />
-          </div>
-        </div>
 
-        <div className="my-10 flex justify-end gap-10 items-center">
+        <div className="flex justify-between items-center">
           <Button
             type="button"
-            className="text-dark hover:underline text-base"
-            disabled={isSubmitting}
-            onClick={handleResetForm}
+            className="text-primary hover:underline text-base"
+            onClick={passModal.openModal}
           >
-            Cancel
+            Change password
           </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Save Changes
-          </Button>
+          <div className="my-10 flex justify-end gap-10 items-center">
+            <Button
+              type="button"
+              className="text-dark hover:underline text-base"
+              disabled={isSubmitting}
+              onClick={handleResetForm}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
+              Save Changes
+            </Button>
+          </div>
         </div>
       </form>
       {toast && <ToastMessage status={toast.status} message={toast.message} />}
+      <ModalPassword
+        isOpen={passModal.isOpen}
+        onClose={passModal.closeModal}
+        user={user}
+      />
     </div>
   );
 };

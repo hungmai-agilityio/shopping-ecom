@@ -25,25 +25,25 @@ export const profileSchema = z
     firstName: z.string().min(1, { message: 'First Name is required.' }),
     lastName: z.string().optional(),
     email: z.string().email({ message: 'Invalid email address.' }),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
-    newPassword: z.string().optional(),
-    confirm: z.string().optional()
   })
-  .refine(
-    (data) => !data.newPassword || data.newPassword.length >= 6, // true
-    {
-      message: MESSAGE_VALID.PASSWORD_ERROR,
-      path: ['newPassword']
-    }
-  )
-  .refine(
-    (data) => !data.newPassword || data.newPassword === data.confirm, // true
-    {
-      message: MESSAGE_VALID.CONFIRM_ERROR,
-      path: ['confirm']
-    }
-  );
 
+export const passwordSchema = z.object({
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  newPassword: z.string().optional(),
+  confirm: z.string().optional()
+}).refine(
+  (data) => !data.newPassword || data.newPassword.length >= 6,
+  {
+    message: 'Password must be at least 6 characters',
+    path: ['newPassword']
+  }
+).refine(
+  (data) => !data.newPassword || data.newPassword === data.confirm,
+  {
+    message: 'Confirm password does not match new password',
+    path: ['confirm']
+  }
+);
 
 export const addressSchema = z.object({
   apartment: z.string().optional(),

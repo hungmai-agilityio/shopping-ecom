@@ -5,16 +5,11 @@ import { ISearchParams } from '@/interface/util';
 import { Heading, PaginationProduct, Tag } from '@/ui/components';
 import OurProductList from '@/ui/sections/Products/OurProducts/List';
 
-// Libs
-import { getUserCookie } from '@/libs';
-
 interface OurProductProps {
   searchParams: ISearchParams;
 }
 
 const OurProductSection = async ({ searchParams }: OurProductProps) => {
-  const user = await getUserCookie();
-
   const start = parseInt(searchParams['category'] || '0', 10);
 
   const query = searchParams?.['product-query'] ?? '';
@@ -27,7 +22,7 @@ const OurProductSection = async ({ searchParams }: OurProductProps) => {
         <Heading styles="my-10">Explore Our Products</Heading>
         <PaginationProduct queryPage="category" start={start} />
       </div>
-      <OurProductList page={start} queryCategory={queryCategory} user={user} />
+      <OurProductList page={start} queryCategory={queryCategory} />
     </div>
   );
 };

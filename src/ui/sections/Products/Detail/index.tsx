@@ -33,13 +33,13 @@ import {
   useRemoveFromWishlist,
   useWishlistData
 } from '@/hooks';
+import { useUserStore } from '@/stores';
 
 interface DetailProps {
   product: IProduct;
-  userId: string;
 }
 
-const ProductDetail = ({ product, userId }: DetailProps) => {
+const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors?.[0] || '');
   const [size, setSize] = useState<string>(product.sizes?.[0] || '');
@@ -50,10 +50,10 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
   const addDataToCart = useAddDataToCart();
   const addToWishlist = useAddToWishlist();
   const removeFromWishlist = useRemoveFromWishlist();
-
+  const { userId } = useUserStore();
   // Fetch cart items
-  const { data: cartItems } = useCartData(userId);
-  const { data: wishlist } = useWishlistData(userId);
+  const { data: cartItems } = useCartData(userId!);
+  const { data: wishlist } = useWishlistData(userId!);
 
   // Handle set quantity
   const handleQuantityChange = useCallback((newQuantity: number) => {
@@ -91,7 +91,7 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
 
       const newItem: IWishlist = {
         id: uuidv4(),
-        userId: userId,
+        userId: userId!,
         productId: product.id
       };
 
@@ -124,7 +124,7 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
     if (!existingItem) {
       const cartData: ICart = {
         id: uuidv4(),
-        userId: userId,
+        userId: userId!,
         productId: product.id,
         color: color || product.colors?.[0] || '',
         size: size || product.sizes?.[0] || '',
@@ -155,9 +155,10 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
             <Image
               src={item}
               alt="detail-img"
-              width={110}
-              height={110}
-              objectFit="contain"
+              width={0}
+              height={0}
+              className="object-contain h-[110px] w-[110px] mx-auto"
+              sizes="100vw"
               priority
             />
           </div>
@@ -167,9 +168,10 @@ const ProductDetail = ({ product, userId }: DetailProps) => {
         <Image
           src={product.image}
           alt={product.name}
-          width={446}
-          height={315}
-          objectFit="contain"
+          width={0}
+          height={0}
+          className="object-contain md:h-[273px] md:w-[200px] w-[300px] mx-auto"
+          sizes="100vw"
           priority
         />
       </div>

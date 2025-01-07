@@ -1,33 +1,20 @@
 import { Suspense } from 'react';
 
-// Interfaces
-import { ISearchParams } from '@/interface/util';
-
 // Libs
 import { getCategories } from '@/libs';
 
 // Components
-import {
-  Heading,
-  PaginationProduct,
-  SkeletonProductList,
-  Tag
-} from '@/ui/components';
+import { SkeletonProductList } from '@/ui/components';
 
 // Sections
 import { CategorySection, ProductListCategory } from '@/ui/sections';
 
 interface OurProductProps {
   page: number;
-  user: string;
   queryCategory: string;
 }
 
-const OurProductList = async ({
-  page,
-  user,
-  queryCategory
-}: OurProductProps) => {
+const OurProductList = async ({ page, queryCategory }: OurProductProps) => {
   const { data: categories, error } = await getCategories(
     `?&_start=${page}&_limit=${4}`
   );
@@ -44,7 +31,7 @@ const OurProductList = async ({
       )}
       <div className="mt-10">
         <Suspense fallback={<SkeletonProductList />}>
-          <ProductListCategory user={user} query={queryCategory} />
+          <ProductListCategory query={queryCategory} />
         </Suspense>
       </div>
     </div>

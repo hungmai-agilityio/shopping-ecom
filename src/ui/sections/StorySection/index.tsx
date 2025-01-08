@@ -3,8 +3,8 @@ import { Heading } from '@/ui/components';
 
 const StorySection = () => {
   return (
-    <section className="flex lg:flex-row flex-col-reverse items-center justify-between gap-14 my-20">
-      <div className="container md:w-card-about w-full">
+    <section className="container flex lg:flex-row flex-col-reverse items-center justify-between gap-14 my-20">
+      <div className="md:w-card-about w-full">
         <Heading>Our Story</Heading>
         <p className="text-base md:mt-16 mt-7">
           Launced in 2015, Exclusive is South Asia's premier online shopping
@@ -19,8 +19,13 @@ const StorySection = () => {
           consumer.
         </p>
       </div>
-
-      <Image src="/about.png" alt="about-image" width={600} height={609} loading='eager'/>
+      <Image
+        src="/about.png"
+        alt="about-image"
+        width={600}
+        height={609}
+        loading="eager"
+      />
     </section>
   );
 };

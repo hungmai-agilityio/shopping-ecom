@@ -6,13 +6,13 @@ exports[`Tabs component Should be render match to snapshot 1`] = `
     class="flex flex-wrap lg:flex-col justify-center lg:items-start gap-4 lg:w-96"
   >
     <button
-      class="lg:text-base text-lg text-dark lg:border-none border border-dark lg:p-0 p-2  text-primary font-medium border-primary "
+      class="text-lg text-dark p-2 lg:text-base lg:border-none lg:p-0 border border-dark text-primary font-medium border-primary"
       value="1"
     >
       Tab 1
     </button>
     <button
-      class="lg:text-base text-lg text-dark lg:border-none border border-dark lg:p-0 p-2"
+      class="text-lg text-dark p-2 lg:text-base lg:border-none lg:p-0 border border-dark"
       value="2"
     >
       Tab 2

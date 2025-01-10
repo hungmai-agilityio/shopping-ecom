@@ -38,3 +38,13 @@ export const toastStyles = {
   [STATUS.ERROR]: 'bg-red-500',
   [STATUS.WARNING]: 'bg-yellow-500'
 };
+
+export const tabTypeClasses = {
+  [TYPE.PRIMARY]: 'lg:text-base lg:border-none lg:p-0 border border-dark',
+  [TYPE.SECOND]: 'border border-dark',
+};
+
+export const tabsClasses = {
+  [TYPE.PRIMARY]: 'flex flex-wrap lg:flex-col justify-center lg:items-start gap-4 lg:w-96',
+  [TYPE.SECOND]: 'flex justify-center items-center gap-4',
+};

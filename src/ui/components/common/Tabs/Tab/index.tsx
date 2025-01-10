@@ -1,3 +1,4 @@
+import { tabTypeClasses, TYPE } from '@/constants';
 import { clsx } from 'clsx';
 
 export interface ITab {
@@ -5,17 +6,21 @@ export interface ITab {
   value: string;
   title: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  variant?: TYPE.PRIMARY | TYPE.SECOND;
 }
 
-export const Tab = ({ value, selected, title, onClick }: ITab) => (
+export const Tab = ({
+  value,
+  selected,
+  title,
+  onClick,
+  variant = TYPE.PRIMARY
+}: ITab) => (
   <button
     value={value}
-    className={clsx(
-      'lg:text-base text-lg text-dark lg:border-none border border-dark lg:p-0 p-2',
-      {
-        ' text-primary font-medium border-primary ': selected === value
-      }
-    )}
+    className={clsx('text-lg text-dark p-2', tabTypeClasses[variant], {
+      'text-primary font-medium border-primary': selected === value
+    })}
     onClick={onClick}
   >
     {title}

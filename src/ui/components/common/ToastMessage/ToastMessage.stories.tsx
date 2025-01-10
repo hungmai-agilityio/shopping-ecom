@@ -71,32 +71,3 @@ export const warning: Story = {
     </div>
   )
 };
-
-export const position: Story = {
-  args: {
-    status: STATUS.ERROR,
-    message: 'show message error',
-    position: POSITION.TOP_LEFT,
-    duration: 100000
-  },
-  render: (args) => (
-    <div className="w-[500px] h-[200px]">
-      <ToastMessage {...args} />
-      <ToastMessage
-        {...args}
-        position={POSITION.BOT_LEFT}
-        status={STATUS.SUCCESS}
-      />
-      <ToastMessage
-        {...args}
-        position={POSITION.BOT_RIGHT}
-        status={STATUS.ERROR}
-      />
-      <ToastMessage
-        {...args}
-        position={POSITION.TOP_RIGHT}
-        status={STATUS.WARNING}
-      />
-    </div>
-  )
-};

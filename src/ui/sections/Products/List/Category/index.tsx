@@ -15,6 +15,7 @@ const ProductListCategory = async ({ query }: ProductListProps) => {
   const limit = 8;
   const { data, error } = await getProductLimit(`${query}`, 0, limit);
   const user = getUserCookie();
+
   if (error) {
     return (
       <div className="container my-10">

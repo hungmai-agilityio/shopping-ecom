@@ -33,7 +33,8 @@ export { default as Social } from '@/ui/components/common/Icon/Social';
 export { default as Table } from '@/ui/components/common/Table';
 export { default as Tabs } from '@/ui/components/common/Tabs';
 export { default as Tag } from '@/ui/components/common/Tag';
-export { default as ToastMessage } from '@/ui/components/common/ToastMessage';
+export { default as ToastContainer } from '@/ui/components/common/Toast';
+export { default as ToastMessage } from '@/ui/components/common/Toast/Message';
 export { default as UserDropdown } from '@/ui/components/common/Dropdown/User';
 
 export * from '@/ui/components/common/Skeleton';

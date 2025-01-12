@@ -1,21 +1,20 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { useCallback, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useCallback } from 'react';
 
 // Constants
-import { MESSAGE_API, QUERY, STATUS, TYPE, popping } from '@/constants';
+import { MESSAGE_API, TYPE, popping } from '@/constants';
 
 // Interfaces
-import { IProduct, IWishlist, ICart } from '@/interface';
+import { IProduct } from '@/interface';
 
 // Libs
-import { getUserCart, getUserWishList } from '@/libs';
+import { addOrUpdateCart } from '@/libs';
 import { useUserStore } from '@/stores';
 
 // Components
-import { Button, CardWishList, ToastMessage } from '@/ui/components';
+import { Button } from '@/ui/components';
+import { WishlistList } from '@/ui/sections';
 
 // Hooks
 import {
@@ -24,6 +23,7 @@ import {
   useUpdateDataToCart,
   useWishlistData
 } from '@/hooks';
+import { useToast } from '@/stores/toast';
 
 interface WishlistProps {
   products: IProduct[];
@@ -31,67 +31,35 @@ interface WishlistProps {
 
 const WishListSection = ({ products }: WishlistProps) => {
   const { userId } = useUserStore();
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const { data: wishlist } = useWishlistData(userId!);
 
-  const { data: wishlist, error: wishlistError } = useWishlistData(userId!);
+  const toast = useToast();
   const addToCart = useAddDataToCart();
   const updateDataToCart = useUpdateDataToCart();
-  const clearWishlist = useClearWishlist({ wishlist });
-
-  if (wishlistError) {
-    return (
-      <div className="container my-10">
-        <p className="text-center text-primary">
-          Error: Failed to fetch wishlist products. Please try again later.
-        </p>
-      </div>
-    );
-  }
+  const { mutate, isPending } = useClearWishlist({ wishlist });
 
   // Handle adding all products from the wishlist to the cart and remove all wishlist
-  const handleAddAllProduct = useCallback(() => {
-    const dataWishlist = wishlist.map((item) => {
-      const product = products.find((p) => p.id === item.productId);
-      if (!product) return;
+  const handleAddAllProduct = useCallback(async () => {
+    const dataWishlist = await Promise.all(
+      wishlist.map(async (item) => {
+        const product = products.find((p) => p.id === item.productId);
+        if (!product) return;
 
-      return getUserCart(userId!).then((cartItems) => {
-        const existingItem = cartItems.find(
-          (cartItem: ICart) =>
-            cartItem.productId === product.id && cartItem.userId === userId
+        await addOrUpdateCart(
+          userId!,
+          product,
+          addToCart.mutate,
+          updateDataToCart.mutate
         );
+      })
+    );
 
-        if (existingItem) {
-          updateDataToCart.mutate({
-            id: existingItem.id,
-            data: { quantity: existingItem.quantity + 1 }
-          });
-          return;
-        }
+    if (dataWishlist) {
+      mutate();
 
-        const cartData: ICart = {
-          id: uuidv4(),
-          userId: userId!,
-          productId: product.id,
-          color: product.colors?.[0] || '',
-          size: product.sizes?.[0] || '',
-          quantity: 1
-        };
-
-        addToCart.mutate(cartData);
-        setToast({
-          status: STATUS.SUCCESS,
-          message: MESSAGE_API.ADD_PRODUCT_SUCCESS
-        });
-      });
-    });
-
-    Promise.all(dataWishlist).then(() => {
-      clearWishlist.mutate();
-    });
-  }, [wishlist, products, addToCart, userId!]);
+      toast.success(MESSAGE_API.ADD_PRODUCT_SUCCESS);
+    }
+  }, [wishlist, products, addToCart, updateDataToCart, userId]);
 
   return (
     <section className={`${popping.className}`}>
@@ -100,39 +68,12 @@ const WishListSection = ({ products }: WishlistProps) => {
         <Button
           variant={TYPE.SECOND}
           onClick={handleAddAllProduct}
-          disabled={!wishlist.length}
+          disabled={!wishlist.length || isPending}
         >
           Move All To Bag
         </Button>
       </div>
-      <div className="flex justify-center">
-        <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2">
-          {wishlist.map((item) => {
-            const product = products.find((p) => p.id === item.productId);
-
-            if (!product) return null;
-
-            return (
-              <CardWishList
-                key={item.id}
-                image={product.image}
-                name={product.name}
-                id={item.id}
-                productId={item.productId}
-                price={product.price}
-                ratings={product.ratings}
-                colors={product.colors || []}
-                sizes={product.sizes || []}
-                discount={product.discount}
-                isNewProduct={product.isNew}
-                originalPrice={product.originalPrice}
-                userId={userId!}
-              />
-            );
-          })}
-        </div>
-      </div>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
+      <WishlistList wishlist={wishlist} products={products} userId={userId!} />
     </section>
   );
 };

@@ -1,6 +1,3 @@
-import { checkPassword } from '@/libs/actions/user';
-import { getUserEmail } from '@/libs/services/user';
-
 interface APIOptions {
   endpoint: string;
   id?: string;

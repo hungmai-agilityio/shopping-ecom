@@ -11,19 +11,14 @@ import { MESSAGE_API, SIZE, STATUS, TYPE } from '@/constants';
 import { IUser, Address } from '@/interface';
 
 // Components
-import {
-  Button,
-  Icon,
-  Modal,
-  ModalAddress,
-  ToastMessage
-} from '@/ui/components';
+import { Button, Icon, Modal, ModalAddress } from '@/ui/components';
 
 // Hooks
 import { useModal } from '@/hooks/useModal';
 
 // Libs
 import { updateUser } from '@/libs';
+import { useToast } from '@/stores/toast';
 
 interface AddressProps {
   user: IUser;
@@ -38,10 +33,7 @@ const AddressSection = ({ user }: AddressProps) => {
   const [editingAddress, setEditingAddress] = useState<Address | null>(null);
   const [addressToDelete, setAddressToDelete] = useState<string | null>(null);
 
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const toast = useToast();
 
   const defaultData = (address: Address) => ({
     street: address.street,
@@ -119,16 +111,10 @@ const AddressSection = ({ user }: AddressProps) => {
     if (response.data) {
       setCurrentUser(updatedUser);
 
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
-      });
+      toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS);
       return;
     }
-    setToast({
-      status: STATUS.ERROR,
-      message: MESSAGE_API.UPDATE_PROFILE_ERROR
-    });
+    toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
   };
 
   // Handle Edit address and update to user
@@ -152,16 +138,12 @@ const AddressSection = ({ user }: AddressProps) => {
     if (response.data) {
       setCurrentUser(updatedUser);
 
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.UPDATE_PROFILE_SUCCESS
-      });
+      toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS);
+
       return;
     }
-    setToast({
-      status: STATUS.ERROR,
-      message: MESSAGE_API.UPDATE_PROFILE_ERROR
-    });
+
+    toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
   };
 
   // Handle set default address
@@ -208,16 +190,12 @@ const AddressSection = ({ user }: AddressProps) => {
       setCurrentUser(updatedUser);
       deleteModal.closeModal();
 
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.DELETE_ADDRESS_SUCCESS
-      });
+      toast.error(MESSAGE_API.DELETE_ADDRESS_SUCCESS);
+
       return;
     }
-    setToast({
-      status: STATUS.ERROR,
-      message: MESSAGE_API.DELETE_ADDRESS_ERROR
-    });
+
+    toast.error(MESSAGE_API.DELETE_ADDRESS_ERROR);
   }, [addressToDelete]);
 
   return (
@@ -343,7 +321,6 @@ const AddressSection = ({ user }: AddressProps) => {
       >
         Do you want to delete this address?
       </Modal>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </div>
   );
 };

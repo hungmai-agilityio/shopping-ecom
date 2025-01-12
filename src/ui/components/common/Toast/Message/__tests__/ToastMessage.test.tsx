@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 // Components
-import ToastMessage from '@/ui/components/common/ToastMessage';
+import ToastMessage from '@/ui/components/common/Toast/Message';
 import { STATUS } from '@/constants';
 
 describe('ToastMessage component', () => {

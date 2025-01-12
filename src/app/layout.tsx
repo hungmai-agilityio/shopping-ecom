@@ -6,6 +6,7 @@ import { Footer, Header } from '@/ui/sections';
 
 // Provider
 import { QueryProvider } from '@/providers/QueryClientProvider';
+import { ToastContainer } from '@/ui/components';
 
 export const metadata: Metadata = {
   title: 'Exclusive shop',
@@ -24,6 +25,8 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen">
         <QueryProvider>
           <Header />
+          <ToastContainer />
+
           <main className="flex-grow">{children}</main>
           <Footer />
         </QueryProvider>

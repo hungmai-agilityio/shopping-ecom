@@ -1,8 +1,7 @@
 'use client';
 
-import { ICart, IUser } from '@/interface';
-import { memo, useCallback, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { IProduct } from '@/interface';
+import { memo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Hooks
@@ -13,96 +12,45 @@ import {
 } from '@/hooks';
 
 // Components
-import { CardProduct, ToastMessage } from '@/ui/components';
+import { CardProduct } from '@/ui/components';
 
 // Libs
-import { getUserCart } from '@/libs';
+import { addOrUpdateCart } from '@/libs';
 
 // Constants
-import { END_POINT, MESSAGE_API, STATUS } from '@/constants';
+import { MESSAGE_API, STATUS } from '@/constants';
+import { useToast } from '@/stores/toast';
 
 interface CardWishListProps {
-  colors: string[];
-  sizes: string[];
-  discount?: number;
-  id: string;
-  productId: string;
-  image: string;
-  isDiscount?: boolean;
-  isNew?: boolean;
-  isNewProduct?: boolean;
-  name: string;
-  originalPrice?: number;
-  price: number;
-  ratings: number;
+  product: IProduct;
   userId: string;
+  wishListId: string;
 }
 
 const CardWishList = memo(
-  ({
-    colors = [],
-    sizes = [],
-    discount,
-    id,
-    productId,
-    image,
-    isNewProduct,
-    name,
-    originalPrice,
-    price,
-    ratings,
-    userId
-  }: CardWishListProps) => {
-    const [toast, setToast] = useState<{
-      status: STATUS;
-      message: string;
-    } | null>(null);
+  ({ product, userId, wishListId }: CardWishListProps) => {
     const router = useRouter();
 
     const removeFromWishlist = useRemoveFromWishlist();
     const updateDataToCart = useUpdateDataToCart();
     const addToCart = useAddDataToCart();
+    const toast = useToast();
 
     /**
-     * Handle adding a product to the cart.
-     * If the product already exists in the cart, its quantity is incremented by 1.
-     * If not, a new cart item is added.
-     * @param {string} productId
+     * Handle adding or updating a product in the cart.
+     * @param {IProduct} product
      */
     const handleAddToCart = useCallback(
-      async (productId: string) => {
-        const cartItems = await getUserCart(userId);
-
-        const existingItem = cartItems.find(
-          (cartItem: ICart) =>
-            cartItem.productId === productId && cartItem.userId === userId
+      async (product: IProduct) => {
+        const status = await addOrUpdateCart(
+          userId,
+          product,
+          addToCart.mutate,
+          updateDataToCart.mutate
         );
 
-        if (existingItem) {
-          updateDataToCart.mutate({
-            id: existingItem.id,
-            data: { quantity: existingItem.quantity + 1 }
-          });
-
-          setToast({
-            status: STATUS.SUCCESS,
-            message: MESSAGE_API.UPDATE_QUANTITY
-          });
-        }
-        if (!existingItem) {
-          const newItem: ICart = {
-            id: uuidv4(),
-            userId: userId,
-            productId: productId,
-            color: colors[0],
-            size: sizes[0],
-            quantity: 1
-          };
-          addToCart.mutate(newItem);
-          setToast({
-            status: STATUS.SUCCESS,
-            message: MESSAGE_API.ADD_PRODUCT_SUCCESS
-          });
+        if (status === STATUS.SUCCESS) {
+          toast.success(MESSAGE_API.ADD_PRODUCT_SUCCESS);
         }
       },
       [userId]
@@ -113,46 +61,42 @@ const CardWishList = memo(
      * @param {string} id - The id of the wishlist item to remove.
      */
     const handleRemoveWishList = useCallback(
-      (id: string) => {
-        if (id) {
-          removeFromWishlist.mutate(id);
+      (wishListId: string) => {
+        if (wishListId) {
+          removeFromWishlist.mutate(wishListId);
         }
       },
       [removeFromWishlist]
     );
-
     /**
      * Handle redirecting to the product detail page using productId
      * @param {string} productId - The id of the product to preview
      */
     const handleRedirectPreview = (productId: string) => {
-      router.push(`${END_POINT.PRODUCT}/${productId}`);
+      router.push(`/product/${productId}`);
     };
 
     return (
       <>
         <CardProduct
-          key={id}
-          src={image}
-          alt={name}
+          key={product.id}
+          src={product.image}
+          alt={product.name}
           icon="icon-delete.svg"
-          id={id}
-          name={name}
-          price={price}
-          rating={ratings}
-          colors={colors}
-          discount={discount}
-          isNewProduct={isNewProduct}
-          selectedColor={colors![0]}
-          oldPrice={originalPrice}
-          onAdd={handleAddToCart.bind(null, productId)}
-          onIconClick={handleRemoveWishList}
+          id={product.id}
+          name={product.name}
+          price={product.price}
+          rating={product.ratings}
+          colors={product.colors}
+          discount={product.discount}
+          isNewProduct={product.isNew}
+          selectedColor={product.colors?.[0]}
+          oldPrice={product.originalPrice}
+          onAdd={handleAddToCart.bind(null, product)}
+          onIconClick={handleRemoveWishList.bind(null, wishListId)}
           isShowAction
-          onView={handleRedirectPreview.bind(null, productId)}
+          onView={handleRedirectPreview.bind(null, product.id)}
         />
-        {toast && (
-          <ToastMessage status={toast.status} message={toast.message} />
-        )}
       </>
     );
   }

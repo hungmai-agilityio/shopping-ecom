@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 
 // Constants
-import { TAB } from '@/constants';
+import { TAB, TYPE } from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interface';

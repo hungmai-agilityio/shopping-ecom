@@ -8,14 +8,15 @@ import bcrypt from 'bcryptjs';
 import { useRouter } from 'next/navigation';
 
 // Components
-import { InputController, Modal, ToastMessage } from '@/ui/components';
+import { InputController, Modal } from '@/ui/components';
 
 // Libs
 import { checkPassword, passwordSchema, updateUser } from '@/libs';
 
 // Constants
-import { STATUS, MESSAGE_VALID } from '@/constants';
+import { MESSAGE_VALID } from '@/constants';
 import { IUser } from '@/interface';
+import { useToast } from '@/stores/toast';
 
 type PasswordForm = z.infer<typeof passwordSchema>;
 
@@ -26,10 +27,8 @@ interface ModalPasswordProps {
 }
 
 const ModalPassword = ({ isOpen, onClose, user }: ModalPasswordProps) => {
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const toast = useToast();
+
   const [showPass, setShowPass] = useState<boolean>(false);
   const [showNewPass, setShowNewPass] = useState<boolean>(false);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
@@ -46,7 +45,6 @@ const ModalPassword = ({ isOpen, onClose, user }: ModalPasswordProps) => {
 
   useEffect(() => {
     if (isOpen) {
-      setToast(null);
       reset();
     }
   }, [isOpen, reset]);
@@ -57,19 +55,14 @@ const ModalPassword = ({ isOpen, onClose, user }: ModalPasswordProps) => {
 
     const isPasswordCorrect = await checkPassword(password, user.password);
     if (!isPasswordCorrect) {
-      setToast({
-        status: STATUS.ERROR,
-        message: MESSAGE_VALID.CONFIRM_ERROR
-      });
+      toast.error(MESSAGE_VALID.CONFIRM_ERROR);
       return;
     }
 
     if (newPassword) {
       if (await checkPassword(newPassword, user.password)) {
-        setToast({
-          status: STATUS.ERROR,
-          message: MESSAGE_VALID.NEW_PASS_ERROR
-        });
+        toast.error(MESSAGE_VALID.NEW_PASS_ERROR);
+
         return;
       }
 
@@ -103,9 +96,6 @@ const ModalPassword = ({ isOpen, onClose, user }: ModalPasswordProps) => {
       styles="fixed top-0 left-0 w-full h-full overflow-y-auto md:relative md:max-w-3xl md:h-auto md:overflow-visible"
     >
       <div className="flex flex-col gap-8">
-        {toast && (
-          <ToastMessage status={toast.status} message={toast.message} />
-        )}
         <InputController
           control={control}
           name="password"

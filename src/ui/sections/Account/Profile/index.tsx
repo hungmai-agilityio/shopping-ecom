@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 // Constants
-import { MESSAGE_API, SIZE, STATUS, TYPE } from '@/constants';
+import { MESSAGE_API, SIZE, TYPE } from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interface';
@@ -19,13 +19,13 @@ import {
   Avatar,
   Button,
   InputController,
-  ModalPassword,
-  ToastMessage
+  ModalPassword
 } from '@/ui/components';
 
 // Libs
 import { postAvatar, profileSchema, updateUser } from '@/libs';
 import { useModal } from '@/hooks/useModal';
+import { useToast } from '@/stores/toast';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 
@@ -38,11 +38,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
     user.avatar || ''
   );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
-
+  const toast = useToast();
   const router = useRouter();
   const passModal = useModal();
   const {
@@ -81,12 +77,9 @@ const ProfileSection = ({ user }: ProfileProps) => {
     };
 
     const response = await updateUser(user.id, updatedUser);
-    setToast({
-      status: response.data ? STATUS.SUCCESS : STATUS.ERROR,
-      message: response.data
-        ? MESSAGE_API.UPDATE_PROFILE_SUCCESS
-        : MESSAGE_API.UPDATE_PROFILE_ERROR
-    });
+    response.data
+      ? toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS)
+      : toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
 
     if (response.data) router.refresh();
   };
@@ -162,7 +155,7 @@ const ProfileSection = ({ user }: ProfileProps) => {
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex flex-wrap justify-between items-center">
           <Button
             type="button"
             className="text-primary hover:underline text-base"
@@ -185,7 +178,6 @@ const ProfileSection = ({ user }: ProfileProps) => {
           </div>
         </div>
       </form>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
       <ModalPassword
         isOpen={passModal.isOpen}
         onClose={passModal.closeModal}

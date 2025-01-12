@@ -23,28 +23,13 @@ describe('WishListSection Component', () => {
   });
 
   test('renders wishlist products correctly', () => {
-    render(<WishListSection products={mockProducts} />);
+    render(<WishListSection products={mockProducts} wishlist={mockWishlist} />);
 
     expect(screen.getByText('Wishlist (2)')).toBeInTheDocument();
   });
 
-  test('shows error message when wishlist fetch fails', () => {
-    (useWishlistData as jest.Mock).mockReturnValue({
-      data: [],
-      error: new Error('Failed to fetch wishlist')
-    });
-
-    render(<WishListSection products={mockProducts} />);
-
-    expect(
-      screen.getByText(
-        'Error: Failed to fetch wishlist products. Please try again later.'
-      )
-    ).toBeInTheDocument();
-  });
-
   test('handles adding all products to cart and clears wishlist', async () => {
-    render(<WishListSection products={mockProducts} />);
+    render(<WishListSection products={mockProducts} wishlist={mockWishlist} />);
 
     const moveAllButton = screen.getByText('Move All To Bag');
     fireEvent.click(moveAllButton);
@@ -59,7 +44,7 @@ describe('WishListSection Component', () => {
       data: []
     });
 
-    render(<WishListSection products={mockProducts} />);
+    render(<WishListSection products={mockProducts} wishlist={[]} />);
 
     const moveAllButton = screen.getByText('Move All To Bag');
     expect(moveAllButton).toBeDisabled();

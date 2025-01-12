@@ -12,25 +12,19 @@ import { handleSignIn } from '@/actions';
 import { useUserStore } from '@/stores';
 
 // Constants
-import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
+import { END_POINT, INPUT_TYPE, SIZE, TYPE } from '@/constants';
 
 // Components
-import {
-  AuthForm,
-  Button,
-  InputController,
-  ToastMessage
-} from '@/ui/components';
+import { AuthForm, Button, InputController } from '@/ui/components';
+import { useToast } from '@/stores/toast';
 
 const SignInSection = () => {
   const router = useRouter();
   const { setUserId } = useUserStore();
 
   const [showPass, setShowPass] = useState<boolean>(false);
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const toast = useToast();
+
   const {
     control,
     handleSubmit,
@@ -55,10 +49,7 @@ const SignInSection = () => {
 
       router.push(END_POINT.HOME);
     } else {
-      setToast({
-        status: STATUS.ERROR,
-        message: response.message
-      });
+      toast.error(response.message);
     }
   };
 
@@ -98,7 +89,6 @@ const SignInSection = () => {
           </Link>
         </div>
       </form>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </AuthForm>
   );
 };

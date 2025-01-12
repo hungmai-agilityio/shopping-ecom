@@ -9,13 +9,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { IUser, Address } from '@/interface';
 
 // Components
-import { InputController, ToastMessage } from '@/ui/components';
+import { InputController } from '@/ui/components';
 
 // Constants
-import { MESSAGE_API, STATUS, TYPE } from '@/constants';
+import { MESSAGE_API, TYPE } from '@/constants';
 
 // Libs
 import { updateUser, billingSchema } from '@/libs';
+import { useToast } from '@/stores/toast';
 
 interface BillingDetailsProps {
   user: IUser;
@@ -27,11 +28,7 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
 
   const [currentUser, setCurrentUser] = useState<IUser>(user);
   const [isChecked, setIsChecked] = useState<boolean>(true);
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
-
+  const toast = useToast();
   const {
     control,
     getValues,
@@ -79,12 +76,9 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
     setCurrentUser(addressUpdate);
 
     const response = await updateUser(user.id, addressUpdate);
-    setToast({
-      status: response.data ? STATUS.SUCCESS : STATUS.ERROR,
-      message: response.data
-        ? MESSAGE_API.UPDATE_PROFILE_SUCCESS
-        : MESSAGE_API.UPDATE_PROFILE_ERROR
-    });
+    response.data
+      ? toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS)
+      : toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
   };
 
   const onCheckboxChange = () => {
@@ -172,7 +166,6 @@ const BillingDetails = ({ user }: BillingDetailsProps) => {
           </span>
         </div>
       </form>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>
   );
 };

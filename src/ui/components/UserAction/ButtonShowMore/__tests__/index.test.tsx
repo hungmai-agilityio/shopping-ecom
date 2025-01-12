@@ -9,7 +9,7 @@ import { getProductLimit } from '@/libs';
 import { ButtonShowMore } from '@/ui/components';
 
 // Mocks
-import { mockUser } from '@/mock';
+import { mockUser, mockWishlist } from '@/mock';
 
 jest.mock('@/libs');
 jest.mock('next/navigation');
@@ -55,7 +55,12 @@ describe('ButtonShowMore Component', () => {
 
   test('Should renders initial state with no products', () => {
     renderWithQueryClient(
-      <ButtonShowMore queryKey="test" user={mockUser} startQuery={0} />
+      <ButtonShowMore
+        queryKey="test"
+        userId={mockUser.id}
+        startQuery={0}
+        wishlist={mockWishlist}
+      />
     );
     expect(
       screen.getByRole('button', { name: /show more/i })
@@ -70,7 +75,12 @@ describe('ButtonShowMore Component', () => {
     });
 
     renderWithQueryClient(
-      <ButtonShowMore queryKey="test" user={mockUser} startQuery={0} />
+      <ButtonShowMore
+        queryKey="test"
+        userId={mockUser.id}
+        startQuery={0}
+        wishlist={mockWishlist}
+      />
     );
     const button = screen.getByRole('button', { name: /show more/i });
 
@@ -83,7 +93,12 @@ describe('ButtonShowMore Component', () => {
     (getProductLimit as jest.Mock).mockResolvedValueOnce({ data: [] });
 
     renderWithQueryClient(
-      <ButtonShowMore queryKey="test" user={mockUser} startQuery={0} />
+      <ButtonShowMore
+        queryKey="test"
+        userId={mockUser.id}
+        startQuery={0}
+        wishlist={[]}
+      />
     );
     const button = screen.getByRole('button', { name: /show more/i });
 
@@ -104,7 +119,12 @@ describe('ButtonShowMore Component', () => {
     );
 
     renderWithQueryClient(
-      <ButtonShowMore queryKey="test" user={mockUser} startQuery={0} />
+      <ButtonShowMore
+        queryKey="test"
+        userId={mockUser.id}
+        startQuery={0}
+        wishlist={mockWishlist}
+      />
     );
     const button = screen.getByRole('button', { name: /show more/i });
 

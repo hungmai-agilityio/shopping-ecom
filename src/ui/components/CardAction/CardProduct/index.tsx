@@ -1,7 +1,7 @@
 'use client';
 
 import { ICart, IWishlist } from '@/interface';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 
@@ -15,13 +15,14 @@ import {
 } from '@/hooks';
 
 // Components
-import { CardProduct, ToastMessage } from '@/ui/components';
+import { CardProduct } from '@/ui/components';
 
 // Libs
 import { getUserCart } from '@/libs';
 
 // Constants
-import { END_POINT, MESSAGE_API, STATUS } from '@/constants';
+import { END_POINT, MESSAGE_API } from '@/constants';
+import { useToast } from '@/stores/toast';
 
 interface CardProductActionProps {
   colors: string[];
@@ -55,11 +56,7 @@ const CardProductAction = memo(
     ratings,
     userId
   }: CardProductActionProps) => {
-    const [toast, setToast] = useState<{
-      status: STATUS;
-      message: string;
-    } | null>(null);
-
+    const toast = useToast();
     const addToWishlist = useAddToWishlist();
     const removeFromWishlist = useRemoveFromWishlist();
     const updateDataToCart = useUpdateDataToCart();
@@ -110,11 +107,7 @@ const CardProductAction = memo(
             id: existingItem.id,
             data: { quantity: existingItem.quantity + 1 }
           });
-
-          setToast({
-            status: STATUS.SUCCESS,
-            message: MESSAGE_API.UPDATE_QUANTITY
-          });
+          toast.success(MESSAGE_API.UPDATE_QUANTITY);
         }
         if (!existingItem) {
           const newItem: ICart = {
@@ -126,10 +119,7 @@ const CardProductAction = memo(
             quantity: 1
           };
           addToCart.mutate(newItem);
-          setToast({
-            status: STATUS.SUCCESS,
-            message: MESSAGE_API.ADD_PRODUCT_SUCCESS
-          });
+          toast.success(MESSAGE_API.ADD_PRODUCT_SUCCESS);
         }
       },
       [userId]
@@ -160,9 +150,6 @@ const CardProductAction = memo(
           src={image}
           onView={handleRedirectPreview}
         />
-        {toast && (
-          <ToastMessage status={toast.status} message={toast.message} />
-        )}
       </>
     );
   }

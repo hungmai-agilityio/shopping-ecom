@@ -27,5 +27,6 @@ export { default as SignInSection } from '@/ui/sections/SignIn';
 export { default as SignUpSection } from '@/ui/sections/SignUp';
 export { default as StorySection } from '@/ui/sections/StorySection';
 export { default as WishListSection } from '@/ui/sections/WishList';
+export { default as WishlistList } from '@/ui/sections/WishList/List';
 export { default as BillingDetails } from '@/ui/sections/BillingDetail';
 export { default as BillingMenu } from '@/ui/sections/BillingDetail/Menu';

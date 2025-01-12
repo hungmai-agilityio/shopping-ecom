@@ -8,15 +8,10 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Constants
-import { END_POINT, INPUT_TYPE, SIZE, STATUS, TYPE } from '@/constants';
+import { END_POINT, INPUT_TYPE, SIZE, TYPE } from '@/constants';
 
 // Components
-import {
-  AuthForm,
-  Button,
-  InputController,
-  ToastMessage
-} from '@/ui/components';
+import { AuthForm, Button, InputController } from '@/ui/components';
 
 // Interfaces
 import { IUser } from '@/interface';
@@ -25,14 +20,12 @@ import { IUser } from '@/interface';
 import { signUpSchema } from '@/libs';
 import { createUser } from '@/actions';
 import { useUserStore } from '@/stores';
+import { useToast } from '@/stores/toast';
 
 const SignUpSection = () => {
   const router = useRouter();
   const { setUserId } = useUserStore();
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const toast = useToast();
   const [showPass, setShowPass] = useState<boolean>(false);
 
   const {
@@ -46,10 +39,7 @@ const SignUpSection = () => {
   const onSubmit = async (data: IUser) => {
     const response = await createUser(data);
 
-    setToast({
-      status: response.success ? STATUS.SUCCESS : STATUS.ERROR,
-      message: response.message
-    });
+    toast.error(response.message);
 
     if (response.success) {
       setUserId(response.userId!);
@@ -123,7 +113,6 @@ const SignUpSection = () => {
           </p>
         </div>
       </form>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </AuthForm>
   );
 };

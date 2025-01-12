@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { clsx } from 'clsx';
 
 // Constants
-import { inter, MESSAGE_API, popping, SIZE, STATUS } from '@/constants';
+import { inter, MESSAGE_API, popping, SIZE } from '@/constants';
 
 // Interfaces
 import { ICart, IProduct, IWishlist } from '@/interface';
@@ -18,8 +18,7 @@ import {
   Icon,
   QuantityHorizontal,
   Rating,
-  SizePicker,
-  ToastMessage
+  SizePicker
 } from '@/ui/components';
 
 // Libs
@@ -34,6 +33,7 @@ import {
   useWishlistData
 } from '@/hooks';
 import { useUserStore } from '@/stores';
+import { useToast } from '@/stores/toast';
 
 interface DetailProps {
   product: IProduct;
@@ -43,10 +43,7 @@ const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors?.[0] || '');
   const [size, setSize] = useState<string>(product.sizes?.[0] || '');
-  const [toast, setToast] = useState<{
-    status: STATUS;
-    message: string;
-  } | null>(null);
+  const toast = useToast();
   const addDataToCart = useAddDataToCart();
   const addToWishlist = useAddToWishlist();
   const removeFromWishlist = useRemoveFromWishlist();
@@ -115,10 +112,7 @@ const ProductDetail = ({ product }: DetailProps) => {
         quantity: existingItem.quantity + quantity
       });
 
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.UPDATE_QUANTITY
-      });
+      toast.success(MESSAGE_API.UPDATE_QUANTITY);
     }
 
     if (!existingItem) {
@@ -132,10 +126,8 @@ const ProductDetail = ({ product }: DetailProps) => {
       };
 
       addDataToCart.mutate(cartData);
-      setToast({
-        status: STATUS.SUCCESS,
-        message: MESSAGE_API.ADD_PRODUCT_SUCCESS
-      });
+
+      toast.success(MESSAGE_API.ADD_PRODUCT_SUCCESS);
     }
   }, [product, color, quantity, addDataToCart, cartItems]);
 
@@ -302,7 +294,6 @@ const ProductDetail = ({ product }: DetailProps) => {
           </div>
         </div>
       </div>
-      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>
   );
 };

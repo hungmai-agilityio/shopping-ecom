@@ -26,7 +26,7 @@ const Account = async () => {
   const fullName = `${data.firstName} ${data.lastName}`;
   return (
     <div className={clsx('container my-20 lg:px-0 px-4', popping.className)}>
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-wrap">
         <Breadcrumb />
         <p className="text-base">
           Welcome! <span className="text-primary">{fullName}</span>

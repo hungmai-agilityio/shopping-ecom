@@ -14,7 +14,7 @@ import { IUser } from '@/interface';
 import { addUser, checkPassword, checkUserByEmail, getUserEmail } from '@/libs';
 
 export const createUser = async (data: IUser) => {
-  const { email, password, firstName } = data;
+  const { email, password } = data;
 
   const userExists = await checkUserByEmail(email);
   if (userExists) {

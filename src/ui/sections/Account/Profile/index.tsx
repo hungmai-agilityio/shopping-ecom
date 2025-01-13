@@ -26,6 +26,7 @@ import {
 import { postAvatar, profileSchema, updateUser } from '@/libs';
 import { useModal } from '@/hooks/useModal';
 import { useToast } from '@/stores/toast';
+import { updateUserProfile } from '@/actions';
 
 type ProfileForm = z.infer<typeof profileSchema>;
 
@@ -65,23 +66,12 @@ const ProfileSection = ({ user }: ProfileProps) => {
   };
 
   const onSubmit = async (data: ProfileForm) => {
-    const imageUrl = selectedFile
-      ? await postAvatar(selectedFile)
-      : user.avatar;
-
-    const updatedUser: IUser = {
-      ...user,
-      ...data,
-      avatar: imageUrl,
-      updated_at: new Date().toISOString()
-    };
-
-    const response = await updateUser(user.id, updatedUser);
-    response.data
+    const updatedUser = await updateUserProfile(user, data, selectedFile!);
+    updatedUser
       ? toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS)
       : toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
 
-    if (response.data) router.refresh();
+    if (updatedUser) router.refresh();
   };
 
   const handleResetForm = () => {

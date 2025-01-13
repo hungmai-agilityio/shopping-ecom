@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 // Mocks
 import { mockUser } from '@/mock';
@@ -18,12 +18,14 @@ describe('AccountSection Component', () => {
     expect(screen.getByText('Edit Your Profile'));
   });
 
-  test('Switches to Address Book tab and renders AddressSection', () => {
+  test('Switches to Address Book tab and renders AddressSection', async () => {
     render(<AccountSection user={mockUser} />);
 
     const addressTab = screen.getByText('Address Book');
     fireEvent.click(addressTab);
 
-    expect(screen.getByText('My Address'));
+    await waitFor(() => {
+      expect(screen.getByText('My Address')).toBeInTheDocument();
+    });
   });
 });

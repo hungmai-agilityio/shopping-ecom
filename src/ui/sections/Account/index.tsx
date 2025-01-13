@@ -1,22 +1,27 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 // Constants
-import { TAB, TYPE } from '@/constants';
+import { TAB } from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interface';
 
 // Components
-import { Heading, Panel, Tabs } from '@/ui/components';
+import { Tabs, Panel } from '@/ui/components';
 
 // Sections
-import { ProfileSection, AddressSection } from '@/ui/sections';
+import { ProfileSection } from '@/ui/sections';
+
+// Lazy
+const AddressSection = dynamic(() => import('@/ui/sections/Account/Address'));
 
 interface AccountProps {
   user: IUser;
 }
+
 const AccountSection = ({ user }: AccountProps) => {
   const [selectedTab, setSelectedTab] = useState<string>(TAB.PROFILE);
 

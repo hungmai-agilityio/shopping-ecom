@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { MESSAGE_API, SIZE, STATUS, TYPE } from '@/constants';
+import { MESSAGE_API, SIZE, TYPE } from '@/constants';
 
 // Interfaces
 import { IUser, Address } from '@/interface';
@@ -19,6 +19,12 @@ import { useModal } from '@/hooks/useModal';
 // Libs
 import { updateUser } from '@/libs';
 import { useToast } from '@/stores/toast';
+import {
+  addAddress,
+  editAddress,
+  removeAddress,
+  setDefaultAddress
+} from '@/actions';
 
 interface AddressProps {
   user: IUser;
@@ -99,22 +105,15 @@ const AddressSection = ({ user }: AddressProps) => {
     phone?: string;
   }) => {
     const newAddress = convertToAddress(form);
-    const updatedUser = {
-      ...currentUser,
-      updated_at: new Date().toISOString(),
-      address: [...currentUser.address, newAddress]
-    };
+    try {
+      const updatedUser = await addAddress(currentUser.id, newAddress);
 
-    setCurrentUser(updatedUser);
-    const response = await updateUser(currentUser.id, updatedUser);
-
-    if (response.data) {
       setCurrentUser(updatedUser);
 
       toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS);
-      return;
+    } catch (error) {
+      toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
     }
-    toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
   };
 
   // Handle Edit address and update to user
@@ -126,78 +125,39 @@ const AddressSection = ({ user }: AddressProps) => {
     phone?: string;
   }) => {
     const updatedAddress = convertToAddress(form, editingAddress!);
-    const updatedUser = {
-      ...currentUser,
-      address: currentUser.address.map((addr) =>
-        addr.id === editingAddress?.id ? updatedAddress : addr
-      )
-    };
+    try {
+      const updatedUser = await editAddress(currentUser.id, updatedAddress);
 
-    const response = await updateUser(currentUser.id, updatedUser);
-
-    if (response.data) {
       setCurrentUser(updatedUser);
 
       toast.success(MESSAGE_API.UPDATE_PROFILE_SUCCESS);
-
-      return;
+    } catch (error) {
+      toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
     }
-
-    toast.error(MESSAGE_API.UPDATE_PROFILE_ERROR);
   };
 
   // Handle set default address
   const handleSetDefaultAddress = useCallback(
     async (address: Address) => {
-      const updatedAddresses = currentUser.address.map((addr) =>
-        addr.id === address.id
-          ? { ...addr, isDefault: true }
-          : { ...addr, isDefault: false }
-      );
-
-      const sortedAddresses = updatedAddresses.sort((a, b) =>
-        b.isDefault ? 1 : a.isDefault ? -1 : 0
-      );
-
-      const updatedUser = {
-        ...currentUser,
-        address: sortedAddresses
-      };
-
-      const response = await updateUser(currentUser.id, updatedUser);
-
-      if (response.data) {
-        setCurrentUser(updatedUser);
-      }
+      const updatedUser = await setDefaultAddress(currentUser.id, address.id);
+      setCurrentUser(updatedUser);
     },
     [currentUser]
   );
 
   // Handle remove address
   const handleRemoveAddress = useCallback(async () => {
-    const updatedAddresses = currentUser.address.filter(
-      (address) => address.id !== addressToDelete
-    );
+    try {
+      const updatedUser = await removeAddress(currentUser.id, addressToDelete!);
 
-    const updatedUser = {
-      ...currentUser,
-      address: updatedAddresses
-    };
-
-    const response = await updateUser(currentUser.id, updatedUser);
-
-    if (response.data) {
       setCurrentUser(updatedUser);
       deleteModal.closeModal();
 
       toast.error(MESSAGE_API.DELETE_ADDRESS_SUCCESS);
-
-      return;
+    } catch (error) {
+      toast.error(MESSAGE_API.DELETE_ADDRESS_ERROR);
     }
-
-    toast.error(MESSAGE_API.DELETE_ADDRESS_ERROR);
   }, [addressToDelete]);
-
   return (
     <div className="bg-white shadow-md h-full">
       <div className="flex justify-between gap-5 items-center border-b border-gray-500 py-10 px-8">
